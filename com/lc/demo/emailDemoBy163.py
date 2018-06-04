@@ -7,7 +7,7 @@ from email.header import Header
 # 第三方 SMTP 服务
 mail_host="smtp.163.com"  #设置服务器
 mail_user="ahviplc@163.com"    #用户名
-mail_pass="lc201088"   #口令 
+mail_pass="###"   #口令
 
 #
 sender = 'ahviplc@163.com'
