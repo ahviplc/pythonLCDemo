@@ -9,8 +9,9 @@ for i in  range(1,10):
 
 # -*- coding: UTF-8 -*-
 
-# Filename : test.py
-# author by : www.runoob.com
+# Filename : ninenine.py
+# author by : www.oneplusone.top
+
 
 # 九九乘法表 开始
 for i in range(1, 10):
