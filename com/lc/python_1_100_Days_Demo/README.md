@@ -1,11 +1,11 @@
 ## Python - 100天从新手到大师
 
-Version: 0.1
-Author: LC
-DateTime:2018年6月17日23:40:06
-一加壹博客最Top-一起共创1+1>2的力量！~LC
-LC博客url: http://oneplusone.top/index.html
-by LC
+ Version: 0.1
+ Author: LC
+ DateTime:2018年6月17日23:40:06
+ 一加壹博客最Top-一起共创1+1>2的力量！~LC
+ LC博客url: http://oneplusone.top/index.html
+ by LC
 
 
 ### Python应用领域和就业形势分析
