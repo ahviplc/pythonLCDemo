@@ -22,7 +22,7 @@ print('字符串是不是大写: ', str1.isupper())
 print('字符串是不是以hello开头: ', str1.startswith('hello'))
 print('字符串是不是以hello结尾: ', str1.endswith('hello'))
 print('字符串是不是以感叹号开头: ', str1.startswith('!'))
-print('字符串是不是一感叹号结尾: ', str1.endswith('!'))
+print('字符串是不是以感叹号结尾: ', str1.endswith('!'))
 # str2 = '- \u9a86\u660a'   骆昊
 strLC = '-栗晨LC'
 strlichen ='- \u6817\u6668'
