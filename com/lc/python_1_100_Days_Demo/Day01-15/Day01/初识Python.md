@@ -125,8 +125,10 @@ python hello.py
 向伟大的Dennis M. Ritchie先生致敬
 
 Version: 0.1
-Author: 骆昊
-Date: 2018-02-26
+Author: LC
+DateTime: 2018年6月17日21:41:55
+一加壹博客最Top-一起共创1+1>2的力量！~LC
+LC博客url: http://oneplusone.top/index.html
 
 """
 
