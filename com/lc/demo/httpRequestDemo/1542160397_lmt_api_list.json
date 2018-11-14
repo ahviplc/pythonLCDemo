@@ -1,0 +1,18 @@
+{
+    "Content": {
+        "PriceList": [
+            {
+                "laddNum": 1,
+                "laddPrice": 1.0,
+                "laddValue": 99999999
+            }
+        ],
+        "clearFlag": 1,
+        "cycleStartDate": "20181106000000",
+        "priceCycle": 12,
+        "priceNo": "01",
+        "priceStartDate": "20181106000000",
+        "priceVer": 1
+    },
+    "returnCode": "0000"
+}

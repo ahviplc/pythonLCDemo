@@ -23,7 +23,11 @@ while True:
         print('我还可以浪，请继续输入！此运行次数:'+str(cishu))
         sumSum = 0
         # print(isinstance(sumSum, int))   #判断sumSum是否为int类型
-        maxInt = int(input('输入一个数字：'))
+        strInput=input('输入一个数字：')
+        if (strInput.isdigit()==False):
+            print('输入了非数字的参数，请重新输入')
+            continue
+        maxInt = int(strInput)
         for i in range(1, maxInt + 1):
             sumSum = sumSum + i
         print(sumSum)
