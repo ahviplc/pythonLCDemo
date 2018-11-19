@@ -32,4 +32,11 @@ https://blog.csdn.net/wangqi_qiangku/article/details/79017822
 
 
 ---------------------------------------------------------------
+备注：mysql版本必须5.6或更高版本！
+
+具体介绍：
+关于Django 2.1执行migrate报错：django.db.migrations.exceptions.MigrationSchemaMissing - 安心写bug的博客 - CSDN博客
+https://blog.csdn.net/qq_36963372/article/details/82558085
+
+---------------------------------------------------------------
 LC  2018年11月19日12:41:57
