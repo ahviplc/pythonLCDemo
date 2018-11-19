@@ -11,7 +11,7 @@ class Dept(models.Model):
     no = models.IntegerField(db_column='deptno', primary_key=True, verbose_name='部门编号')
     name = models.CharField(db_column='dname', max_length=20, verbose_name='部门名称')
     location = models.CharField(db_column='dloc', max_length=10, verbose_name='部门所在地')
-    # excellent = models.BooleanField(default=0, verbose_name='是否优秀')
+    excellent = models.BooleanField(default=0, verbose_name='是否优秀')
 
     def __str__(self):
         return self.name

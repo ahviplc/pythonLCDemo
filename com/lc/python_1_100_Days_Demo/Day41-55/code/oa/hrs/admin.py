@@ -5,7 +5,7 @@ from hrs.models import Dept, Emp
 
 class DeptAdmin(admin.ModelAdmin):
 
-    list_display = ('no', 'name', 'location')
+    list_display = ('no', 'name', 'location','excellent')
     ordering = ('no', )
 
 

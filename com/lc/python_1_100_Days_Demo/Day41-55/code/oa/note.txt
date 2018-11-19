@@ -1,0 +1,35 @@
+python web项目demo Django框架使用搭建demo 已经OK LC 2018年11月19日12:45:00
+
+下面为启动项目步骤，搭建步骤:
+---------------------------------------------------------------
+(venv)$ python manage.py migrate
+
+---------------------------------------------------------------
+
+(venv)$ python manage.py makemigrations hrs
+
+---------------------------------------------------------------
+在后台管理模型
+创建超级管理员账号。
+
+(venv)$ python manage.py createsuperuser
+
+Username (leave blank to use 'hao'): jackfrued
+Email address: jackfrued@126.com
+Password:
+Password (again):
+Superuser created successfully.
+---------------------------------------------------------------
+启动Web服务器，登录后台管理系统。
+
+(venv)$ python manage.py runserver
+
+访问http://127.0.0.1:8000/admin，会来到如下图所示的登录界面。
+---------------------------------------------------------------
+
+Django删除数据库表格后如何重建 - 浪ふ沏沙的博客 - CSDN博客
+https://blog.csdn.net/wangqi_qiangku/article/details/79017822
+
+
+---------------------------------------------------------------
+LC  2018年11月19日12:41:57
