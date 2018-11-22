@@ -82,7 +82,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': 'root',
     }
 }
 
@@ -107,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -127,3 +129,5 @@ USE_TZ = True
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 STATIC_URL = '/static/'
+
+

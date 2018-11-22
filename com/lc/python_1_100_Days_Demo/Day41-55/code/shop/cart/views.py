@@ -69,9 +69,32 @@ def add_to_cart(request, id):
     cart = request.session.get('cart', ShoppingCart())
     cart.add_item(CartItem(goods))
     request.session['cart'] = cart
+    print('添加购物车成功-'+goods.name)
     return redirect('/')
 
 
 def show_cart(request):
-    cart = serializers.deserialize(request.session.get('cart'))
-    return render(request, 'cart.html', {'cart': cart})
+
+     print(request.session.get('cart'))
+
+     cart = (request.session.get('cart'))
+     print(cart)
+
+     cartItems=cart.items #这个是dict数组 cartItems
+     print(cart.items)
+     print(cartItems[1]) #这个是dict数组 取出数组1位置的 cartItems[1]
+
+     #cart = CartItem()
+     #cart = serializers.deserialize(request.session.get('cart'),CartItem())
+
+     cartItemsList2 = [] #新建一个空的list 用于接收购物项
+     for i in cartItems: #for循环遍历
+         cartItemsList2.append(cartItems[i])
+
+     #dict转成list
+     #cartItemsList = list(cartItems) #这样操作 不可 会直接转成只有 1 2的list 如： [1,2]
+     ctx = {
+         'cartItemsList':cartItemsList2,
+         'totalMoeny':cart.total
+     }
+     return render(request,  'cart.html',  context=ctx)

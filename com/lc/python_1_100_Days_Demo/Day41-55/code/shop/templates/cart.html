@@ -21,9 +21,10 @@
 			<hr>
 		</div>
 		<div class="right">
+            hello,{{ user.username }}
 			<a href="/" class="back">返回</a>
 		</div>
-		{% if cart %}
+		{% if cartItemsList %}
 		<table style="clear: both;">
 			<tr>
 				<th>商品名称</th>
@@ -32,7 +33,7 @@
 				<th>商品总价</th>
 				<th>操作</th>
 			</tr>
-			{% for item in cart %}
+			{% for item in cartItemsList %}
 			<tr>
 				<td class="name">{{ item.goods.name }}</td>
 				<td class="price">&yen;{{ item.goods.price }}</td>
@@ -44,7 +45,8 @@
 			</tr>
 			{% endfor %}
 			<tr>
-				<td colspan="5" class="total price">&yen;{{ cart.total }}元</td>
+            {# <td colspan="5" class="total price">&yen;{{ cart.total }}元</td>#}
+                <td colspan="5" class="total price">&yen;{{ totalMoeny }}元</td>
 			</tr>
 		</table>
 		<a href="" class="back">清空购物车</a>
