@@ -2,6 +2,14 @@ python web项目demo Django框架使用搭建demo 已经OK LC 2018年11月19日1
 
 下面为启动项目步骤，搭建步骤:
 ---------------------------------------------------------------
+说明：
+修改你的模型（在models.py中）。
+
+运行python manage.py makemigrations命令为这些改动创建迁移文件。
+
+运行python manage.py migrate命令将这些改动应用到数据库中。
+
+---------------------------------------------------------------
 (venv)$ python manage.py migrate
 
 ---------------------------------------------------------------
@@ -25,11 +33,14 @@ Superuser created successfully.
 (venv)$ python manage.py runserver
 
 访问http://127.0.0.1:8000/admin，会来到如下图所示的登录界面。
+
+用户名   密码
+ahviplc ahviplc
+shviplc  lichen2016888  hrs组
 ---------------------------------------------------------------
 
 Django删除数据库表格后如何重建 - 浪ふ沏沙的博客 - CSDN博客
 https://blog.csdn.net/wangqi_qiangku/article/details/79017822
-
 
 ---------------------------------------------------------------
 备注：mysql版本必须5.6或更高版本！

@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
     path('hrs/', include('hrs.urls')),
+    path('helloLC/', views.helloLC),
 ]

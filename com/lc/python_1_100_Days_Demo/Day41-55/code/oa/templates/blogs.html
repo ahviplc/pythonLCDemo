@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博客</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>博客列表</h3>
+            <hr>
+		</div>
+	</div>
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            {% if blog_list %}
+            <table id="blogs" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>标题</th>
+                    <th>正文</th>
+                    <th>时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for blog in blog_list %}
+                    <tr>
+                        <td>{{ blog.id }}</td>
+                        <td>{{ blog.title }}</td>
+                        <td>{{ blog.body }}</td>
+                        <td>{{ blog.timestamp }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <h2>还没有博客文章!</h2>
+            {% endif %}
+        </div>
+        <div class="col-md-4 column">
+        </div>
+    </div>
+    <!--<a href="{% url 'depts' %}">返回部门列表</a>-->
+</div>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+    $(function() {
+        $('#blogs tbody tr:even').addClass('info');
+        $('#blogs tbody tr:odd').addClass('warning');
+    });
+</script>
+</body>
+</html>

@@ -4,7 +4,8 @@ from django.db.models import ObjectDoesNotExist
 
 from json import dumps
 
-from hrs.models import Dept, Emp
+from hrs.models import Dept, Emp, BlogsPost
+import time
 
 
 def index(request):
@@ -45,3 +46,35 @@ def emps(request, no='0'):
 def depts(request):
     ctx = {'dept_list': Dept.objects.all()}
     return render(request, 'dept.html', context=ctx)
+
+
+# Create your views here.
+def blog_index(request):
+    blog_list = BlogsPost.objects.all()  # 获取所有数据
+    return render(request,'blogs.html', {'blog_list':blog_list})   # 返回blogs.html
+
+# http://127.0.0.1:8000/helloLC/
+def helloLC(request):
+
+    dateTimeNow=time.time();
+    print(dateTimeNow)
+
+    print((time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+
+    dateTimeType=(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    dateTimeFormat=str((time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())));
+
+    print(type(dateTimeType)) #打印数据类型 <class 'str'>
+    print(type(dateTimeFormat))
+
+    # isinstance()
+    a = '字符串'
+    print(isinstance(a, str))  # 判断变量a 是否是字符串类型  True
+    print(isinstance(a, int))  # 判断变量a 是否是整形 False
+
+    ctx = {
+        'greeting': '你好，世界！',
+        'dateTimeNow':dateTimeNow,
+        'dateTimeFormat':dateTimeType
+    }
+    return render(request,'helloLC.html', context=ctx)
