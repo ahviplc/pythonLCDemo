@@ -11,7 +11,7 @@
  Target Server Version : 50640
  File Encoding         : 65001
 
- Date: 22/11/2018 18:11:19
+ Date: 23/11/2018 12:00:58
 */
 
 SET NAMES utf8mb4;
@@ -112,7 +112,7 @@ CREATE TABLE `auth_user`  (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$120000$ZmcrB6haNlQi$dw9LUihjWJiSCJpKCR+4Swm+NLQT8u097ONHe8pXJX0=', '2018-11-22 08:42:25.568346', 1, 'ahviplc', '', '', 'ahlc@sina.cn', 1, 1, '2018-11-22 07:18:42.656177');
+INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$120000$ZmcrB6haNlQi$dw9LUihjWJiSCJpKCR+4Swm+NLQT8u097ONHe8pXJX0=', '2018-11-23 02:10:31.880803', 1, 'ahviplc', '', '', 'ahlc@sina.cn', 1, 1, '2018-11-22 07:18:42.656177');
 
 -- ----------------------------
 -- Table structure for auth_user_groups
@@ -162,7 +162,7 @@ CREATE TABLE `django_admin_log`  (
   INDEX `django_admin_log_user_id_c564eba6_fk_auth_user_id`(`user_id`) USING BTREE,
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of django_admin_log
@@ -171,6 +171,7 @@ INSERT INTO `django_admin_log` VALUES (1, '2018-11-22 07:20:58.578541', '1', 'Go
 INSERT INTO `django_admin_log` VALUES (2, '2018-11-22 07:22:15.202619', '1', 'Goods object (1)', 2, '[{\"changed\": {\"fields\": [\"image\"]}}]', 7, 1);
 INSERT INTO `django_admin_log` VALUES (3, '2018-11-22 08:43:38.166816', '2', 'Goods object (2)', 1, '[{\"added\": {}}]', 7, 1);
 INSERT INTO `django_admin_log` VALUES (4, '2018-11-22 09:55:55.477901', '1', 'Goods object (1)', 2, '[{\"changed\": {\"fields\": [\"name\", \"image\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (5, '2018-11-23 02:11:25.630108', '3', 'Goods object (3)', 1, '[{\"added\": {}}]', 7, 1);
 
 -- ----------------------------
 -- Table structure for django_content_type
@@ -243,6 +244,8 @@ CREATE TABLE `django_session`  (
 -- Records of django_session
 -- ----------------------------
 INSERT INTO `django_session` VALUES ('2ex2dy2cnhcjuo6bafpov4ox1ddac5xu', 'ZTRhNmRhZjU5MDJmOWM1OWI0NmFhNzBmMWNlMzg4NmE2OTRlMGNjNzqABJWsAgAAAAAAAH2UKIwEY2FydJSMCmNhcnQudmlld3OUjAxTaG9wcGluZ0NhcnSUk5QpgZR9lCiMBWl0ZW1zlH2UKEsBaAKMCENhcnRJdGVtlJOUKYGUfZQojAVnb29kc5SMFWRqYW5nby5kYi5tb2RlbHMuYmFzZZSMDm1vZGVsX3VucGlja2xllJOUjARjYXJ0lIwFR29vZHOUhpSFlFKUfZQojAZfc3RhdGWUaA6MCk1vZGVsU3RhdGWUk5QpgZR9lCiMBmFkZGluZ5SJjAJkYpSMB2RlZmF1bHSUdWKMAmlklEsBjARuYW1llIwM6Iu55p6c5omL5py6lIwFcHJpY2WUjAdkZWNpbWFslIwHRGVjaW1hbJSTlIwEMS44OJSFlFKUjAVpbWFnZZSMEWltYWdlcy9kb2xiZWUuanBnlIwPX2RqYW5nb192ZXJzaW9ulIwFMi4xLjOUdWKMBmFtb3VudJRLR3ViSwJoCimBlH2UKGgNaBBoEWgShpSFlFKUfZQojAZfc3RhdGWUaBkpgZR9lChoHIloHYwHZGVmYXVsdJR1YowCaWSUSwKMBG5hbWWUjAzkuZDlo6volq/niYeUjAVwcmljZZRoJYwEMS4wMJSFlFKUjAVpbWFnZZSMDmltYWdlcy9sYXkuanBnlIwPX2RqYW5nb192ZXJzaW9ulIwFMi4xLjOUdWJoLUsFdWJ1jAVpbmRleJRLAHVijA1fYXV0aF91c2VyX2lklIwBMZSMEl9hdXRoX3VzZXJfYmFja2VuZJSMKWRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5klIwPX2F1dGhfdXNlcl9oYXNolIwoOTIwZjI4YzBlMTUzNDI5NDk2MDJlNjhlMmQyM2M3M2RmYmVmMWUyZZR1Lg==', '2018-12-06 09:57:33.837170');
+INSERT INTO `django_session` VALUES ('49yln4emcilw369sj6prw9llb4jqny8l', 'MzM2YzFlNDBmZWJlNDExZTU4OWI1MmQzMjgyMDUxOTk1YTc5NzEyNDqABJWmAgAAAAAAAH2UKIwNX2F1dGhfdXNlcl9pZJSMATGUjBJfYXV0aF91c2VyX2JhY2tlbmSUjClkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZJSMD19hdXRoX3VzZXJfaGFzaJSMKDkyMGYyOGMwZTE1MzQyOTQ5NjAyZTY4ZTJkMjNjNzNkZmJlZjFlMmWUjARjYXJ0lIwKY2FydC52aWV3c5SMDFNob3BwaW5nQ2FydJSTlCmBlH2UKIwFaXRlbXOUfZQoSwFoCIwIQ2FydEl0ZW2Uk5QpgZR9lCiMBWdvb2RzlIwVZGphbmdvLmRiLm1vZGVscy5iYXNllIwObW9kZWxfdW5waWNrbGWUk5SMBGNhcnSUjAVHb29kc5SGlIWUUpR9lCiMBl9zdGF0ZZRoFIwKTW9kZWxTdGF0ZZSTlCmBlH2UKIwGYWRkaW5nlImMAmRilIwHZGVmYXVsdJR1YowCaWSUSwGMBG5hbWWUjAbpnaLmnaGUjAVwcmljZZSMB2RlY2ltYWyUjAdEZWNpbWFslJOUjAQxLjg4lIWUUpSMBWltYWdllIwRaW1hZ2VzL25vb2RsZS5qcGeUjA9fZGphbmdvX3ZlcnNpb26UjAUyLjEuM5R1YowGYW1vdW50lEsBdWJLAmgQKYGUfZQoaBNoFmgXaBiGlIWUUpR9lCiMBl9zdGF0ZZRoHymBlH2UKGgiiWgjjAdkZWZhdWx0lHVijAJpZJRLAowEbmFtZZSMDOS5kOWjq+iWr+eJh5SMBXByaWNllGgrjAQxLjAwlIWUUpSMBWltYWdllIwOaW1hZ2VzL2xheS5qcGeUjA9fZGphbmdvX3ZlcnNpb26UjAUyLjEuM5R1YmgzSwF1YnWMBWluZGV4lEsAdWJ1Lg==', '2018-12-07 03:46:58.137162');
+INSERT INTO `django_session` VALUES ('cart', '1', '2018-11-23 13:30:33.000000');
 INSERT INTO `django_session` VALUES ('rhz68yqi6m03410fww2j5xh4925fzuqe', 'ZGQ0N2QwOThmMzY2NThhZDAwNWMxYTlmN2UxZjNkMDMzYjhmMDAwZDqABJUZAgAAAAAAAH2UjARjYXJ0lIwKY2FydC52aWV3c5SMDFNob3BwaW5nQ2FydJSTlCmBlH2UKIwFaXRlbXOUfZQoSwJoAowIQ2FydEl0ZW2Uk5QpgZR9lCiMBWdvb2RzlIwVZGphbmdvLmRiLm1vZGVscy5iYXNllIwObW9kZWxfdW5waWNrbGWUk5SMBGNhcnSUjAVHb29kc5SGlIWUUpR9lCiMBl9zdGF0ZZRoDowKTW9kZWxTdGF0ZZSTlCmBlH2UKIwGYWRkaW5nlImMAmRilIwHZGVmYXVsdJR1YowCaWSUSwKMBG5hbWWUjAzkuZDlo6volq/niYeUjAVwcmljZZSMB2RlY2ltYWyUjAdEZWNpbWFslJOUjAQxLjAwlIWUUpSMBWltYWdllIwOaW1hZ2VzL2xheS5qcGeUjA9fZGphbmdvX3ZlcnNpb26UjAUyLjEuM5R1YowGYW1vdW50lEsDdWJLAWgKKYGUfZQoaA1oEGgRaBKGlIWUUpR9lCiMBl9zdGF0ZZRoGSmBlH2UKGgciWgdjAdkZWZhdWx0lHVijAJpZJRLAYwEbmFtZZSMDOiLueaenOaJi+acupSMBXByaWNllGgljAQxLjg4lIWUUpSMBWltYWdllIwRaW1hZ2VzL2RvbGJlZS5qcGeUjA9fZGphbmdvX3ZlcnNpb26UjAUyLjEuM5R1YmgtSwN1YnWMBWluZGV4lEsAdWJzLg==', '2018-12-06 09:31:25.635703');
 
 -- ----------------------------
@@ -255,12 +258,13 @@ CREATE TABLE `tb_goods`  (
   `gprice` decimal(10, 2) NOT NULL,
   `gimage` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`gid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb_goods
 -- ----------------------------
 INSERT INTO `tb_goods` VALUES (1, '面条', 1.88, 'images/noodle.jpg');
 INSERT INTO `tb_goods` VALUES (2, '乐士薯片', 1.00, 'images/lay.jpg');
+INSERT INTO `tb_goods` VALUES (3, '油', 2.80, 'images\\oil.jpg');
 
 SET FOREIGN_KEY_CHECKS = 1;

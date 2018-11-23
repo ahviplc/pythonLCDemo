@@ -40,7 +40,7 @@
 				<td>{{ item.amount }}</td>
 				<td class="price">&yen;{{ item.total }}</td>
 				<td>
-					<a href="" class="del">删除</a>
+					<a href="/remove_one_cart/{{ item.goods.id }}" class="del" id="del">删除</a>
 				</td>
 			</tr>
 			{% endfor %}
@@ -49,9 +49,9 @@
                 <td colspan="5" class="total price">&yen;{{ totalMoeny }}元</td>
 			</tr>
 		</table>
-		<a href="" class="back">清空购物车</a>
+		<a href="/remove_all_cart" class="back">清空购物车</a>  <p style="color: green">{{ request.session.msg }}</p>
 		{% else %}
-		<h3 style="clear: both;">购物车中暂时没有商品!</h3>
+		<h3 style="clear: both;">购物车中暂时没有商品!</h3> <p style="color: green">{{ request.session.msg }}</p>
 		{% endif %}
 	</body>
 </html>

@@ -23,4 +23,6 @@ urlpatterns = [
     path('add_to_cart/<int:id>', views.add_to_cart),
     path('show_cart/', views.show_cart),
     path('admin/', admin.site.urls),
+    path('remove_all_cart/', views.remove_all_cart),
+    path('remove_one_cart/<int:id>', views.remove_one_cart),
 ]
