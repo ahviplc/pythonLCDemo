@@ -1,0 +1,21 @@
+
+
+
+Python—fire：从任意Python对象中自动生成命令行接口（CLIs）的库
+
+google/python-fire: Python Fire is a library for automatically generating command line interfaces (CLIs) from absolutely any Python object.
+https://github.com/google/python-fire
+
+安装命令:
+pip install fire
+
+使用命令：
+python fireDemo.py double 1023232
+fire-i am ok!~LC
+2倍为
+2046464
+
+
+python fireDemo.py qiuhe 1 22121
+求和为
+22122

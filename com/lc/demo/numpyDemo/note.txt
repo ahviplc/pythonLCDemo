@@ -1,0 +1,10 @@
+python之numpy的基本使用 - cxmscb的博客 - CSDN博客
+https://blog.csdn.net/cxmscb/article/details/54583415
+
+注意：这里的代码python版本不是3.0+
+
+NumPy — NumPy
+http://www.numpy.org/
+
+NumPy 中文文档
+https://www.numpy.org.cn/

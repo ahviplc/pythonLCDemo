@@ -1,0 +1,16 @@
+#安装matplotlib-制造图表工具框架-数学绘图库
+pip install matplotlib
+
+#生成exe
+pyinstaller -F mpl_squares.py
+
+pycharm如何将python文件打包为exe格式 - CSDN博客
+ https://blog.csdn.net/qq1877383144/article/details/81200471
+
+十分钟入门Matplotlib - Jinlong_Xu的博客 - CSDN博客
+https://blog.csdn.net/jinlong_xu/article/details/67646094
+
+Python第三方库matplotlib（2D绘图库）入门与进阶 - 不忘初心 - CSDN博客
+https://blog.csdn.net/qq_34337272/article/details/79555544
+
+
