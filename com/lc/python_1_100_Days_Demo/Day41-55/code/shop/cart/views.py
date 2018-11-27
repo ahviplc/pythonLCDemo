@@ -2,6 +2,7 @@ from django.core import serializers
 from django.shortcuts import render, redirect
 
 from cart.models import Goods
+from cart.utils.showCartUtil import showCartUtil  # 导入公共函数
 
 
 def index(request):
@@ -144,22 +145,33 @@ def remove_all_cart(request):
     # request.session.pop(key)     # 删除某一个键值对
     # request.session.delete()      # 删除所有的session键值对 删除当前会话的所有Session数据
     # request.session.flush()   # 删除所有的session键值对.删除了cookie
-    request.session['msg'] = '清空购物车成功'   # 清空购物车成功提示 放入session中 在页面显示出来
+    # request.session['msg'] = '清空购物车成功'   # 清空购物车成功提示 放入session中 在页面显示出来 废弃-现在不在页面从session中取值了
     print('清空购物车成功')
-    return redirect('/show_cart')  # 跳转到 查看购物车
+
+    msg = '清空购物车成功'
+    ctx = showCartUtil(request, msg)  # 重新组织查看购物车代码-为了回显其数据，再次整理数据,拿到处理好，要回显到页面的字典ctx
+
+    # return redirect('/show_cart')  # 跳转到 查看购物车
+    return render(request, 'cart.html', context=ctx)  # 删除之后，带着要回显的数据，跳转到购物车页面
 
 
-#从购物车删除单个商品
+# 从购物车删除单个商品
 def remove_one_cart(request, id):
     goods = Goods.objects.get(pk=id)  # 根据id从数据库拿出对应商品的对象信息
     cart = request.session.get('cart')  # 从session中拿出cart相关的session信息
     del cart.items[id]  # 根据id 从购物车删除此商品 备注：这里是操作字典dict
     request.session['cart'] = cart  # 把删除成功之后的session【'cart'】 再次赋值给session 重新赋值 更新session
-    request.session['msg'] = '从购物车删除单个商品成功-'+goods.name  #删除成功提示 放入session中 在页面显示出来
+    # request.session['msg'] = '从购物车删除单个商品成功-'+goods.name  #删除成功提示 放入session中 在页面显示出来 废弃-现在不在页面从session中取值了
 
-    #判断session中是否还有商品项的判断
-    if len(cart.items) == 0:#如果为零 则彻底移除'cart'对应seesion
+    #  判断session中是否还有商品项的判断
+    if len(cart.items) == 0:  # 如果为零 则彻底移除'cart'对应seesion
         del request.session["cart"]  # 删除一组键值对 删除某一个键值对
 
     print('从购物车删除单个商品成功-'+goods.name)
-    return redirect('/show_cart')  # 跳转到 查看购物车
+
+    msg = '从购物车删除单个商品成功-'+goods.name
+
+    ctx = showCartUtil(request, msg)  # 重新组织查看购物车代码-为了回显其数据，再次整理数据,拿到处理好，要回显到页面的字典ctx
+
+    # return redirect('/show_cart')  # 跳转到 查看购物车
+    return render(request, 'cart.html', context=ctx) #  删除之后，带着要回显的数据，跳转到购物车页面

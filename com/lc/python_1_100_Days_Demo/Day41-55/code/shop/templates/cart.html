@@ -49,9 +49,9 @@
                 <td colspan="5" class="total price">&yen;{{ totalMoeny }}元</td>
 			</tr>
 		</table>
-		<a href="/remove_all_cart" class="back">清空购物车</a>  <p style="color: green">{{ request.session.msg }}</p>
+		<a href="/remove_all_cart" class="back">清空购物车</a> {% comment %} <p style="color: green">{{ request.session.msg }}</p>{% endcomment %} <p style="color: green">{{ msg }}</p>
 		{% else %}
-		<h3 style="clear: both;">购物车中暂时没有商品!</h3> <p style="color: green">{{ request.session.msg }}</p>
+		<h3 style="clear: both;">购物车中暂时没有商品!</h3> {% comment %}<p style="color: green">{{ request.session.msg }}</p>{% endcomment %}  <p style="color: green">{{ msg }}</p>
 		{% endif %}
 	</body>
 </html>
