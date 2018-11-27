@@ -78,3 +78,61 @@ def helloLC(request):
         'dateTimeFormat':dateTimeType
     }
     return render(request,'helloLC.html', context=ctx)
+
+# 跳转到a+b页面html
+def to_add_a_plus_b(request):
+    return render(request, 'a_plus_b.html')
+
+
+# a+b 表单操作
+def add_a_plus_b(request):
+    a = request.GET['a']
+    b = request.GET['b']
+    try:
+        if is_number(a) == True and is_number(b) == True:
+
+            print(type(a))
+            print(type(eval(a)))
+            print(type(a) == int)
+            print(type(eval(a)) == int)
+
+            if(type(eval(a)) == int):
+                a = int(a)
+                print('1-int-'+str(a))
+            else:
+                a = float(a)
+                print('2-float-' + str(a))
+
+            if (type(eval(b)) == int):
+                b = int(b)
+                print('3-int-' +str(b))
+            else:
+                b = float(b)
+                print('4-float-' + str(b))
+            return HttpResponse(str(a + b))
+        else:
+            return HttpResponse(str('a和b都请输入数字，小数和整数均可！'))
+    except ValueError and NameError:
+        print("Oops!  That was no valid number.  Try again ")
+
+
+# 是否为数字的方法
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        pass
+
+    try:
+        import unicodedata
+        unicodedata.numeric(s)
+        return True
+    except (TypeError, ValueError):
+        pass
+
+
+
+
+
+
