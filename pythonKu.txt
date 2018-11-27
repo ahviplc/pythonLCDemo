@@ -1,5 +1,20 @@
 测试git分支提交 感觉明白了一些了github分支操作了
 
+Clone with HTTPS
+Use Git or checkout with SVN using the web URL.
+https://github.com/ahviplc/pythonLCDemo.git
+
+ahviplc/pythonLCDemo: pythonLCDemo python语言 LC 开发 测试 小Demo 学习python示例
+https://github.com/ahviplc/pythonLCDemo
+
+ahviplc/pythonLCDemo: pythonLCDemo python语言 LC 开发 测试 小Demo 学习python示例
+https://github.com/ahviplc/pythonLCDemo/tree/master
+
+ahviplc/pythonLCDemo at pythonKu
+https://github.com/ahviplc/pythonLCDemo/tree/pythonKu
+
+This branch is even with master.此分支与主干保持一致了。
+
 在IDEA中实战Git - 分享知识、分享进步 - CSDN博客
 https://blog.csdn.net/autfish/article/details/52513465
 
