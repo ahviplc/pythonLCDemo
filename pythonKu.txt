@@ -1,1 +1,7 @@
-测试git分支12
+测试git分支提交 感觉明白了一些了github分支操作了
+
+在IDEA中实战Git - 分享知识、分享进步 - CSDN博客
+https://blog.csdn.net/autfish/article/details/52513465
+
+以后多多练习，加油！~LC
+2018年11月27日12:54:52
