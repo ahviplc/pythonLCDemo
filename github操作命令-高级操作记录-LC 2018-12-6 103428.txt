@@ -74,4 +74,39 @@ git reset --hard origin/master
 git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
 
 ---------------------------------------------------------------------------------------------------------------------------
-LC 2018年12月6日10:51:11
+git操作-（gitlab-github-均是git操作）
+
+Command line instructions
+
+Git global setup
+git config --global user.name "LC"
+git config --global user.email "ahlc@sina.cn"
+
+Create a new repository
+
+#git clone http://172.0.0.1:8888/ahviplc/hello4.git
+
+git clone http://192.168.174.129:8888/ahviplc/hello4.git
+
+cd hello4
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Existing folder
+cd existing_folder
+git init
+git remote add origin http://172.0.0.1:8888/ahviplc/hello4.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Existing Git repository
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin http://172.0.0.1:8888/ahviplc/hello4.git
+git push -u origin --all
+git push -u origin --tags
+---------------------------------------------------------------------------------------------------------------------------
+LC 2018年12月6日11:50:37
