@@ -8,8 +8,12 @@
 
 **欢迎来到 [LC博客-一加壹博客最Top](http://www.oneplusone.vip)**
 
+**欢迎来到 [LC-Gitlab](https://gitlab.com/ahviplc)**
+
+**欢迎来到 [LC-Github](https://github.com/ahviplc)**
+
+**欢迎来到 [LC-Github-pythonLCDemo](https://github.com/ahviplc/pythonLCDemo)**
+
 ###LC最寄语：永远不要放弃自己心中最初的最初的理想！~LC
 
-LC 2018年6月4日14:33:58
-
-LC 2018年11月15日16:01:48
+2018年12月13日14:25:36
