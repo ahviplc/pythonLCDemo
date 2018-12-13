@@ -1,4 +1,23 @@
 2017年30个惊艳的Python开源项目 - CSDN研发技术 - CSDN博客
 https://blog.csdn.net/dev_csdn/article/details/79060720
 
+Python教程 - 廖雪峰的官方网站
+https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000
+
+海龟绘图 - 廖雪峰的官方网站
+https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001542537415495bc2748dc8ceb4d3890301cf8235e3728000
+
+访问数据库 - 廖雪峰的官方网站
+https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432010325987131e75bf6b3543429a2975f88ce8ffa9000
+
+常用第三方模块 - 廖雪峰的官方网站
+https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432002680493d1babda364904ca0a6e28374498d59a7000
+
+异步IO - 廖雪峰的官方网站
+https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143208573480558080fa77514407cb23834c78c6c7309000
+
+        协程 - 廖雪峰的官方网站
+        https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432090171191d05dae6e129940518d1d6cf6eeaaa969000
+
+
 LC 2018年11月26日16:37:30
