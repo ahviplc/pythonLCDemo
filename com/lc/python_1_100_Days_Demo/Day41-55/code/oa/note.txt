@@ -22,10 +22,10 @@ python web项目demo Django框架使用搭建demo 已经OK LC 2018年11月19日1
 
 (venv)$ python manage.py createsuperuser
 
-Username (leave blank to use 'hao'): jackfrued
-Email address: jackfrued@126.com
-Password:
-Password (again):
+Username (leave blank to use 'hao'): ahviplc
+Email address: ahlc@sina.cn
+Password:ahviplc
+Password (again):ahviplc
 Superuser created successfully.
 ---------------------------------------------------------------
 启动Web服务器，登录后台管理系统。
@@ -35,7 +35,7 @@ Superuser created successfully.
 访问http://127.0.0.1:8000/admin，会来到如下图所示的登录界面。
 
 用户名   密码
-ahviplc ahviplc
+ahviplc ahviplc         oa项目-hrs
 shviplc  lichen2016888  hrs组
 ---------------------------------------------------------------
 

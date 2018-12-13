@@ -46,9 +46,9 @@
                 <a href="/good/{{ x.no }}" class="button">好评({{ x.gcount }})</a>
                 <a href="/bad/{{ x.no }}" class="button">差评({{ x.bcount }})</a>
             </div>
-            <div class="potrait">
+            <div class="potrait" >
                 {% if x.photo %}
-                <img src="{% static x.photo %}">
+                <img src="{% static x.photo %}"  style="width: 300px;height: 360px;">
                 {% endif %}
             </div>
             <hr>

@@ -14,7 +14,7 @@ python web项目demo Django框架使用搭建demo 已经OK LC 2018年11月19日1
 
 ---------------------------------------------------------------
 
-(venv)$ python manage.py makemigrations cart
+(venv)$ python manage.py makemigrations search
 
 ---------------------------------------------------------------
 在后台管理模型
@@ -33,12 +33,23 @@ Superuser created successfully.
 (venv)$ python manage.py runserver
 
 访问http://127.0.0.1:8000/admin，会来到如下图所示的登录界面。
+后台管理  登录信息
+用户名    密码
+ahviplc  ahviplc    car项目-search
+----------------------------------------------------------------------
 
-用户名   密码
-ahviplc ahviplc   shop商城项目-cart
+添加
+http://127.0.0.1:8000/add
 
-127.0.0.1:8000/show_cart/
-http://127.0.0.1:8000/show_cart/
+车辆违章查询
+http://127.0.0.1:8000/search
+
+车辆违章查询
+http://127.0.0.1:8000/search2      添加新记录
+
+
+用户注册 登录信息：
+shviplc shviplc123 ahlc@sohu.com
 ---------------------------------------------------------------
 
 Django删除数据库表格后如何重建 - 浪ふ沏沙的博客 - CSDN博客
@@ -52,4 +63,4 @@ https://blog.csdn.net/wangqi_qiangku/article/details/79017822
 https://blog.csdn.net/qq_36963372/article/details/82558085
 
 ---------------------------------------------------------------
-LC  2018年11月22日18:08:46
+LC  2018年12月13日14:08:24
