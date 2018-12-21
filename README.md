@@ -14,6 +14,6 @@
 
 **欢迎来到 [LC-Github-pythonLCDemo](https://github.com/ahviplc/pythonLCDemo)**
 
-###LC最寄语：永远不要放弃自己心中最初的最初的理想！~LC
+### LC最寄语：永远不要放弃自己心中最初的最初的理想！~LC
 
 2018年12月13日14:25:36
