@@ -14,7 +14,8 @@ LC博客url: http://oneplusone.top/index.html
 
 from bs4 import BeautifulSoup
 import requests, sys
-
+from urllib.request import urlretrieve
+import time
 
 def get_movie_top_list(self):
     req = requests.get(url=self)
@@ -51,12 +52,11 @@ def get_movie_top_list(self):
         # print((aMovie.contents)[1].get('src'))
         print('电影名称：{0} ，图片链接: {1} ， 豆瓣链接: {2} '.format(aMovie.get('title'),(aMovie.contents)[1].get('src'),aMovie.get('href')))
 
+        # 将远程数据(图片，文本等)下载到本地，第二个参数就是要保存到本地的文件名
+        urlretrieve((aMovie.contents)[1].get('src'), 'D:/'+str(time.time())+'_'+aMovie.get('title')+'.jpg')
 
     print('------爬虫完毕')
     print('LC最寄语:永远不要忘记学习!~LC')
-
-
-
 
 
 if __name__ == "__main__":
