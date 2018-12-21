@@ -4,6 +4,12 @@
 https://movie.douban.com/chart
 LC 2018-12-20 14:54:33
 爬：豆瓣电影排行榜
+
+Version: 1.0
+Author: LC
+DateTime: 2018年12月21日14:16:16
+一加壹博客最Top-一起共创1+1>2的力量！~LC
+LC博客url: http://oneplusone.top/index.html
 """
 
 from bs4 import BeautifulSoup
@@ -46,13 +52,13 @@ def get_movie_top_list(self):
         print('电影名称：{0} ，图片链接: {1} ， 豆瓣链接: {2} '.format(aMovie.get('title'),(aMovie.contents)[1].get('src'),aMovie.get('href')))
 
 
-    print('爬虫完毕！')
-    print('永远不要忘记学习!~LC')
+    print('------爬虫完毕')
+    print('LC最寄语:永远不要忘记学习!~LC')
 
 
 
 
 
 if __name__ == "__main__":
-    print('开始爬虫了')
+    print('------开始爬虫了')
     get_movie_top_list("https://movie.douban.com/chart")

@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 """
+
+Version: 1.0
+Author: LC
+DateTime: 2018年12月21日14:16:07
+一加壹博客最Top-一起共创1+1>2的力量！~LC
+LC博客url: http://oneplusone.top/index.html
+
+
 Beautiful Soup提供一些简单的、python式的函数用来处理导航、搜索、修改分析树等功能。它是一个工具箱，通过解析文档为用户提供需要抓取的数据，因为简单，所以不需要多少代码就可以写出一个完整的应用程序。
 
 Beautiful Soup自动将输入文档转换为Unicode编码，输出文档转换为utf-8编码。你不需要考虑编码方式，除非文档没有指定一个编码方式，这时，Beautiful Soup就不能自动识别编码方式了。然后，你仅仅需要说明一下原始编码方式就可以了。
@@ -14,6 +22,7 @@ LC 2018-12-20 14:54:33
 """
 
 from bs4 import BeautifulSoup
+from bs4 import element
 
 
 html = """
@@ -164,8 +173,8 @@ print(type(soup.a.string))
 #
 # 另外我们打印输出下它的类型，发现它是一个 Comment 类型，所以，我们在使用前最好做一下判断，判断代码如下
 
-
-if type(soup.a.string) == 'bs4.element.Comment':
+# bs4.element.Comment
+if type(soup.a.string) == element.Comment:
     print(soup.a.string)
 
 # 上面的代码中，我们首先判断了它的类型，是否为 Comment 类型，然后再进行其他操作，如打印输出。
@@ -522,6 +531,15 @@ for element in soup.a.next_elements:
     # '\n'
 
 print("---------------------------------------------------------------------------------------------------------")
+
+# soup.find_all()用法
+# find_all()
+# 1. 查找标签 soup.find_all('tag')
+# 2. 查找文本 soup.find_all(text='text')
+# 3. 根据id查找 soup.find_all(id='tag id')
+# 4. 使用正则 soup.find_all(text=re.compile('your re')), soup.find_all(id=re.compile('your re'))
+# 5. 指定属性查找标签 soup.find_all('tag', {'id': 'tag id', 'class': 'tag class'})
+
 
 # 以上是遍历文档树的基本用法。
 
