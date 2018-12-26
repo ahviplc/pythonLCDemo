@@ -1,0 +1,3 @@
+2018-12-26 11:11:04,308 WARNI [root:11] warn message
+2018-12-26 11:11:04,308 ERROR [root:12] error message
+2018-12-26 11:11:04,308 CRITI [root:13] critical message
