@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include 'flash.html' %}
+    <h1>Login</h1>
+    <form action="/login" method="post" name="login">
+        {{ form.hidden_tag() }}
+        <p>name:</p>
+        <p> {{ form.username }}</p>
+        <p>password: </p>
+        <p>{{ form.password }}</p>
+        <p>记住我？ {{ form.remember_me }}</p>
+        <p>{{ form.submit }}</p>
+
+        {#错误提示#}
+        <p><span style="color: red;">{{ form.username.errors.0 }}</span></p>
+        <p><span style="color: red;">{{ form.password.errors.0 }}</span></p>
+    </form>
+{% endblock %}

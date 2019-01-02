@@ -1,0 +1,35 @@
+基于flask实现的简单博客 - yz764127031的博客 - CSDN博客
+https://blog.csdn.net/yz764127031/article/details/77943775
+
+----------------------------------------------------------------------
+
+flask_demo/blog at master · yangzhezjgs/flask_demo
+https://github.com/yangzhezjgs/flask_demo/tree/master/blog
+
+----------------------------------------------------------------------
+
+
+1:pip install -r requirement_new_version.txt #最新版本必须库    # pip install -r requirement.txt # 老版本必须库
+2:python db_create.py(生成数据库app.db)
+3:python run.py
+
+页面:
+
+Home - blog
+http://127.0.0.1:5000/
+
+Home - blog
+http://127.0.0.1:5000/index
+
+blog
+http://127.0.0.1:5000/user/ahviplc
+
+blog
+http://127.0.0.1:5000/login
+
+blog
+http://127.0.0.1:5000/sign-up
+
+ahviplc ahviplc
+
+----------------------------------------------------------------------
