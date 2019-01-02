@@ -109,4 +109,39 @@ git remote add origin http://172.0.0.1:8888/ahviplc/hello4.git
 git push -u origin --all
 git push -u origin --tags
 ---------------------------------------------------------------------------------------------------------------------------
-LC 2018年12月6日12:21:04
+
+生成SSH秘钥连接(Git)github/gitlab（详细教程） - lucky__Yang的博客 - CSDN博客
+https://blog.csdn.net/lucky__Yang/article/details/80148420
+
+步骤:
+第一步、首先，检查下自己之前有没有已经生成： 
+在开始菜单中打开git下的git bash（当然，在其他目录下打开git bash也是一样的）： 
+然后执行
+
+
+第二步、如果能进入到.ssh文件目录下 ，则证明，之前生成过.ssh秘钥，可以直接使用里面的秘钥。 
+如果不能进入到.ssh文件目录下，则： 
+
+检测下自己之前有没有配置：
+
+git config user.name和git config user.email（直接分别输入这两个命令）
+
+2.1 如果之前没有创建，则执行以下命令：
+
+
+2.1.1.配置 
+git config –global user.name 'LC'
+git config –global user.email 'ahlc@sina.cn'
+
+2.1.2生成秘钥 
+ssh-keygen -t rsa -C 'ahlc@sina.cn'
+
+接着按3个回车 则：
+
+最后在.ssh目录(例如目录:C:\Users\Dell\.ssh)下得到了两个文件：id_rsa（私有秘钥）和id_rsa.pub（公有密钥）
+
+第三步、如果想登陆远端，则需要将rsa.pub里的秘钥添加到远端。
+
+---------------------------------------------------------------------------------------------------------------------------
+createTime:LC 2018年12月6日12:21:04
+updateTime:LC 2019年1月2日10:31:17
