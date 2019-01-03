@@ -7,7 +7,8 @@ flask_demo/blog at master · yangzhezjgs/flask_demo
 https://github.com/yangzhezjgs/flask_demo/tree/master/blog
 
 ----------------------------------------------------------------------
-
+一个简单的博客网站
+技术栈：boostrap + flask + sqlalchemy + sqlite3
 
 1:pip install -r requirement_new_version.txt #最新版本必须库    # pip install -r requirement.txt # 老版本必须库
 2:python db_create.py(生成数据库app.db)

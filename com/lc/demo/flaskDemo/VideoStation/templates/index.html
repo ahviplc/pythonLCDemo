@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="maincontainer">
+        <div class="container">
+            <div class="starter">
+                <h1>音悦台，mv予你</h1>
+                <p class="lead">Hello,{{ user }}</p>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <ul class="list-group">
+                            <button type="button" class="btn btn-info btn-lg btn-block" id="video1">喜欢和你一起</button>
+                            <button type="button" class="btn btn-info btn-lg btn-block" id="video2">Palette</button>
+                            <button type="button" class="btn btn-info btn-lg btn-block" id="video3">Palette-人气歌谣</button>
+                            <button type="button" class="btn btn-info btn-lg btn-block" id="video4">你的意义</button>
+                            <button type="button" class="btn btn-info btn-lg btn-block" id="video5">《我的大叔》OST</button>
+                        </ul>
+                    </div>
+                    <div class="col-xs-7">
+                        <video id="my-video" class="video-js" controls preload="auto" width="640" height="464"
+                               data-setup="{}">
+                            {#<source src="static/video/video1.mp4" type="video/mp4">#}
+                            <source src="http://183.60.197.31/18/h/s/f/x/hsfxcvlpdyekwvmfviojesomfaejdp/hd.yinyuetai.com/8E2901681184AA884ED516806665AC75.mp4"
+                                    type="video/mp4">
+
+                        </video>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="panel  panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" id="json1">Pretty Lie 喜欢和你一起</h3>
+                            </div>
+                            <div class="panel-body" id="json2">
+                                由三上悠亚、樱 萌子、松田美子组成的超人气女团『蜂蜜爆米花 HONEY POPCORN』2018年3月,以迷你专辑《bibidi babidi
+                                boo》在韩国正式出道,专辑同名歌曲更在短短三天于YouTube上突破百万观看人次!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

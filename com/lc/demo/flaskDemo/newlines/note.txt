@@ -1,0 +1,43 @@
+模仿今日头条，通过爬虫抓取RSS等来构造的资讯网站demo
+
+Headlines
+http://127.0.0.1:5000/
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+https://www.zhihu.com/rss
+https://www.zhihu.com/rss
+
+news.163.com/special/00011K6L/rss_newsattitude.xml
+http://news.163.com/special/00011K6L/rss_newsattitude.xml
+
+
+科学松鼠会
+http://songshuhui.net/feed
+
+
+RSS订阅中心_资讯_凤凰网------官方这个有bug
+http://news.ifeng.com/rss/
+
+
+www.importnew.com/feed
+http://www.importnew.com/feed
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+天气以及feed,请在以下选择中输入：
+
+RSS_FEED = {"zhihu": "https://www.zhihu.com/rss",
+            "netease": "http://news.163.com/special/00011K6L/rss_newsattitude.xml",
+            "songshuhui": "http://songshuhui.net/feed",
+            "ifeng": "http://news.ifeng.com/rss/index.xml",
+            "importnew": "http://www.importnew.com/feed" }
+
+DEFAULTS = {'city': '北京',
+            'publication': 'songshuhui'}
+
+WEATHERS = {"北京": 101010100,
+            "上海": 101020100,
+            "广州": 101280101,
+            "深圳": 101280601}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
