@@ -1,0 +1,39 @@
+pycrypto安装步骤教程 LC 2019年1月22日13:09:22
+
+下载 安装
+windows10上python3.6安装pycrypto - weixin_41001187的博客 - CSDN博客
+https://blog.csdn.net/weixin_41001187/article/details/83009177
+---------------------------------------------------------------------------------------------------
+
+调整:
+python3.6.2版本安装pycrypto模块【不需要安装Visual Studio】 - weixin_41754309的博客 - CSDN博客
+https://blog.csdn.net/weixin_41754309/article/details/80486936
+
+---------------------------------------------------------------------------------------------------
+pycrypto安装详细步骤：
+
+步骤一：
+去Github上下载.whl文件，网址：
+
+https://github.com/M-O-Z-G/Various-Stuff/blob/master/Python/Wheels/pycrypto-2.6.1-cp36-cp36m-win_amd64.whl
+
+步骤二：
+下载之后在cmd命令行进入到.whl文件所在的目录，执行
+
+pip install pycrypto-2.6.1-cp36-cp36m-win_amd64.whl
+安装即可。
+
+如果出现：Successfully installed pycrypto-2.6.1   说明安装成功
+
+
+步骤三：
+
+将site-packages包下的crypto修改为：Crypto
+
+步骤四：
+
+如果运行时报错： ModuleNotFoundError: No module named ‘winrandom’
+
+        在目录下：###\site-packages\Crypto\Random\OSRNG 修改nt.py文件，例如:E:\python-3.6.5-amd64\Lib\site-packages\Crypto\Random\OSRNG
+
+        将import winrandom 修改为：from . import winrandom即可

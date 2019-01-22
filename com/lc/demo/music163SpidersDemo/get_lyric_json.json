@@ -1,0 +1,190 @@
+{
+    'sgc': False,
+    'sfy': False,
+    'qfy': False,
+    'transUser': {
+        'id': 38592976,
+        'status': 99,
+        'demand': 1,
+        'userid': 58612817,
+        'nickname': '_还有风景线',
+        'uptime': 1450679655737
+    },
+    'lyricUser': {
+        'id': 38592976,
+        'status': 0,
+        'demand': 0,
+        'userid': 112955980,
+        'nickname': '我自静默向韶华收录1990',
+        'uptime': 1450076929022
+    },
+    'lrc': {
+        'version': 4,
+        'lyric': '[
+            00: 08
+        ]Iwillrun,
+        Iwillclimb,
+        Iwillsoar\n[
+            00: 13
+        ]I’mundefeated\n[
+            00: 16
+        ]Jumpingoutofmyskin,
+        pullthechord\n[
+            00: 21
+        ]YeahIbelieveit\n[
+            00: 23
+        ]Thepast,
+        iseverythingweweredon’tmakeuswhoweare\n[
+            00: 26
+        ]SoI’lldream,
+        untilImakeitreal,
+        andallIseeisstars\n[
+            00: 37
+        ]Itsnotuntilyoufallthatyoufly\n[
+            00: 43
+        ]Whenyourdreamscomealiveyou’reunstoppable\n[
+            00: 47
+        ]Takeashot,
+        chasethesun,
+        findthebeautiful\n[
+            00: 51
+        ]Wewillglowinthedarkturningdusttogold\n[
+            00: 55
+        ]Andwe’lldreamitpossible\n[
+            01: 16
+        ]Iwillchase,
+        Iwillreach,
+        Iwillfly\n[
+            01: 20
+        ]UntilI’mbreaking,
+        untilI’mbreaking\n[
+            01: 24
+        ]Outofmycage,
+        likeabirdinthenight\n[
+            01: 28
+        ]IknowI’mchanging,
+        IknowI’mchanging\n[
+            01: 31
+        ]In,
+        intosomethingbig,
+        betterthanbefore\n[
+            01: 39
+        ]Andifittakes,
+        takesathousandlives\n[
+            01: 43
+        ]ThenIt’sworthfightingfor\n[
+            01: 46
+        ]Itsnotuntilyoufallthatyoufly\n[
+            01: 50
+        ]Whenyourdreamscomealiveyou’reunstoppable\n[
+            01: 55
+        ]Takeashot,
+        chasethesun,
+        findthebeautiful\n[
+            01: 59
+        ]Wewillglowinthedarkturningdusttogold\n[
+            02: 03
+        ]Andwe’lldreamitpossible\n[
+            02: 23
+        ]Fromthebottomtothetop\n[
+            02: 26
+        ]We’resparkingwildfire’s\n[
+            02: 28
+        ]Neverquitandneverstop\n[
+            02: 30
+        ]Therestofourlives\n[
+            02: 32
+        ]Fromthebottomtothetop\n[
+            02: 34
+        ]We’resparkingwildfire’s\n[
+            02: 36
+        ]Neverquitandneverstop\n[
+            02: 39
+        ]Itsnotuntilyoufallthatyoufly\n[
+            02: 45
+        ]Whenyourdreamscomealiveyou’reunstoppable\n[
+            02: 49
+        ]Takeashot,
+        chasethesun,
+        findthebeautiful\n[
+            02: 53
+        ]Wewillglowinthedarkturningdusttogold\n[
+            02: 57
+        ]Andwe’lldreamitpossiblepossible\n'
+    },
+    'tlyric': {
+        'version': 3,
+        'lyric': '[
+            00: 08
+        ]我奔跑，我攀爬，我会飞翔\n[
+            00: 13
+        ]永不言败\n[
+            00: 16
+        ]跳出我的皮肤，拨弄琴弦\n[
+            00: 21
+        ]哦，我相信。\n[
+            00: 23
+        ]往昔，逝去的光阴不会决定现在\n[
+            00: 26
+        ]所以我们梦想，直到变成真，看到满天星光\n[
+            00: 37
+        ]不怕跌倒，所以飞翔\n[
+            00: 43
+        ]当你的梦想成真，你是不可阻挡\n[
+            00: 47
+        ]挥着翅膀，追逐太阳，寻找美丽\n[
+            00: 51
+        ]在黑暗中闪耀点石成金\n[
+            00: 55
+        ]我们会梦想成真\n[
+            01: 16
+        ]我追逐，我奔驰，我要飞翔\n[
+            01: 20
+        ]直到坠落，直到崩溃\n[
+            01: 24
+        ]走出我的囚笼，像在黑夜里的莺\n[
+            01: 28
+        ]我知道我在变化，在蜕变\n[
+            01: 31
+        ]变成无比强大，从未有过\n[
+            01: 39
+        ]如果需要牺牲，需要无数的生命\n[
+            01: 43
+        ]那值得去奋斗\n[
+            01: 46
+        ]不怕跌倒，所以飞翔\n[
+            01: 50
+        ]当你的梦想成真，你是不可阻挡\n[
+            01: 55
+        ]挥着翅膀，追逐太阳，寻找美丽\n[
+            01: 59
+        ]在黑暗中闪耀点石成金\n[
+            02: 03
+        ]我们会梦想成真\n[
+            02: 23
+        ]从山谷到巅峰\n[
+            02: 26
+        ]我们正在迸发野火\n[
+            02: 28
+        ]永不放弃，永不停止\n[
+            02: 30
+        ]点燃未来\n[
+            02: 32
+        ]从山谷到巅峰\n[
+            02: 34
+        ]我们正在迸发野火\n[
+            02: 36
+        ]永不放弃，永不停止\n[
+            02: 39
+        ]不怕跌倒，所以飞翔\n[
+            02: 45
+        ]当你的梦想成真，你是不可阻挡\n[
+            02: 49
+        ]挥着翅膀，追逐太阳，寻找美\n[
+            02: 53
+        ]在黑暗中闪耀点石成金\n[
+            02: 57
+        ]我们会梦想成真'
+    },
+    'code': 200
+}

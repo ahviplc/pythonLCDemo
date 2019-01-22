@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=###"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+
+    //这样也可以: <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/heatmap.js"></script>
+
+    <title>热力图功能示例</title>
+    <style type="text/css">
+        ul, li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            float: left;
+        }
+
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            font-family: "微软雅黑";
+        }
+
+        #container {
+            height: 500px;
+            width: 100%;
+        }
+
+        #r-result {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<div id="r-result">
+    <input type="button" onclick="openHeatmap();" value="显示热力图"/><input type="button" onclick="closeHeatmap();"
+                                                                        value="关闭热力图"/>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var map = new BMap.Map("container");          // 创建地图实例
+
+    var point = new BMap.Point(113.418261, 39.921984);
+    map.centerAndZoom(point, 5);             // 初始化地图，设置中心点坐标和地图级别
+    map.enableScrollWheelZoom(); // 允许滚轮缩放
+
+    var points = [{"lat": 26.04712549657293, "lng": 119.33022110712668, "count": 2}, {
+        "lat": 30.679942845419564,
+        "lng": 104.06792346330406,
+        "count": 6
+    }, {"lat": 30.800965168237234, "lng": 106.10555398379239, "count": 2}, {
+        "lat": 36.06422552504259,
+        "lng": 103.8233054407292,
+        "count": 1
+    }, {"lat": 31.227203440768868, "lng": 121.49607206403445, "count": 122}, {
+        "lat": 24.80296031189189,
+        "lng": 113.5944611074356,
+        "count": 1
+    }, {"lat": 31.131139652701417, "lng": 104.40239781824484, "count": 1}, {
+        "lat": 45.7732246332393,
+        "lng": 126.65771685544611,
+        "count": 1
+    }, {"lat": 30.71005418436643, "lng": 108.41343863669852, "count": 213}, {
+        "lat": 39.92998577808024,
+        "lng": 116.39564503787867,
+        "count": 2
+    }, {"lat": 41.808644783515746, "lng": 123.43279092160505, "count": 111}, {
+        "lat": 35.49983446722556,
+        "lng": 112.86733275750684,
+        "count": 1
+    }, {"lat": 35.07240907439113, "lng": 118.34076823661057, "count": 12}, {
+        "lat": 24.699520782873197,
+        "lng": 108.06994770936778,
+        "count": 2
+    }, {"lat": 34.27155343109188, "lng": 117.18810662317686, "count": 1333}, {
+        "lat": 37.74692904585666,
+        "lng": 115.68622865290865,
+        "count": 1
+    }, {"lat": 33.95204973370865, "lng": 118.29689337855334, "count": 100}, {
+        "lat": 25.262901245955238,
+        "lng": 110.26092014748276,
+        "count": 1
+    }, {"lat": 35.3072575576613, "lng": 113.91269016082377, "count": 1}, {
+        "lat": 23.12004910207623,
+        "lng": 113.30764967515182,
+        "count": 2
+    }, {"lat": 26.656527419158913, "lng": 119.54208214971854, "count": 200}, {
+        "lat": 36.68278472716141,
+        "lng": 117.02496706629023,
+        "count": 1
+    }, {"lat": 31.317987367952437, "lng": 120.61990711548988, "count": 1}, {
+        "lat": 39.93857401298612,
+        "lng": 116.42188470126446,
+        "count": 1
+    }, {"lat": 27.83509505297878, "lng": 112.93555563303435, "count": 1}, {
+        "lat": 43.87198833435933,
+        "lng": 126.56454398883335,
+        "count": 2
+    }, {"lat": 23.741165926514817, "lng": 109.23181650474223, "count": 2}, {
+        "lat": 34.34537299599856,
+        "lng": 108.70750927819563,
+        "count": 1
+    }, {"lat": 30.951642354295757, "lng": 118.75209631098257, "count": 1}, {
+        "lat": 39.47062718874562,
+        "lng": 75.99297326749168,
+        "count": 1
+    }, {"lat": 29.88065675772815, "lng": 114.30006059206065, "count": 1}, {
+        "lat": 27.741073302349072,
+        "lng": 111.99639635657,
+        "count": 2
+    }, {"lat": 28.241309597181967, "lng": 117.03545018601243, "count": 2}, {
+        "lat": 43.922248096340766,
+        "lng": 81.29785353036553,
+        "count": 2
+    }, {"lat": 39.12480884470283, "lng": 117.20281365402627, "count": 2}, {
+        "lat": 25.448450136734262,
+        "lng": 119.07773096395962,
+        "count": 2
+    }, {"lat": 38.88656454802744, "lng": 115.49481016907626, "count": 1}, {
+        "lat": 31.50470125806144,
+        "lng": 104.70551897529307,
+        "count": 1
+    }, {"lat": 30.877925155690896, "lng": 120.13724316328172, "count": 1}, {
+        "lat": 27.811129895842885,
+        "lng": 114.40003867155777,
+        "count": 1
+    }, {"lat": 28.21347823085322, "lng": 112.9793527876505, "count": 3}, {
+        "lat": 34.756610064140254,
+        "lng": 113.64964384986449,
+        "count": 1
+    }, {"lat": 28.895929803860103, "lng": 105.44397028920636, "count": 1}, {
+        "lat": 29.73443485616307,
+        "lng": 118.29356963200213,
+        "count": 1
+    }, {"lat": 37.89027705396754, "lng": 112.5508635890553, "count": 2}, {
+        "lat": 24.901652383991102,
+        "lng": 118.60036234322938,
+        "count": 2
+    }, {"lat": 36.80468485421204, "lng": 118.05913427786938, "count": 1}, {
+        "lat": 32.05723550180587,
+        "lng": 118.77807440802562,
+        "count": 1
+    }, {"lat": 32.441040158428244, "lng": 105.81968693999652, "count": 1}, {
+        "lat": 34.277799897830626,
+        "lng": 108.95309827919623,
+        "count": 2
+    }, {"lat": 32.20440944359928, "lng": 119.45583540512952, "count": 1}, {
+        "lat": 30.58108412692075,
+        "lng": 114.31620010268132,
+        "count": 1
+    }, {"lat": 28.002837594041246, "lng": 120.6906347337091, "count": 1}, {
+        "lat": 23.698468550422163,
+        "lng": 113.04077334890835,
+        "count": 1
+    }, {"lat": 25.095148055926884, "lng": 104.9005577982516, "count": 1}, {
+        "lat": 22.80649293560261,
+        "lng": 108.29723355586638,
+        "count": 1
+    },];
+
+    if (!isSupportCanvas()) {
+        alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
+    }
+    //详细的参数,可以查看heatmap.js的文档 https://github.com/pa7/heatmap.js/blob/master/README.md
+    //参数说明如下:
+    /* visible 热力图是否显示,默认为true
+     * opacity 热力的透明度,1-100
+     * radius 势力图的每个点的半径大小
+     * gradient  {JSON} 热力图的渐变区间 . gradient如下所示
+     *	{
+            .2:'rgb(0, 255, 255)',
+            .5:'rgb(0, 110, 255)',
+            .8:'rgb(100, 0, 255)'
+        }
+        其中 key 表示插值的位置, 0~1.
+            value 为颜色值.
+     */
+    heatmapOverlay = new BMapLib.HeatmapOverlay({"radius": 20});
+    map.addOverlay(heatmapOverlay);
+    heatmapOverlay.setDataSet({data: points, max: 100});
+
+    //是否显示热力图
+    function openHeatmap() {
+        heatmapOverlay.show();
+    }
+
+    function closeHeatmap() {
+        heatmapOverlay.hide();
+    }
+
+    closeHeatmap();
+
+    function setGradient() {
+        /*格式如下所示:
+        {
+            0:'rgb(102, 255, 0)',
+            .5:'rgb(255, 170, 0)',
+            1:'rgb(255, 0, 0)'
+        }*/
+        var gradient = {};
+        var colors = document.querySelectorAll("input[type='color']");
+        colors = [].slice.call(colors, 0);
+        colors.forEach(function (ele) {
+            gradient[ele.getAttribute("data-key")] = ele.value;
+        });
+        heatmapOverlay.setOptions({"gradient": gradient});
+    }
+
+    //判断浏览区是否支持canvas
+    function isSupportCanvas() {
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext && elem.getContext('2d'));
+    }
+</script>
