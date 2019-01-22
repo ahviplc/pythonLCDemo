@@ -1,0 +1,12 @@
+Python Extension Packages for Windows - Christoph Gohlke
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted
+
+
+解决Scrapy安装错误:Microsoft Visual C++ 14.0 is required... - 秦潇湘 - 博客园
+https://www.cnblogs.com/qxfan/p/8566945.html
+
+先安装：
+pip install Twisted-18.9.0-cp36-cp36m-win_amd64.whl
+
+
+再安装:pip install scrapy
