@@ -1,0 +1,11 @@
+在项目根目录执行scrapy命令:
+
+scrapy crawl meiju
+
+scrapy crawl meiju --nolog
+
+scrapy crawl meiju -o my_meiju.json
+
+
+Scrapy简单入门及实例讲解 - 孔扎根 - 博客园
+http://www.cnblogs.com/kongzhagen/p/6549053.html
