@@ -11,12 +11,14 @@ DateTime: 2019年1月28日12:08:51
 LC博客url: http://oneplusone.top/index.html
 """
 import setuptoolsDemoByLC
-from com.lc.demo.setuptoolsDemo.setuptoolsDemoByLC.funcLib.IamFunc import sumHe
+from setuptoolsDemoByLC.funcLib.IamFunc import sumHe
+from setuptoolsDemoByLC.funcLib.IamFunc import sumHe as SH
 
 
 def main():
     print(setuptoolsDemoByLC.test())
     print(sumHe(1, 1))
+    print(SH(2, 1))
 
 
 if __name__ == '__main__':
@@ -25,4 +27,6 @@ if __name__ == '__main__':
 # hello world!setuptools Demo!~LC
 # None
 # 2
+# None
+# 3
 # None

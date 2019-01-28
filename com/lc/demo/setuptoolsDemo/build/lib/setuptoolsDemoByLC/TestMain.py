@@ -12,12 +12,21 @@ LC博客url: http://oneplusone.top/index.html
 """
 import setuptoolsDemoByLC
 from setuptoolsDemoByLC.funcLib.IamFunc import sumHe
+from setuptoolsDemoByLC.funcLib.IamFunc import sumHe as SH
 
-print(setuptoolsDemoByLC.test())
 
-print(sumHe(1, 1))
+def main():
+    print(setuptoolsDemoByLC.test())
+    print(sumHe(1, 1))
+    print(SH(2, 1))
+
+
+if __name__ == '__main__':
+    main()
 
 # hello world!setuptools Demo!~LC
 # None
 # 2
+# None
+# 3
 # None
