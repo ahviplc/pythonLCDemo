@@ -1,0 +1,9 @@
+setuptoolsDemoByLC/TestMain.py
+setuptoolsDemoByLC/__init__.py
+setuptoolsDemoByLC/setup.py
+setuptoolsDemoByLC.egg-info/PKG-INFO
+setuptoolsDemoByLC.egg-info/SOURCES.txt
+setuptoolsDemoByLC.egg-info/dependency_links.txt
+setuptoolsDemoByLC.egg-info/top_level.txt
+setuptoolsDemoByLC/funcLib/IamFunc.py
+setuptoolsDemoByLC/funcLib/__init__.py

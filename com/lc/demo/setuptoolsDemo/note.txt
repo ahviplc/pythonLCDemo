@@ -1,0 +1,41 @@
+Python包管理工具setuptools详解及entry point - pfm685757的专栏 - CSDN博客
+https://blog.csdn.net/pfm685757/article/details/48651389
+
+--------------------------------------------------------------------------------------------------------------------
+
+python setup.py bdist_egg
+
+python setuptoolsDemoByLC\setup.py bdist_egg # 此用的这个
+
+E:\pycharm-professional-2018.1.3\Code\pythonLCDemo\com\lc\demo\setuptoolsDemo>python setuptoolsDemoByLC\setup.py bdist_egg
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+python setup.py install
+
+python setuptoolsDemoByLC\setup.py install # 此用的这个
+
+(venv) E:\pycharm-professional-2018.1.3\Code\pythonLCDemo\com\lc\demo\setuptoolsDemo>python setuptoolsDemoByLC\setup.py install
+
+--------------------------------------------------------------------------------------------------------------------
+
+安装位置:
+E:\pycharm-professional-2018.1.3\Code\pythonLCDemo\venv\Lib\site-packages\setuptoolsDemoByLC-0.1-py3.6.egg
+
+--------------------------------------------------------------------------------------------------------------------
+
+Metadata-Version: 1.0
+Name: setuptoolsDemoByLC
+Version: 0.1
+Summary: setuptoolsDemoByLC LC Test setuptools!~LC
+Home-page: http://www.oneplusone.vip/index.html
+Author: LC
+Author-email: ahlc@sina.cn
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+
+--------------------------------------------------------------------------------------------------------------------
+
+top_level:setuptoolsDemoByLC
