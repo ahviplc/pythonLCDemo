@@ -24,7 +24,8 @@ RSS_FEED = {"zhihu": "https://www.zhihu.com/rss",
             "netease": "http://news.163.com/special/00011K6L/rss_newsattitude.xml",
             "songshuhui": "http://songshuhui.net/feed",
             "ifeng": "http://news.ifeng.com/rss/index.xml",
-            "importnew": "http://www.importnew.com/feed"}
+            "importnew": "http://www.importnew.com/feed",
+            "rss-hub-juejin": "https://rsshub.app/juejin/category/freebie"}
 
 DEFAULTS = {'city': '北京',
             'publication': 'songshuhui'}
