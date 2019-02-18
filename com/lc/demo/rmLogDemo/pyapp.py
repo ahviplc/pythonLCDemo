@@ -27,6 +27,9 @@ def main():
             f_w.write(line)  # 不符合的重新写入
         print('总删除行' + str(all_line_counts))
 
+        close_str_msg = input('Press Enter to exit...')
+        print(close_str_msg)
+
 
 def maintxt():
     with open("txt.txt", "r", encoding="utf-8") as f:
@@ -42,6 +45,8 @@ def maintxt():
             f_w.write(line)  # 不符合的重新写入
         print('总删除行' + str(all_line_counts))
 
+        close_str_msg = input('Press Enter to exit...')
+        print(close_str_msg)
 
 if __name__ == '__main__':
     # maintxt()
