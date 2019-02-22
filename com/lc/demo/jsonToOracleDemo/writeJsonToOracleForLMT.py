@@ -18,6 +18,7 @@ import cx_Oracle
 import os
 import datetime
 
+
 # 改变系统环境编码为简体中文utf-8-为了让oracle查询出的中文不乱码
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 
@@ -29,10 +30,31 @@ os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 # a 只能写 从文件底部添加内容 不存在则创建
 # a+ 可读可写 从文件顶部读取内容 从文件底部添加内容 不存在则创建
 
+# 从json里读取数据，经过业务逻辑处理，写入oracle
+def json_write_to_oracle():
+    with open('ICRechargeRecord.txt', 'r+', encoding='utf-8') as f:
+        json_dict_list = json.load(f)
+        # print(json_dict_list)
+        # for i in json_dict_list:
+        #     print(i)
+        #     print(i['Id'])
+    return json_dict_list
+    print('all Done')
+
+# 时间戳转date方法工具
+def timestamp_to_date(timestampStr):
+    # timestampStr='/Date(1510639156973+0800)/';
+    jie_qu_timestampStr=timestampStr[6:16]
+    # print(jie_qu_timestampStr)
+    datetimes = datetime.datetime.fromtimestamp(int(jie_qu_timestampStr))
+    # print(datetimes)
+    return datetimes
+
+# 定义类
 class MyOracle:
     SHOW_SQL = True
 
-    def __init__(self, host='101.132.236.137', port=1521, user='SCOTT', password='Lmt123456',
+    def __init__(self, host='###', port=1521, user='SCOTT', password='Lmt123456',
                  sid='LMTPlat'):  # 注意###里改为自己所需要的ip
         self.host = host
         self.port = port
@@ -97,7 +119,7 @@ class MyOracle:
                 if self.SHOW_SQL:
                     print('执行sql:[{}],参数:[{}]'.format(sql, d))
                 cur.execute(sql, d)
-            print('输出影响行数:' + str(cur.rowcount))  # 输出影响行数
+
             con.commit()
 
         except Exception as e:
@@ -162,15 +184,58 @@ def ins_by_param2():
     db.dml_by_where(sql, data)  # ok
     print('ins_by_param2 ok')
 
+# 带参数 插入数据 ICRechargeRecord
+def ins_by_param_icrechargerecord(json_dict_list):
+
+    # 15个键值对-数据库操作
+
+    sql = "INSERT INTO FI_CHARGE_RECORD (RCR_ORG_ID, RCR_ID, CHARGE_TIME,CUSTOMER_NO,METER_NO,PRICE_NO,PRICE,TOTAL_VOLUME,TOTAL_MONEY,CHARGE_TIMES,METER_TYPE,CHARGE_OPERATOR,RECEIPT_NO,IC_CHARGE_VOLUME,IC_CHARGE_MONEY)  VALUES (:rcrOrgId, :Id, :chargeTime,:customerNo,:meterNo, :priceNo ,:Price,:totalVolume,:totalMoney, :chargeTimes, :meterTypeNo,:chargeOperator,:ReceiptNo,:chargeVolume,:chargeMoney)"
+
+    # print(json_dict_list)
+
+    # 数据处理
+    for i in json_dict_list:
+        # print(i)
+        chargeTime_timestampStr=i['chargeTime']
+        datetime_ok = timestamp_to_date(chargeTime_timestampStr)  # 时间戳转date
+        i['chargeTime'] = datetime_ok
+        i['rcrOrgId'] = '0013'  # 机构编号-需要自定义更改
+
+        # 删除未使用的多余键值对
+        del i['CalcMsg']
+        del i['ICWriteMark']
+        del i['chargeBranchNo']
+        del i['chargePosNo']
+        del i['chargeType']
+        del i['factoryNo']
+
+        # print(i['Id'])
+
+
+    # print(json_dict_list)
+    data = json_dict_list
+    db.dml_by_where(sql, data)  # ok
+
+    print('输出影响行数:' +str(len(data)))
+    print('ins_by_param_icrechargerecord ok')
+
 
 if __name__ == "__main__":
 
     db = MyOracle()
 
-    ins_by_param2()
+    json_dict_list_return = json_write_to_oracle()
 
-    date = datetime.datetime.now()  # 当前日期
-    print(date)  # 2019-02-22 12:18:25.949246
+    ins_by_param_icrechargerecord(json_dict_list_return)
+
+    print('转存到oracle成功！')
+
+
+    #
+    # ins_by_param2()
+    #
+    # date = datetime.datetime.now()  # 当前日期
+    # print(date)  # 2019-02-22 12:18:25.949246
 
     # select_all()
     # select_by_where()
@@ -183,3 +248,7 @@ if __name__ == "__main__":
 # 执行sql:[INSERT INTO SHORT_MESSAGE_CONFIG (SMC_ORG_ID, SMC_CODE, SMC_NAME)  VALUES(:orgid, :code, :smcname)],参数:[{'orgid': '0004', 'code': '0007', 'smcname': 'test1'}]
 # 输出影响行数1
 # ins_by_param2 ok
+
+
+
+# print('输出影响行数:' + str(cur.rowcount))  # 输出影响行数

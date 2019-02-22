@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : aliyun-lmtplat-公网ip-101.132.236.137-SCOTT-Lmt123456
+ Source Server         : aliyun-lmtplat-公网ip-###-SCOTT-Lmt123456
  Source Server Type    : Oracle
  Source Server Version : 110200
  Source Host           : ###:1521
