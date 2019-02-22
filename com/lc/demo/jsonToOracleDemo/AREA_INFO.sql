@@ -4,7 +4,7 @@
  Source Server         : aliyun-lmtplat-公网ip-101.132.236.137-SCOTT-Lmt123456
  Source Server Type    : Oracle
  Source Server Version : 110200
- Source Host           : 101.132.236.137:1521
+ Source Host           : ###:1521
  Source Schema         : SCOTT
 
  Target Server Type    : Oracle

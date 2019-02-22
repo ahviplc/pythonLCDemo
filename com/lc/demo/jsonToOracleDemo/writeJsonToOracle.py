@@ -20,6 +20,7 @@ import os
 # 改变系统环境编码为简体中文utf-8-为了让oracle查询出的中文不乱码
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 
+# with open 参数介绍
 # r 只能读
 # r+ 可读可写 不会创建不存在的文件 从顶部开始写 会覆盖之前此位置的内容
 # w+ 可读可写 如果文件存在 则覆盖整个文件不存在则创建
