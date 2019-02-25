@@ -29,7 +29,8 @@ def main():
 
 # main方法一:生成操作persons.sql示例
 def main1():
-    # server    数据库服务器名称或IP
+
+    # host    数据库服务器名称或IP
     # user      用户名
     # password  密码
     # database  数据库名称
@@ -85,7 +86,7 @@ def main1():
 # 使用with语句（上下文管理器）main2
 # 可以通过使用with语句来省去显示的调用close方法关闭连接和游标
 def main2():
-    # server    数据库服务器名称或IP
+    # host    数据库服务器名称或IP
     # user      用户名
     # password  密码
     # database  数据库名称
@@ -99,7 +100,7 @@ def main2():
 # 使用with语句（上下文管理器）main3
 # 可以通过使用with语句来省去显示的调用close方法关闭连接和游标
 def main3():
-    # server    数据库服务器名称或IP
+    # host    数据库服务器名称或IP
     # user      用户名
     # password  密码
     # database  数据库名称
