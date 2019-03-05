@@ -36,9 +36,22 @@ class MyTCPHandler(socketserver.BaseRequestHandler):  # 必须继承这个类才
                 if not self.data:
                     print("connection lost")
                     # break
-                print(self.data)  # print(self.data.decode('ascii'))  # 将bytes变为str 用decode()方法
-                self.request.sendall(self.data.upper() + '-LC'.encode(
-                    'utf-8'))  # sendall是重复调用send.  # '-LC'.encode('utf-8')  # '-LC'.encode('ascii')
+                # print(self.data)  # b'1' print(self.data.decode('ascii'))  # 将bytes变为str 用decode()方法
+                # b'}1helloworld1LC'
+                # 集体核心逻辑代码
+                result_str_list = bytes_to_hex_string_return_list(self.data)  # 把byte[]转换成16进制字符串列表输出
+                result_str = "".join(result_str_list)
+                print("从连接号：", self.client_address, "接收原报文：" + result_str)
+
+                result_str_translate_list = translate_7d_string(result_str_list);  # 翻译成正常报文，去除7D部分
+                result_str_translate = "".join(result_str_translate_list)
+                print("从连接号：", self.client_address, "接收翻译后报文：" + result_str_translate)
+
+                receive_msg = message_read_to_msg(result_str_translate_list);  # 报文message转换成msg实体类
+
+                # 集体核心逻辑代码
+                self.request.sendall(result_str_translate.encode('utf-8') + '-LC'.encode('utf-8'))  # sendall是重复调用send.  # '-LC'.encode('utf-8')  # '-LC'.encode('ascii')
+                # self.request.sendall(self.data.upper() + '-LC'.encode('utf-8'))
             except Exception as e:  # ConnectionError[ConnectionResetError,ConnectionAbortedError]
                 print(self.client_address, "连接断开-err:", e)
                 break
@@ -128,9 +141,9 @@ def bytes_to_hex_string_return_list(bytes_data):
     return ll
 
 
-# 接收可能含有7D数据的报文进行翻译,翻译成正常报文
-# @param return_list 可能包含7D的数据
-# @return 翻译结果字符串
+# 接收可能含有7D数据的报文进行翻译,翻译成正常报文 - ''.join(real_return_list)
+# @param return_list 可能包含7D的数据 列表
+# @return real_return_list 翻译结果字符串 列表
 def translate_7d_string(return_list):
     real_return_list = []
     for i in range(len(return_list)):
@@ -152,7 +165,16 @@ def translate_7d_string(return_list):
                 real_return_list.append(result)
     if real_return_list[0] == '68' and real_return_list[1] == '68':
         real_return_list.remove(1)
-    return ''.join(real_return_list)
+    return real_return_list
+
+
+# 报文message转换成msg实体类
+# @param result_str_translate_list 列表
+# @return Msg对象
+def message_read_to_msg(result_str_translate_list):  # 转换成msg实体类
+    msg = Msg()
+    msg.startCharacter = "68"
+    return msg
 
 
 # main方法
@@ -164,19 +186,19 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
+    main()
     # msg = Msg()
     # msg.get_method()
 
-    s = "}1helloworld1LC"
-
-    sb = bytes(s, encoding="utf8")
-    print(sb)
-    print(bytes_to_hex_string(sb))
-    # 0x7D 0x31 0x68 0x65 0x6c 0x6c 0x6f 0x77 0x6f 0x72 0x6c 0x64 0x31 0x4c 0x43
-    # 7d3168656c6c6f776f726c64314c43
-    print(int(49 ^ 0x20))
-    print(hex(17)[2:])
-    print(str(17))
-    print(int('31', 16))
-    print(translate_7d_string(['7d', '31', '7d', '68', '7d', '65', '6c', '6c', '6f', '77', '6f', '72', '6c', '64', '31', '4c', '43', '7d']))
+    # s = "}1helloworld1LC"
+    #
+    # sb = bytes(s, encoding="utf8")
+    # print(sb)
+    # print(bytes_to_hex_string(sb))
+    # # 0x7D 0x31 0x68 0x65 0x6c 0x6c 0x6f 0x77 0x6f 0x72 0x6c 0x64 0x31 0x4c 0x43
+    # # 7d3168656c6c6f776f726c64314c43
+    # print(int(49 ^ 0x20))
+    # print(hex(17)[2:])
+    # print(str(17))
+    # print(int('31', 16))
+    # print(translate_7d_string(['7d', '31', '7d', '68', '7d', '65', '6c', '6c', '6f', '77', '6f', '72', '6c', '64', '31', '4c', '43', '7d']))
