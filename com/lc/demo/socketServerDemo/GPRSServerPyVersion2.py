@@ -37,7 +37,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):  # 必须继承这个类才
                     print("connection lost")
                     # break
                 print(self.data)  # print(self.data.decode('ascii'))  # 将bytes变为str 用decode()方法
-                self.request.sendall(self.data.upper() + '-LC'.encode('utf-8'))  # sendall是重复调用send.  # '-LC'.encode('utf-8')  # '-LC'.encode('ascii')
+                self.request.sendall(self.data.upper() + '-LC'.encode(
+                    'utf-8'))  # sendall是重复调用send.  # '-LC'.encode('utf-8')  # '-LC'.encode('ascii')
             except Exception as e:  # ConnectionError[ConnectionResetError,ConnectionAbortedError]
                 print(self.client_address, "连接断开-err:", e)
                 break
@@ -104,7 +105,8 @@ class Msg:
 # 公共方法
 
 # 把byte[]转换成16进制字符串-这里我们可以将byte通过int()转换成int，然后利用hex()来转换成16进制字符串
-# 输入:b'1helloworld1LC}' 输出:3168656c6c6f776f726c64314c437d
+# @param bytes_data 输入:b'1helloworld1LC}'
+# @return 输出:3168656c6c6f776f726c64314c437d
 def bytes_to_hex_string(bytes_data):
     if not bytes_data:
         return None
@@ -116,7 +118,8 @@ def bytes_to_hex_string(bytes_data):
 
 
 # 把byte[]转换成16进制字符串列表输出-这里我们可以将byte通过int()转换成int，然后利用hex()来转换成16进制字符串
-# 输入:b'1helloworld1LC}' 输出:['7d', '31', '68', '65', '6c', '6c', '6f', '77', '6f', '72', '6c', '64', '31', '4c', '43']
+# @param bytes_data 输入:b'1helloworld1LC}'
+# @return 输出:['7d', '31', '68', '65', '6c', '6c', '6f', '77', '6f', '72', '6c', '64', '31', '4c', '43']
 def bytes_to_hex_string_return_list(bytes_data):
     if not bytes_data:
         return None
@@ -125,28 +128,28 @@ def bytes_to_hex_string_return_list(bytes_data):
     return ll
 
 
-# 翻译成正常报文，去除7D部分
+# 接收可能含有7D数据的报文进行翻译,翻译成正常报文
+# @param return_list 可能包含7D的数据
+# @return 翻译结果字符串
 def translate_7d_string(return_list):
     real_return_list = []
     for i in range(len(return_list)):
-        if i == 0:
-            i == i
-        elif i + 1 >= len(return_list):
-            pass
-            if real_return_list[0] == '68' and real_return_list[1] == '68':
-                real_return_list.remove(1)
-            return ''.join(real_return_list)
-        else:
-            i = i + 1
         if (return_list[i] == "7d" or return_list[i] == "7D"):
-            result = int(return_list[i + 1], 16) ^ 0x20
-            result_str = hex(result)[2:]
-            real_return_list.append(result_str)
-            i = i + 1
-            pass
+            if return_list[i + 1] != None:
+                result = int(return_list[i + 1], 16) ^ 0x20
+                result_str = hex(result)[2:]
+                real_return_list.append(result_str)
+                del return_list[i]
+                return_list.append(None)
+                pass
+            else:
+                pass
         else:
             result = return_list[i]
-            real_return_list.append(result)
+            if result == None:
+                pass
+            else:
+                real_return_list.append(result)
     if real_return_list[0] == '68' and real_return_list[1] == '68':
         real_return_list.remove(1)
     return ''.join(real_return_list)
@@ -176,4 +179,4 @@ if __name__ == "__main__":
     print(hex(17)[2:])
     print(str(17))
     print(int('31', 16))
-    print(translate_7d_string(['7d', '31', '68', '65', '6c', '6c', '6f', '77', '6f', '72', '6c', '64', '31', '4c', '43']))
+    print(translate_7d_string(['7d', '31', '7d', '68', '7d', '65', '6c', '6c', '6f', '77', '6f', '72', '6c', '64', '31', '4c', '43', '7d']))
