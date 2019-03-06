@@ -49,6 +49,23 @@ class MyTCPHandler(socketserver.BaseRequestHandler):  # 必须继承这个类才
 
                 receive_msg = message_read_to_msg(result_str_translate_list);  # 报文message转换成msg实体类
 
+                if receive_msg is None:
+                    #  无效数据，记录错误日志后不返回设备报文
+                    pass
+                else:
+                    dw_conn_id = self.client_address[1]
+
+                    # 根据msg的数据命令，选择不同的处理方法
+                    send_str = deal_operation_by_msg(receive_msg, dw_conn_id, result_str_translate)
+
+                    if send_str is not None:
+                        print('do something')
+                        send_bytes = send_str.encode('utf-8')
+                        print(send_bytes)
+                        # 接下來send回去-给客户端反馈消息(反馈报文)
+                        pass
+                    pass
+
                 # 集体核心逻辑代码
                 self.request.sendall(result_str_translate.encode('utf-8') + '-LC'.encode('utf-8'))  # sendall是重复调用send.  # '-LC'.encode('utf-8')  # '-LC'.encode('ascii')
                 # self.request.sendall(self.data.upper() + '-LC'.encode('utf-8'))
@@ -163,18 +180,79 @@ def translate_7d_string(return_list):
                 pass
             else:
                 real_return_list.append(result)
-    if real_return_list[0] == '68' and real_return_list[1] == '68':
-        real_return_list.remove(1)
+    if real_return_list[0] == "68" and real_return_list[1] == "68":
+        del real_return_list[1]  # 删除索引(下标)为1的列表元素
     return real_return_list
 
 
-# 报文message转换成msg实体类
-# @param result_str_translate_list 列表
+# 报文message转换成msg实体类-从原始报文读取到Msg实体类中(未做任何处理，具体处理方法另外调用)
+# @param result_str_translate_list 列表 -socket获取的直接报文
 # @return Msg对象
 def message_read_to_msg(result_str_translate_list):  # 转换成msg实体类
     msg = Msg()
-    msg.startCharacter = "68"
+
+    # 将socket获取的直接报文 list 转成字符串
+    result_str_translate_msg = "".join(result_str_translate_list)
+    print(len(result_str_translate_msg))
+
+    if len(result_str_translate_msg) < 32 or len(result_str_translate_msg) % 2 == 1:
+        return None
+
+    if result_str_translate_list[0] == "68" and result_str_translate_list[1] == "68":
+        del result_str_translate_list[1]  # 删除索引(下标)为1的列表元素
+
+
+    # 将报文具体解析写入报文类Msg
+    print(result_str_translate_list[0])
+    msg.startCharacter = result_str_translate_list[0]
+
+    print(result_str_translate_list[1:6])  # -['68', '65', '6c', '6c', '6f']
+    msg.RTUA = "".join(result_str_translate_list[1:6])  # 将列表list拼接成字符串-'68656c6c6f'
+
+    print(result_str_translate_list[6:8])  # -
+    msg.MSTAAndSEQ = "".join(result_str_translate_list[6:8])
+
+    print(result_str_translate_list[8])
+    msg.startCharacter2 = result_str_translate_list[8]
+
+    print(result_str_translate_list[9])
+    msg.controllerCode = result_str_translate_list[9]
+
+    print(result_str_translate_list[10])
+    msg.systemType = result_str_translate_list[10]
+
+    print(result_str_translate_list[11])
+    msg.elementType = result_str_translate_list[11]
+
+    print(result_str_translate_list[12:14])
+    msg.dataLength = "".join(result_str_translate_list[12:14])
+
+    print(result_str_translate_list[14:16])
+    msg.dataCommand = "".join(result_str_translate_list[14:16])
+
+    print(result_str_translate_list[16:-2])
+    msg.data = "".join(result_str_translate_list[16:-2])
+
+    print(result_str_translate_list[-2])
+    msg.checkCode = result_str_translate_list[-2]
+
+    print(result_str_translate_list[-1])
+    msg.endCharacter = result_str_translate_list[-1]
+
+    if msg.startCharacter != "68" or msg.endCharacter != "16":
+        return None
+
     return msg
+
+
+# 根据msg的数据命令，选择不同的处理方法
+# @param msg
+# @return send_str
+def deal_operation_by_msg(receive_msg, dw_conn_id, result_str_translate):
+    # 使用if else判断具体命令 然后进行不同的处理
+    pass
+    send_str = '123lclclc123'
+    return send_str
 
 
 # main方法
