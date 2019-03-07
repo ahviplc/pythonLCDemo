@@ -22,6 +22,7 @@ import datetime
 # 改变系统环境编码为简体中文utf-8-为了让oracle查询出的中文不乱码
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 
+
 # with open 参数介绍
 # r 只能读
 # r+ 可读可写 不会创建不存在的文件 从顶部开始写 会覆盖之前此位置的内容
@@ -68,7 +69,7 @@ class MyOracle:
             cur.close()
             con.close()
 
-    # 自定义查询
+    # 自定义查询 一个参数可用
     def select_by_where(self, sql, data):
         try:
             con = self.get_con()
@@ -80,6 +81,39 @@ class MyOracle:
             # if len(fc) > 0:
             #     for e in range(len(fc)):
             #         print(fc[e])
+            return fc
+        except Exception as e:
+            print("Exception Error:%s" % e)
+        finally:
+            cur.close()
+            con.close()
+
+    # 自定义查询 带多个参数
+    def select_by_where_many_params(self, sql, params):
+        try:
+            con = self.get_con()
+            # print(con)
+            for d in params:
+                cur = con.cursor()
+                cur.execute(sql, d)
+            fc = cur.fetchall()
+            return fc
+        except Exception as e:
+            print("Exception Error:%s" % e)
+        finally:
+            cur.close()
+            con.close()
+
+    # 自定义查询 带多个参数 返回字典样式列表
+    def select_by_where_many_params_dict(self, sql, params):
+        try:
+            con = self.get_con()
+            # print(con)
+            for d in params:
+                cur = con.cursor()
+                cur.execute(sql, d)
+                cur.rowfactory = self.makedict(cur)
+            fc = cur.fetchall()
             return fc
         except Exception as e:
             print("Exception Error:%s" % e)
@@ -122,6 +156,15 @@ class MyOracle:
             cur.close()
             con.close()
 
+    # 数据库查询返回字典
+    def makedict(self, cursor):
+        cols = [d[0] for d in cursor.description]
+
+        def createrow(*args):
+            return dict(zip(cols, args))
+
+        return createrow
+
     # oracle查询 -简单写法
     def oracle_select_app(self):
 
@@ -158,6 +201,7 @@ def select_all():
         print(row)
     print('select_all ok')
 
+
 # 带参数查询
 def select_by_where():
     sql = "select * from AREA_INFO where AREA_NO=:1"
@@ -165,6 +209,7 @@ def select_by_where():
     fc = db.select_by_where(sql, data)
     for row in fc:
         print(row)
+
 
 # 带参数 插入数据
 def ins_by_param():
@@ -174,15 +219,17 @@ def ins_by_param():
     db.dml_by_where(sql, data)
     print('ins_by_param ok')
 
+
 # 带参数 插入数据2
 def ins_by_param2():
     sql = "INSERT INTO SHORT_MESSAGE_CONFIG (SMC_ORG_ID, SMC_CODE, SMC_NAME)  VALUES(:orgid, :code, :smcname)"
-    data =  [{"orgid": '0004', "code": "0007", "smcname": 'test1'}]
+    data = [{"orgid": '0004', "code": "0007", "smcname": 'test1'}]
     data2 = [{"orgid": '0004', "code": "0007", "smcname": 'test11'},
              {"orgid": '0004', "code": "0008", "smcname": 'test22'}]
     # db.dml_by_where(sql, data2) #ok
     db.dml_by_where(sql, data)  # ok
     print('ins_by_param2 ok')
+
 
 # 带条件参数 删除数据
 def del_by_where():
@@ -190,6 +237,7 @@ def del_by_where():
     data = [('0004', '0008')]
     db.dml_by_where(sql, data)
     print('del_by_where ok')
+
 
 # 带参数 更新数据
 def update_by_where():
@@ -207,7 +255,6 @@ def del_nowhere():
 
 
 if __name__ == "__main__":
-
     db = MyOracle()
     db.oracle_select_app()
 
@@ -268,7 +315,6 @@ if __name__ == "__main__":
     # 运行示例:
     # None
     # del_nowhere ok
-
 
     # ins_by_param2() #ok
     # 运行示例:
