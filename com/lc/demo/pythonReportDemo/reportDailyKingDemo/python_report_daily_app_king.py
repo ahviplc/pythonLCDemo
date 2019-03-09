@@ -29,7 +29,7 @@ os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 class MyOracle:
     SHOW_SQL = True
 
-    def __init__(self, host='101.132.236.137', port=1521, user='SCOTT', password='Lmt123456',
+    def __init__(self, host='192.168.0.7', port=1521, user='SCOTT', password='Lmt123456',
                  sid='LMTPlat'):  # 注意###里改为自己所需要的ip
         self.host = host
         self.port = port
