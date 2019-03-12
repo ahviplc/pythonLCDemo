@@ -8,7 +8,7 @@ python_report_daily_app_king.py 加强版本 封装了日报表对象类以及�
 Version: 1.0
 Author: LC
 DateTime: 2019年3月7日14:16:04
-UpdateTime: 2019年3月11日17:22:50
+UpdateTime: 2019年3月12日11:52:15
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 
@@ -500,11 +500,11 @@ if __name__ == '__main__':
     # print("程序运行开始time.clock():", begin_time_clock)
 
     # 记录ID - 取自动递增流水号
-    # 设置机构号和序列号名称代码位置
+    # 设置机构号(传参接收过来了)和序列号名称代码位置
     # com / lc / demo / pythonReportDemo / reportDailyKingDemo / python_report_daily_app_king.py: 387
 
-    # 设置查询的机构,哪一天天
-    return_data, params_data = select_sfd_by_where("0005", -5)  # @param org_id 要查询机构号 @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
+    # 设置查询的机构,要查询哪一天
+    return_data, params_data = select_sfd_by_where("0005", -1)  # @param org_id 要查询机构号 @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
 
     # print(return_data)
     # print(len(return_data))
