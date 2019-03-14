@@ -251,7 +251,7 @@ def insert_scada_report_daily(report_daily_model):
                  "STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE," \
                  "PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY," \
                  "SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY," \
-                 "REMAIN_VOLUME,FM_STATE,RTU_STATE,VALVE_STATE,POWER_VOLTAGE," \
+                 "REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE," \
                  "BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN," \
                  "TEMP_OUT,RSSI, SRD_STATUS ) " \
                  "VALUES" \
@@ -260,7 +260,7 @@ def insert_scada_report_daily(report_daily_model):
                  ":std_sum,:work_sum,:std_flow,:work_flow,:temperature," \
                  ":pressure,:price,:use_volume_work, :use_volume_std,:use_money," \
                  ":sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money," \
-                 ":remain_volume,:fm_state,:rtu_state,:valve_state,:power_voltage," \
+                 ":remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage," \
                  ":battery_voltage,:battery_level,:press_in,:press_out,:temp_in," \
                  ":temp_out,:rssi, :srd_status)"
     data = [{"srd_org_id": report_daily_model.srd_org_id, "srd_id": report_daily_model.srd_id, "rtu_no": report_daily_model.rtu_no, "flmeter_no": report_daily_model.flmeter_no,"customer_no": report_daily_model.customer_no,
@@ -268,7 +268,7 @@ def insert_scada_report_daily(report_daily_model):
              "std_sum": report_daily_model.std_sum, "work_sum": report_daily_model.work_sum, "std_flow": report_daily_model.std_flow, "work_flow": report_daily_model.work_flow, "temperature": report_daily_model.temperature,
              "pressure": report_daily_model.pressure, "price": report_daily_model.price, "use_volume_work": report_daily_model.use_volume_work, "use_volume_std": report_daily_model.use_volume_std, "use_money": report_daily_model.use_money,
              "sum_total_volume": report_daily_model.sum_total_volume, "sum_total_money": report_daily_model.sum_total_money, "total_buy_volume": report_daily_model.total_buy_volume, "total_buy_money": report_daily_model.total_buy_money, "remain_money": report_daily_model.remain_money,
-             "remain_volume": report_daily_model.remain_volume, "fm_state": report_daily_model.fm_state, "rtu_state": report_daily_model.rtu_state, "valve_state": report_daily_model.valve_state, "power_voltage": report_daily_model.power_voltage,
+             "remain_volume": report_daily_model.remain_volume, "fm_state": report_daily_model.fm_state,"fm_state_msg": report_daily_model.fm_state_msg, "rtu_state": report_daily_model.rtu_state,"rtu_state_msg": report_daily_model.rtu_state_msg, "valve_state": report_daily_model.valve_state, "valve_state_msg": report_daily_model.valve_state_msg, "power_voltage": report_daily_model.power_voltage,
              "battery_voltage": report_daily_model.battery_voltage, "battery_level": report_daily_model.battery_level, "press_in": report_daily_model.press_in, "press_out": report_daily_model.press_out, "temp_in": report_daily_model.temp_in,
              "temp_out": report_daily_model.temp_out, "rssi": report_daily_model.rssi, "srd_status": report_daily_model.srd_status}]
     db.dml_by_where(insert_sql, data)  # ok
@@ -434,12 +434,18 @@ def data_processing(data_for_processing, org_id, **kwargs):
 
         # 剩余数量（期末数）
         rdm.remain_volume = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['REMAIN_VOLUME']
-        # 流量计状态（期末数）
+        # 流量计(表)状态（期末数）
         rdm.fm_state = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['FM_STATE']
+        # 表状态解析（按位解析）（期末数）
+        rdm.fm_state_msg = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['FM_STATE_MSG']
         # RTU状态（期末数）
         rdm.rtu_state = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['RTU_STATE']
+        # RTU状态解析（按字节解析）（期末数）
+        rdm.rtu_state_msg = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['RTU_STATE_MSG']
         # 阀门控制器状态（期末数）
         rdm.valve_state = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['VALVE_STATE']
+        # 阀门控制器状态解析（期末数）
+        rdm.valve_state_msg = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['VALVE_STATE_MSG']
         # 供电电压（周期内平均值）
         rdm.power_voltage = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['POWER_VOLTAGE']
 

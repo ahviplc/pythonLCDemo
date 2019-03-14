@@ -68,12 +68,18 @@ class ReportDailyModel:
 
     # 剩余数量（期末数）
     remain_volume = ""
-    # 流量计状态（期末数）
+    # 流量计(表)状态（期末数）
     fm_state = ""
+    # 表状态解析（按位解析）（期末数）
+    fm_state_msg = ""
     # RTU状态（期末数）
     rtu_state = ""
+    # RTU状态解析（按字节解析）（期末数）
+    rtu_state_msg = ""
     # 阀门控制器状态（期末数）
     valve_state = ""
+    # 阀门控制器状态解析（期末数）
+    valve_state_msg = ""
     # 供电电压（周期内平均值）
     power_voltage = ""
 
@@ -122,8 +128,11 @@ class ReportDailyModel:
                  sum_total_money=sum_total_money,
                  remain_volume=remain_volume,
                  fm_state=fm_state,
-                 rtu_state=rtu_state,
+                 fm_state_msg = fm_state_msg,
+                 rtu_state = rtu_state,
+                 rtu_state_msg = rtu_state_msg,
                  valve_state=valve_state,
+                 valve_state_msg = valve_state_msg,
                  power_voltage=power_voltage,
                  battery_voltage=battery_voltage,
                  battery_level=battery_level,
@@ -186,12 +195,18 @@ class ReportDailyModel:
 
         # 剩余数量（期末数）
         self.remain_volume = remain_volume
-        # 流量计状态（期末数）
+        # 流量计(表)状态（期末数）
         self.fm_state = fm_state
+        # 表状态解析（按位解析）（期末数）
+        self.fm_state_msg = fm_state_msg
         # RTU状态（期末数）
         self.rtu_state = rtu_state
+        # RTU状态解析（按字节解析）（期末数）
+        self.rtu_state_msg = rtu_state_msg
         # 阀门控制器状态（期末数）
         self.valve_state = valve_state
+        # 阀门控制器状态解析（期末数）
+        self.valve_state_msg = valve_state_msg
         # 供电电压（周期内平均值）
         self.power_voltage = power_voltage
 
