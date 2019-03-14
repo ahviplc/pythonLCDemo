@@ -10,13 +10,13 @@
 com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king.py:35
 
 2:记录ID-取自动递增流水号 设置序列号名称代码位置(机构号改为传入了)
-com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king.py:387
+com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king.py:388
 
 3:是否开启将print msg打印内容导出至log文件(如需打印，将此行注释隐掉即可)
-com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king.py:486
+com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king.py:493
 
 4:设置param org_id 要查询机构号，days 0代表今天 +n代表n天后 -n代表n天前，默认为-1 跑昨天的数据
-com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king.py:507
+com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king.py:514
 
 **欢迎来到 [LC博客-一加壹博客最Top](http://www.oneplusone.vip)**
 
@@ -30,4 +30,4 @@ com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king.py
 
 > from **2019年3月11日17:10:43**
 
-> to **2019年3月12日11:52:06**
+> to **2019年3月14日15:02:46**

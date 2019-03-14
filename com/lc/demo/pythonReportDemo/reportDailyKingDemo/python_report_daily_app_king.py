@@ -8,7 +8,7 @@ python_report_daily_app_king.py 加强版本 封装了日报表对象类以及�
 Version: 1.0
 Author: LC
 DateTime: 2019年3月7日14:16:04
-UpdateTime: 2019年3月12日11:52:15
+UpdateTime: 2019年3月14日15:02:21
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 
@@ -327,7 +327,8 @@ def data_processing(data_for_processing, org_id, **kwargs):
             if xx['FLMETER_NO'] == fno:
                 rm_repeat_sfd_data_list.append(xx)
             # print(rm_repeat_sfd_data_list)
-        # print(len(rm_repeat_sfd_data_list))
+
+        print("此查询区间,当前编号下总共抄表记录:", len(rm_repeat_sfd_data_list))
 
         # 此表计数据字典列表 排序 按照采集时间INSTANT_TIME排序 默认升序 如果要降序排序,可以指定reverse=True
         sorted_rm_repeat_sfd_data_list = sorted(rm_repeat_sfd_data_list, key=operator.itemgetter('INSTANT_TIME'), reverse=False)
