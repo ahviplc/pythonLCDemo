@@ -8,7 +8,7 @@ python_report_monthly_app_king.py 加强版本 封装了月报表对象类以及
 Version: 1.0
 Author: LC
 DateTime: 2019年3月7日14:16:04
-UpdateTime: 2019年3月12日12:21:29
+UpdateTime: 2019年3月14日15:02:13
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 
@@ -199,8 +199,7 @@ def to_get_month_first_last_day_datetime_max_min_time(n, first_or_last_type, typ
     if first_or_last_type == "first":
         return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + n, 1)
     elif first_or_last_type == "last":
-        return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + 1 + n,
-                                            1) - datetime.timedelta(1)
+        return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + 1 + n,1) - datetime.timedelta(1)
 
     if types == "max":
         return_time = datetime.datetime.combine(return_time_day + datetime.timedelta(days=0), datetime.time.max)
@@ -362,7 +361,7 @@ def insert_scada_report_monthly(model):
                  "MIN_TEMP_TIME,MAX_PRESS,MIN_PRESS,AVG_PRESS,MAX_PRESS_TIME," \
                  "MIN_PRESS_TIME,PRICE,USE_VOLUME_WORK,USE_VOLUME_STD,USE_MONEY," \
                  "SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY," \
-                 "REMAIN_VOLUME,FM_STATE,RTU_STATE,VALVE_STATE,POWER_VOLTAGE," \
+                 "REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE," \
                  "BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN," \
                  "TEMP_OUT,RSSI,SRM_STATUS )"\
                  "VALUES" \
@@ -374,7 +373,7 @@ def insert_scada_report_monthly(model):
                  ":min_temp_time,:max_press,:min_press,:avg_press,:max_press_time," \
                  ":min_press_time,:price,:use_volume_work,:use_volume_std,:use_money," \
                  ":sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money," \
-                 ":remain_volume,:fm_state,:rtu_state,:valve_state,:power_voltage," \
+                 ":remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage," \
                  ":battery_voltage,:battery_level,:press_in,:press_out,:temp_in," \
                  ":temp_out,:rssi, :srm_status)"
     data = [{"srm_org_id": model.srm_org_id, "srm_id": model.srm_id, "rtu_no": model.rtu_no, "flmeter_no": model.flmeter_no,"customer_no": model.customer_no,
@@ -385,7 +384,7 @@ def insert_scada_report_monthly(model):
              "min_temp_time": model.min_temp_time, "max_press": model.max_press, "min_press": model.min_press, "avg_press": model.avg_press, "max_press_time": model.max_press_time,
              "min_press_time": model.min_press_time, "price": model.price, "use_volume_work": model.use_volume_work,"use_volume_std": model.use_volume_std, "use_money": model.use_money,
              "sum_total_volume": model.sum_total_volume, "sum_total_money": model.sum_total_money, "total_buy_volume": model.total_buy_volume, "total_buy_money": model.total_buy_money,"remain_money": model.remain_money,
-             "remain_volume": model.remain_volume, "fm_state": model.fm_state, "rtu_state": model.rtu_state, "valve_state": model.valve_state,"power_voltage": model.power_voltage,
+             "remain_volume": model.remain_volume, "fm_state": model.fm_state,"fm_state_msg": model.fm_state_msg, "rtu_state": model.rtu_state,"rtu_state_msg": model.rtu_state_msg, "valve_state": model.valve_state, "valve_state_msg": model.valve_state_msg,"power_voltage": model.power_voltage,
              "battery_voltage": model.battery_voltage, "battery_level": model.battery_level, "press_in": model.press_in, "press_out": model.press_out, "temp_in": model.temp_in,
              "temp_out": model.temp_out, "rssi": model.rssi, "srm_status": model.srm_status}]
     db.dml_by_where(insert_sql, data)  # ok
@@ -465,6 +464,7 @@ def data_processing(data_for_processing, org_id, **kwargs):
             xyz["PRESSURE"] = float(xyz["PRESSURE"])
 
         # print(rm_repeat_sfd_data_list)
+        print("此查询区间,当前编号下总共抄表记录:", len(rm_repeat_sfd_data_list))
 
         # 此表计数据字典列表 排序 按照采集时间INSTANT_TIME排序 默认升序 如果要降序排序,可以指定reverse=True
         sorted_rm_repeat_sfd_data_list = sorted(rm_repeat_sfd_data_list, key=operator.itemgetter('INSTANT_TIME'), reverse=False)
@@ -619,12 +619,18 @@ def data_processing(data_for_processing, org_id, **kwargs):
 
         # 剩余数量（期末数）
         rdm.remain_volume = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['REMAIN_VOLUME']
-        # 流量计状态（期末数）
+        # 流量计(表)状态（期末数）
         rdm.fm_state = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['FM_STATE']
+        # 表状态解析（按位解析）（期末数）
+        rdm.fm_state_msg = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['FM_STATE_MSG']
         # RTU状态（期末数）
         rdm.rtu_state = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['RTU_STATE']
+        # RTU状态解析（按字节解析）（期末数）
+        rdm.rtu_state_msg = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['RTU_STATE_MSG']
         # 阀门控制器状态（期末数）
         rdm.valve_state = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['VALVE_STATE']
+        # 阀门控制器状态解析（期末数）
+        rdm.valve_state_msg = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['VALVE_STATE_MSG']
         # 供电电压（周期内平均值）
         rdm.power_voltage = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['POWER_VOLTAGE']
 
