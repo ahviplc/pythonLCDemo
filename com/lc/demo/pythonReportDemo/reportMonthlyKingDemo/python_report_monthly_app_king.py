@@ -471,7 +471,7 @@ def data_processing(data_for_processing, org_id, **kwargs):
 
         # 排序完成之后，具体字段补充
 
-        # 新建一个日报表类，用于接收收据
+        # 新建一个月报表类，用于接收收据
         rdm = ReportMonthlyModel()
 
         # 机构号
