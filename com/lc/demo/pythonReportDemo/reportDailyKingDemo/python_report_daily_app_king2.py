@@ -607,7 +607,7 @@ if __name__ == '__main__':
     # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
     for x in org_list:
         print("此机构:", x['ORG_ID'])
-        main(db, x['ORG_ID'], -1)  # 运行main方法，将db带过去，0005机构， -1跑昨天的数据！用于下面的操作！
+        main(db, x['ORG_ID'], -1)  # 运行main方法，将db带过去，机构id， -1跑昨天的数据！用于下面的操作！
 
     print("all done-日报表整个处理流程完成")
     print("----------------------------------------------------------------------------------------")
