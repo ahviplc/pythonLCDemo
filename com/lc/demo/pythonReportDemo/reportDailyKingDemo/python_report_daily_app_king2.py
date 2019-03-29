@@ -556,8 +556,8 @@ def main(db, org_id, days):
     print("I am main()")
 
     # 记录ID - 取自动递增流水号
-    # 设置机构号(传参接收过来了)和序列号名称代码位置
-    # com / lc / demo / pythonReportDemo / reportDailyKingDemo / python_report_daily_app_king.py: 387
+    # 设置机构号(传参接收过来了 )和序列号名称代码位置
+    # com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king2.py:419
 
     # 设置查询的机构,要查询哪一天
     return_data, params_data = select_sfd_by_where(org_id, days)  # @param org_id 要查询机构号 @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
@@ -608,7 +608,7 @@ if __name__ == '__main__':
     # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
     for x in org_list:
         print("此机构:", x['ORG_ID'])
-        main(db, x['ORG_ID'], -1)  # 运行main方法，将db带过去，机构id， -1跑昨天的数据！用于下面的操作！
+        main(db, x['ORG_ID'], -1)  # 传入的机构,设置要查询哪一天！运行main方法，将db带过去，机构id， -1跑昨天的数据！用于下面的操作！
 
     print("all done-日报表整个处理流程完成")
     print("----------------------------------------------------------------------------------------")
