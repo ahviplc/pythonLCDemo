@@ -563,6 +563,7 @@ def main(db, org_id, days):
     return_data, params_data = select_sfd_by_where(org_id, days)  # @param org_id 要查询机构号 @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
 
     # 查询当天的上一天数据
+    print("下面是查询当天的上一天数据-总共抄表数据")
     last_return_data, last_params_data = select_sfd_by_where(org_id, days-1)
 
     # print(return_data)
