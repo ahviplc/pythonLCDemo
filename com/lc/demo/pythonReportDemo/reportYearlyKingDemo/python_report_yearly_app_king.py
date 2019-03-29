@@ -876,7 +876,7 @@ if __name__ == '__main__':
 
     # 记录ID - 取自动递增流水号
     # 设置机构号(传参接收过来了)和序列号名称代码位置
-    # com/lc/demo/pythonReportDemo/reportMonthlyKingDemo/python_report_monthly_app_king.py:525
+    # com/lc/demo/pythonReportDemo/reportYearlyKingDemo/python_report_yearly_app_king.py:708
 
     # 月相关 隐掉 不使用 这里是年报表
     # 设置查询的机构,要查询哪一月(脚本)
