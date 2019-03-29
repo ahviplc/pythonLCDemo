@@ -470,7 +470,7 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
         # 总累计使用金额（期末累购金额-期末剩余金额）
         if rdm.total_buy_money is None:  # total_buy_money为None的话 置为0查询计算
             rdm.total_buy_money = str(0)
-        if rdm.remain_money is None:
+        if rdm.remain_money is None:  # remain_money为None的话 置为0查询计算
             rdm.remain_money = str(0)
         rdm.sum_total_money = float(rdm.total_buy_money) - float(rdm.remain_money)
         if rdm.sum_total_money < 0:  # 如果sum_total_money计算出来小于0，则直接置为0

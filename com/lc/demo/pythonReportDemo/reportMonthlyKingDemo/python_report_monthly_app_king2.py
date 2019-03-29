@@ -699,6 +699,8 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
             rdm.use_volume_std = str(float(max_std_sum) - float(min_std_sum))
 
         # 周期内使用额（单价（期末数）* 周期内标况使用量）结果四舍五入
+        if rdm.price is None:
+            rdm.price = str(0)
         rdm.use_money = str(round((float(rdm.use_volume_std) * float(rdm.price)), 2))
 
         # 总累积使用量（期末数）
@@ -712,6 +714,8 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         # 总累计使用金额（期末累购金额-期末剩余金额）
         if rdm.total_buy_money is None:  # total_buy_money为None的话 置为0查询计算
             rdm.total_buy_money = str(0)
+        if rdm.remain_money is None:  # remain_money为None的话 置为0查询计算
+            rdm.remain_money = str(0)
         rdm.sum_total_money = float(rdm.total_buy_money) - float(rdm.remain_money)
         if rdm.sum_total_money < 0:  # 如果sum_total_money计算出来小于0，则直接置为0
             rdm.sum_total_money = str(0)
