@@ -548,8 +548,8 @@ def is_number(s):
 
 # main方法
 # @param db 数据库实例
-# @param param org_id 数据库实例
-# @param n 天数
+# @param org_id 机构号
+# @param days 天数
 # @return 处理之后的周期内平均值-返回四舍五入-再处理成str类型返回
 def main(db, org_id, days):
 
