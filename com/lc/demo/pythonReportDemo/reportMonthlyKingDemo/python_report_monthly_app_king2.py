@@ -258,7 +258,7 @@ def select_sfd_by_where_for_monthly(org_id, months):
 # @return 处理结果 True成功 False失败
 def select_sfd_by_where_for_monthly_last_min_and_last_max(org_id, months):
     sql = "select * from SCADA_FLMETER_DATA where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
-    month_first_min = to_get_month_first_last_day_datetime_max_min_time(months, "last", "min", False)  # 方法:获取间隔n月的第一天的最小时间和最后一天的最大时间
+    month_first_min = to_get_month_first_last_day_datetime_max_min_time(months, "last", "min", False)  # 方法:获取间隔n月的最后一天的最小时间和最后一天的最大时间
     month_last_max = to_get_month_first_last_day_datetime_max_min_time(months, "last", "max", False)
     data = [{"orgid": org_id, "minTime": month_first_min, "maxTime": month_last_max}]
     fc = db.select_by_where_many_params_dict(sql, data)
