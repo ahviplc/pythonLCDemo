@@ -697,7 +697,7 @@ def data_processing(data_for_processing, org_id, **kwargs):
 
         # 年报表 流水月处理 脚本运行当前时间的月
         # 处理月 不处理了 togo
-        print(len(str(now_datetime.month)))
+        # print(len(str(now_datetime.month)))
         # 如果月份小于10 补零 让9变为09月
         if len(str(now_datetime.month)) < 2:
             ok_month = "0" + str(now_datetime.month)
