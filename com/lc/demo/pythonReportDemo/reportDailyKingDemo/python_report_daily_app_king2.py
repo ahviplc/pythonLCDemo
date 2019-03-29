@@ -550,7 +550,7 @@ def is_number(s):
 # @param db 数据库实例
 # @param org_id 机构号
 # @param days 天数
-# @return 处理之后的周期内平均值-返回四舍五入-再处理成str类型返回
+# @return main方法运行处理结果 执行完毕即可
 def main(db, org_id, days):
 
     print("I am main()")
