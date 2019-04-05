@@ -448,7 +448,13 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
         # 周期内标况使用量（周期内期末数 - 期初数）
         max_std_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL']  # 默认升序，列表最后一个元素，值最大
         min_std_sum = sorted_rm_repeat_sfd_data_list[0]['SUM_TOTAL']  # 默认升序，列表第一个元素，值最小
+        if max_std_sum is None:
+            max_std_sum = str(0)
+        if min_std_sum is None:
+            min_std_sum = str(0)
         if len(last_rm_repeat_sfd_data_list) > 0:  # （本期期末数-上期期末数）
+            if last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL'] is None:
+                last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL'] = str(0)
             rdm.use_volume_std = str(float(max_std_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL']))
         else:   # 周期内标况使用量（周期内期末数-期初数）
             rdm.use_volume_std = str(float(max_std_sum) - float(min_std_sum))
