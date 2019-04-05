@@ -454,6 +454,8 @@ def get_average_period(data_list, key):
     for x in data_list:
         if x[key] is not None:
             if is_number(x[key]):
+                if float(x[key]) < 0:
+                    x[key] = 0
                 count_nums += float(x[key])
             else:
                 count_nums += 0
@@ -623,7 +625,7 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         rdm.work_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['WORK_SUM']  # 默认升序，列表最后一个元素，值最大
 
         # 通过标况流量 STD_FLOW 排序 默认升序 如果要降序排序,可以指定reverse=True
-        sorted_rm_repeat_sfd_data_list_by_std_flow = sorted(rm_repeat_sfd_data_list, key=operator.itemgetter('STD_FLOW'),reverse=False)
+        sorted_rm_repeat_sfd_data_list_by_std_flow = sorted(rm_repeat_sfd_data_list, key=operator.itemgetter('STD_FLOW'), reverse=False)
         # 标况流量（周期内最大值）
         rdm.max_std_flow = str(sorted_rm_repeat_sfd_data_list_by_std_flow[len(sorted_rm_repeat_sfd_data_list_by_std_flow) - 1]['STD_FLOW'])
         # 标况流量（周期内最小值）
@@ -689,6 +691,9 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
             rdm.use_volume_work = str(float(max_work_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']))
         else:  # （本周期内期末数-本周期内期初数）
             rdm.use_volume_work = str(float(max_work_sum) - float(min_work_sum))
+        if float(rdm.use_volume_work) < 0:  # 如果use_volume_work计算出来小于0，则直接置为0
+            rdm.use_volume_work = str(0)
+            print(rdm.flmeter_no, "☆ use_volume_work <0 置为0")
 
         # 周期内标况使用量（周期内期末数 - 期初数）
         max_std_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL']  # 默认升序，列表最后一个元素，值最大
@@ -703,6 +708,9 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
             rdm.use_volume_std = str(float(max_std_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL']))
         else:  # 周期内标况使用量（周期内期末数-期初数）
             rdm.use_volume_std = str(float(max_std_sum) - float(min_std_sum))
+        if float(rdm.use_volume_std) < 0:  # 如果use_volume_std计算出来小于0，则直接置为0
+            rdm.use_volume_std = str(0)
+            print(rdm.flmeter_no, "☆ use_volume_std <0 置为0")
 
         # 周期内使用额（单价（期末数）* 周期内标况使用量）结果四舍五入
         if rdm.price is None:
@@ -711,6 +719,9 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
 
         # 总累积使用量（期末数）
         rdm.sum_total_volume = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL']
+        if rdm.sum_total_volume is None:
+            rdm.sum_total_volume = str(0)
+            print(rdm.flmeter_no, "☆ sum_total_volume is None 置为0")
         # 累购气量（期末数）
         rdm.total_buy_volume = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['TOTAL_BUY_VOLUME']
         # 累购金额（期末数）
@@ -725,6 +736,7 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         rdm.sum_total_money = float(rdm.total_buy_money) - float(rdm.remain_money)
         if rdm.sum_total_money < 0:  # 如果sum_total_money计算出来小于0，则直接置为0
             rdm.sum_total_money = str(0)
+            print(rdm.flmeter_no, "☆ sum_total_money <0 置为0")
 
         # 剩余数量（期末数）
         rdm.remain_volume = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['REMAIN_VOLUME']
