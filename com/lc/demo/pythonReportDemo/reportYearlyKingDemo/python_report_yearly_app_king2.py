@@ -951,6 +951,7 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         # 处理数据完毕 清除临时使用数据
         flmeter_no_set_copy.remove(fno)
         rm_repeat_sfd_data_list.clear()
+        last_rm_repeat_sfd_data_list.clear()
     pass
     return True
 
@@ -1026,7 +1027,7 @@ def main(db, org_id, years):
 
 if __name__ == '__main__':
 
-    # sys.stdout = PrintLogger('python_report_yearly_app_king2.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    sys.stdout = PrintLogger('python_report_yearly_app_king2.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
 
     print("============================================================================================================================================================分隔符")
 
@@ -1055,8 +1056,7 @@ if __name__ == '__main__':
     end_time = datetime.datetime.now()
     print("程序运行开始时间", begin_time)
     print("程序运行结束时间:", end_time)
-    print("整个程序运行总时间:", (end_time - begin_time).seconds,
-          "秒")  # (end_time - begin_time).microseconds, "微秒 "1秒 = 10的6次方微秒
+    print("整个程序运行总时间:", (end_time - begin_time).seconds,"秒")  # (end_time - begin_time).microseconds, "微秒 "1秒 = 10的6次方微秒
 
     print("----------------------------------------------------------------------------------------")
     end_time_clock = time.clock()

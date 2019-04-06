@@ -3991,3 +3991,1219 @@ all done-日报表整个处理流程完成
 程序运行结束time.clock(): 21.7120104
 整个程序运行总时间time.clock()差: 21.7120098 秒
 ----------------------------------------------------------------------------------------
+============================================================================================================================================================分隔符
+此机构: 0008
+I am main()
+总共抄表数据: 28
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 23
+0008 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 开始进行计算日报表数据处理
+不同的表计号共有个数: 1
+根据表计号，进行数据的再次筛选，处理，写入数据库
+----------------------------------------------------------------------------------------
+00086000000008
+此查询区间,当前编号下总共抄表记录: 28
+此查询区间,上一天当前编号下总共抄表记录: 23
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0008', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0008', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000029'}]
+0000000029
+00086000000008 ☆ sum_total_volume is None 置为0
+00086000000008
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0008', '00082019040000000028')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0008', 'srd_id': '00082019040000000029', 'rtu_no': '00080000000003', 'flmeter_no': '00086000000008', 'customer_no': '00080000000001', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 1, 834448), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '16.0', 'pressure': '100.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '100', 'remain_money': '100', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '16.0', 'temp_out': '16.0', 'rssi': '18.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00086000000008处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+0008 data_processing is ok
+----------------------------------------------------------------------------------------
+此机构: 0015
+I am main()
+总共抄表数据: 8
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 8
+0015 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 开始进行计算日报表数据处理
+不同的表计号共有个数: 1
+根据表计号，进行数据的再次筛选，处理，写入数据库
+----------------------------------------------------------------------------------------
+00156000000001
+此查询区间,当前编号下总共抄表记录: 8
+此查询区间,上一天当前编号下总共抄表记录: 8
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0015', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0015', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000018'}]
+0000000018
+00156000000001 ☆ sum_total_volume is None 置为0
+00156000000001
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0015', '00152019040000000017')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0015', 'srd_id': '00152019040000000018', 'rtu_no': '00150000000001', 'flmeter_no': '00156000000001', 'customer_no': '00150000000001', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 2, 207453), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '17.0', 'pressure': '98.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 15.0, 'total_buy_volume': None, 'total_buy_money': '20', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '98.0', 'press_out': '98.0', 'temp_in': '17.0', 'temp_out': '17.0', 'rssi': '5.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00156000000001处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+0015 data_processing is ok
+----------------------------------------------------------------------------------------
+此机构: 0017
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0017 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0005
+I am main()
+总共抄表数据: 5093
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 6156
+0005 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 开始进行计算日报表数据处理
+不同的表计号共有个数: 19
+根据表计号，进行数据的再次筛选，处理，写入数据库
+----------------------------------------------------------------------------------------
+00056000000019
+此查询区间,当前编号下总共抄表记录: 269
+此查询区间,上一天当前编号下总共抄表记录: 293
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000252'}]
+0000000252
+00056000000019 ☆ sum_total_money <0 置为0
+00056000000019
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000239')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000252', 'rtu_no': '00050000000016', 'flmeter_no': '00056000000019', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 3, 134481), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '196104', 'work_sum': '179965', 'std_flow': '1.0', 'work_flow': '1.0', 'temperature': '11.0', 'pressure': '89.0', 'price': '2.28', 'use_volume_work': '68.0', 'use_volume_std': '68.0', 'use_money': '155.04', 'sum_total_volume': '179965', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '15707.34', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '89.0', 'press_out': '89.0', 'temp_in': '11.0', 'temp_out': '11.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000019处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000021
+此查询区间,当前编号下总共抄表记录: 268
+此查询区间,上一天当前编号下总共抄表记录: 289
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000253'}]
+0000000253
+00056000000021 ☆ sum_total_money <0 置为0
+00056000000021
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000240')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000253', 'rtu_no': '00050000000015', 'flmeter_no': '00056000000021', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 3, 389480), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '66659', 'work_sum': '71855', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '32.0', 'pressure': '98.0', 'price': '1.46', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '66659', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '25891.98', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '98.0', 'press_out': '98.0', 'temp_in': '32.0', 'temp_out': '32.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000021处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000022
+此查询区间,当前编号下总共抄表记录: 268
+此查询区间,上一天当前编号下总共抄表记录: 293
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000254'}]
+0000000254
+00056000000022 ☆ sum_total_money <0 置为0
+00056000000022
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000250')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000254', 'rtu_no': '00050000000017', 'flmeter_no': '00056000000022', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 3, 649450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '0.0', 'pressure': '0.0', 'price': '1.61', 'use_volume_work': '0.0', 'use_volume_std': '11.0', 'use_money': '17.71', 'sum_total_volume': '6082', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '326.79', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '0.0', 'press_out': '0.0', 'temp_in': '0.0', 'temp_out': '0.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000022处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000029
+此查询区间,当前编号下总共抄表记录: 285
+此查询区间,上一天当前编号下总共抄表记录: 293
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000255'}]
+0000000255
+00056000000029 ☆ sum_total_money <0 置为0
+00056000000029
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000246')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000255', 'rtu_no': '00050000000024', 'flmeter_no': '00056000000029', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 3, 939480), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '0.0', 'pressure': '0.0', 'price': '1.61', 'use_volume_work': '0.0', 'use_volume_std': '2.0', 'use_money': '3.22', 'sum_total_volume': '25769', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '7827.51', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '0.0', 'press_out': '0.0', 'temp_in': '0.0', 'temp_out': '0.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000029处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000015
+此查询区间,当前编号下总共抄表记录: 285
+此查询区间,上一天当前编号下总共抄表记录: 331
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000256'}]
+0000000256
+00056000000015 ☆ sum_total_money <0 置为0
+00056000000015
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000242')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000256', 'rtu_no': '00050000000014', 'flmeter_no': '00056000000015', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 4, 221482), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '338360', 'work_sum': '246049', 'std_flow': '4.0', 'work_flow': '5.0', 'temperature': '18.0', 'pressure': '83.0', 'price': '1.55', 'use_volume_work': '76.0', 'use_volume_std': '76.0', 'use_money': '117.8', 'sum_total_volume': '246049', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '43800.53', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '83.0', 'press_out': '83.0', 'temp_in': '18.0', 'temp_out': '18.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000015处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000026
+此查询区间,当前编号下总共抄表记录: 311
+此查询区间,上一天当前编号下总共抄表记录: 291
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000257'}]
+0000000257
+00056000000026 ☆ sum_total_money <0 置为0
+00056000000026
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000243')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000257', 'rtu_no': '00050000000021', 'flmeter_no': '00056000000026', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 4, 486474), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '0.0', 'pressure': '0.0', 'price': '1.61', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '9816', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '2447.86', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '0.0', 'press_out': '0.0', 'temp_in': '0.0', 'temp_out': '0.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000026处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000017
+此查询区间,当前编号下总共抄表记录: 281
+此查询区间,上一天当前编号下总共抄表记录: 352
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000258'}]
+0000000258
+00056000000017 ☆ sum_total_money <0 置为0
+00056000000017
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000249')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000258', 'rtu_no': '00050000000014', 'flmeter_no': '00056000000017', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 4, 749477), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '215469', 'work_sum': '221798', 'std_flow': '3.0', 'work_flow': '3.0', 'temperature': '21.0', 'pressure': '83.0', 'price': '1.55', 'use_volume_work': '90.0', 'use_volume_std': '90.0', 'use_money': '139.5', 'sum_total_volume': '221798', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '25580.55', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '83.0', 'press_out': '83.0', 'temp_in': '21.0', 'temp_out': '21.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000017处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000020
+此查询区间,当前编号下总共抄表记录: 265
+此查询区间,上一天当前编号下总共抄表记录: 289
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000259'}]
+0000000259
+00056000000020 ☆ sum_total_money <0 置为0
+00056000000020
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000251')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000259', 'rtu_no': '00050000000015', 'flmeter_no': '00056000000020', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 5, 27450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '29933', 'work_sum': '32207', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '30.0', 'pressure': '98.0', 'price': '1.59', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '29933', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '461.6', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '98.0', 'press_out': '98.0', 'temp_in': '30.0', 'temp_out': '30.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000020处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000023
+此查询区间,当前编号下总共抄表记录: 334
+此查询区间,上一天当前编号下总共抄表记录: 327
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000260'}]
+0000000260
+00056000000023 ☆ sum_total_money <0 置为0
+00056000000023
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000233')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000260', 'rtu_no': '00050000000018', 'flmeter_no': '00056000000023', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 5, 276448), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '341643', 'work_sum': '175731', 'std_flow': '16.0', 'work_flow': '17.0', 'temperature': '19.0', 'pressure': '95.0', 'price': '1.43', 'use_volume_work': '284.0', 'use_volume_std': '284.0', 'use_money': '406.12', 'sum_total_volume': '175731', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '8291.8', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '95.0', 'press_out': '95.0', 'temp_in': '19.0', 'temp_out': '19.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000023处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000018
+此查询区间,当前编号下总共抄表记录: 280
+此查询区间,上一天当前编号下总共抄表记录: 350
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000261'}]
+0000000261
+00056000000018 ☆ sum_total_money <0 置为0
+00056000000018
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000236')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000261', 'rtu_no': '00050000000014', 'flmeter_no': '00056000000018', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 5, 639450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '156324', 'work_sum': '156324', 'std_flow': '3.0', 'work_flow': '3.0', 'temperature': '21.0', 'pressure': '83.0', 'price': '1.55', 'use_volume_work': '96.0', 'use_volume_std': '96.0', 'use_money': '148.8', 'sum_total_volume': '156324', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '24730.62', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '83.0', 'press_out': '83.0', 'temp_in': '21.0', 'temp_out': '21.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000018处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000027
+此查询区间,当前编号下总共抄表记录: 270
+此查询区间,上一天当前编号下总共抄表记录: 293
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000262'}]
+0000000262
+00056000000027 ☆ sum_total_money <0 置为0
+00056000000027
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000235')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000262', 'rtu_no': '00050000000022', 'flmeter_no': '00056000000027', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 5, 899450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '0.0', 'pressure': '0.0', 'price': '2.28', 'use_volume_work': '0.0', 'use_volume_std': '135.0', 'use_money': '307.8', 'sum_total_volume': '88034', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '6120.76', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '0.0', 'press_out': '0.0', 'temp_in': '0.0', 'temp_out': '0.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000027处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000016
+此查询区间,当前编号下总共抄表记录: 279
+此查询区间,上一天当前编号下总共抄表记录: 356
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000263'}]
+0000000263
+00056000000016 ☆ sum_total_money <0 置为0
+00056000000016
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000248')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000263', 'rtu_no': '00050000000014', 'flmeter_no': '00056000000016', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 6, 143480), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '463996', 'work_sum': '266705', 'std_flow': '1.0', 'work_flow': '1.0', 'temperature': '20.0', 'pressure': '83.0', 'price': '1.55', 'use_volume_work': '49.0', 'use_volume_std': '49.0', 'use_money': '75.95', 'sum_total_volume': '266705', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '35730.94', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '83.0', 'press_out': '83.0', 'temp_in': '20.0', 'temp_out': '20.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000016处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000014
+此查询区间,当前编号下总共抄表记录: 356
+此查询区间,上一天当前编号下总共抄表记录: 402
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000264'}]
+0000000264
+00056000000014 ☆ sum_total_money <0 置为0
+00056000000014
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000237')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000264', 'rtu_no': '00050000000013', 'flmeter_no': '00056000000014', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 6, 418483), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '0.0', 'pressure': '0.0', 'price': '2.28', 'use_volume_work': '0.0', 'use_volume_std': '17.0', 'use_money': '38.76', 'sum_total_volume': '4396', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '828.42', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '0.0', 'press_out': '0.0', 'temp_in': '0.0', 'temp_out': '0.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000014处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000024
+此查询区间,当前编号下总共抄表记录: 264
+此查询区间,上一天当前编号下总共抄表记录: 289
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000265'}]
+0000000265
+00056000000024 ☆ sum_total_money <0 置为0
+00056000000024
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000244')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000265', 'rtu_no': '00050000000019', 'flmeter_no': '00056000000024', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 6, 715452), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '249277', 'work_sum': '249277', 'std_flow': '17.0', 'work_flow': '20.0', 'temperature': '21.0', 'pressure': '86.0', 'price': '1.43', 'use_volume_work': '449.0', 'use_volume_std': '449.0', 'use_money': '642.07', 'sum_total_volume': '249277', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '9782.18', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '86.0', 'press_out': '86.0', 'temp_in': '21.0', 'temp_out': '21.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000024处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000028
+此查询区间,当前编号下总共抄表记录: 266
+此查询区间,上一天当前编号下总共抄表记录: 290
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000266'}]
+0000000266
+00056000000028 ☆ sum_total_money <0 置为0
+00056000000028
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000234')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000266', 'rtu_no': '00050000000023', 'flmeter_no': '00056000000028', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 7, 19473), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '134782', 'work_sum': '150268', 'std_flow': '37.0', 'work_flow': '40.0', 'temperature': '21.0', 'pressure': '96.0', 'price': '1.52', 'use_volume_work': '924.0', 'use_volume_std': '866.0', 'use_money': '1316.32', 'sum_total_volume': '134782', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '114129.69', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '96.0', 'press_out': '96.0', 'temp_in': '21.0', 'temp_out': '21.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000028处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000025
+此查询区间,当前编号下总共抄表记录: 267
+此查询区间,上一天当前编号下总共抄表记录: 289
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000267'}]
+0000000267
+00056000000025 ☆ sum_total_money <0 置为0
+00056000000025
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000245')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000267', 'rtu_no': '00050000000020', 'flmeter_no': '00056000000025', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 7, 317449), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '0.0', 'pressure': '0.0', 'price': '2.28', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '47674', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '13252.68', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '0.0', 'press_out': '0.0', 'temp_in': '0.0', 'temp_out': '0.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000025处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000030
+此查询区间,当前编号下总共抄表记录: 6
+此查询区间,上一天当前编号下总共抄表记录: 0
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000268'}]
+0000000268
+00056000000030 ☆ sum_total_volume is None 置为0
+00056000000030
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000238')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000268', 'rtu_no': '00050000000025', 'flmeter_no': '00056000000030', 'customer_no': '00050000000022', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 7, 611448), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '24.0', 'pressure': '72.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '5', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '72.0', 'press_out': '72.0', 'temp_in': '24.0', 'temp_out': '24.0', 'rssi': '26.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000030处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000010
+此查询区间,当前编号下总共抄表记录: 271
+此查询区间,上一天当前编号下总共抄表记录: 291
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000269'}]
+0000000269
+00056000000010 ☆ sum_total_money <0 置为0
+00056000000010
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000247')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000269', 'rtu_no': '00050000000004', 'flmeter_no': '00056000000010', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 7, 889450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '632162', 'work_sum': '632162', 'std_flow': '21.0', 'work_flow': '25.0', 'temperature': '18.0', 'pressure': '84.0', 'price': '1.52', 'use_volume_work': '582.0', 'use_volume_std': '582.0', 'use_money': '884.64', 'sum_total_volume': '632162', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '5028.54', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '84.0', 'press_out': '84.0', 'temp_in': '18.0', 'temp_out': '18.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000010处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00056000000013
+此查询区间,当前编号下总共抄表记录: 268
+此查询区间,上一天当前编号下总共抄表记录: 291
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0005', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0005', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000270'}]
+0000000270
+00056000000013 ☆ sum_total_money <0 置为0
+00056000000013
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0005', '00052019040000000241')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0005', 'srd_id': '00052019040000000270', 'rtu_no': '00050000000012', 'flmeter_no': '00056000000013', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 8, 168450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '3', 'work_sum': '0', 'std_flow': '35.0', 'work_flow': '35.0', 'temperature': '35.0', 'pressure': '101.0', 'price': '2.28', 'use_volume_work': '0.0', 'use_volume_std': '170.0', 'use_money': '387.6', 'sum_total_volume': '95971', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '10749.51', 'remain_volume': '0.0', 'fm_state': '10000000', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,已开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '35.0', 'temp_out': '35.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00056000000013处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+0005 data_processing is ok
+----------------------------------------------------------------------------------------
+此机构: 0007
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0007 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0009
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0009 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0011
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0011 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0012
+I am main()
+总共抄表数据: 1
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 38
+0012 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 开始进行计算日报表数据处理
+不同的表计号共有个数: 1
+根据表计号，进行数据的再次筛选，处理，写入数据库
+----------------------------------------------------------------------------------------
+00126000000003
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 38
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0012', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0012', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000005'}]
+0000000005
+00126000000003 ☆ use_volume_work <0 置为0
+00126000000003 ☆ sum_total_volume is None 置为0
+00126000000003
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0012', '00122019040000000004')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0012', 'srd_id': '00122019040000000005', 'rtu_no': '00120000000003', 'flmeter_no': '00126000000003', 'customer_no': '00120000000002', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 8, 821458), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '18.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 2.0, 'total_buy_volume': None, 'total_buy_money': '7', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '18.0', 'temp_out': '18.0', 'rssi': '13.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00126000000003处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+0012 data_processing is ok
+----------------------------------------------------------------------------------------
+此机构: 0016
+I am main()
+总共抄表数据: 23
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 25
+0016 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 开始进行计算日报表数据处理
+不同的表计号共有个数: 2
+根据表计号，进行数据的再次筛选，处理，写入数据库
+----------------------------------------------------------------------------------------
+00166000000002
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 1
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0016', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0016', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000014'}]
+0000000014
+00166000000002 ☆ sum_total_volume is None 置为0
+00166000000002
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0016', '00162019040000000013')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0016', 'srd_id': '00162019040000000014', 'rtu_no': '00160000000002', 'flmeter_no': '00166000000002', 'customer_no': '00160000000002', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 9, 167461), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '19.0', 'pressure': '96.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '5', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '68', 'press_in': '96.0', 'press_out': '96.0', 'temp_in': '19.0', 'temp_out': '19.0', 'rssi': '18.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00166000000002处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00160000000001
+此查询区间,当前编号下总共抄表记录: 22
+此查询区间,上一天当前编号下总共抄表记录: 24
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0016', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0016', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000015'}]
+0000000015
+00160000000001
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0016', '00162019040000000012')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0016', 'srd_id': '00162019040000000015', 'rtu_no': 'FM0000000690', 'flmeter_no': '00160000000001', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 9, 415459), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '69598495.950', 'work_sum': '16336887.940', 'std_flow': '1665.0', 'work_flow': '365.0', 'temperature': '7.0', 'pressure': '444.0', 'price': '0.000', 'use_volume_work': '7951.6500000003725', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0.000', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0.000', 'remain_volume': '0.000', 'fm_state': None, 'fm_state_msg': None, 'rtu_state': None, 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': None, 'power_voltage': None, 'battery_voltage': None, 'battery_level': None, 'press_in': '444.0', 'press_out': '444.0', 'temp_in': '7.0', 'temp_out': '7.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00160000000001处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+0016 data_processing is ok
+----------------------------------------------------------------------------------------
+此机构: 0019
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 10
+0019 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0003
+I am main()
+总共抄表数据: 551
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 1021
+0003 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 开始进行计算日报表数据处理
+不同的表计号共有个数: 34
+根据表计号，进行数据的再次筛选，处理，写入数据库
+----------------------------------------------------------------------------------------
+00036000000048
+此查询区间,当前编号下总共抄表记录: 22
+此查询区间,上一天当前编号下总共抄表记录: 24
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000239'}]
+0000000239
+00036000000048 ☆ sum_total_volume is None 置为0
+00036000000048 ☆ sum_total_money <0 置为0
+00036000000048
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000216')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000239', 'rtu_no': '00030000000090', 'flmeter_no': '00036000000048', 'customer_no': '00030000000006', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 9, 973486), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '16.0', 'pressure': '99.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '4', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '99.0', 'press_out': '99.0', 'temp_in': '16.0', 'temp_out': '16.0', 'rssi': '20.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000048处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000010
+此查询区间,当前编号下总共抄表记录: 3
+此查询区间,上一天当前编号下总共抄表记录: 2
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000240'}]
+0000000240
+00036000000010
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000233')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000240', 'rtu_no': 'FM0000000690', 'flmeter_no': '00036000000010', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 10, 242450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '69577982.950', 'work_sum': '16332331.300', 'std_flow': '2502.0', 'work_flow': '555.0', 'temperature': '3.0', 'pressure': '428.0', 'price': '0.000', 'use_volume_work': '11649.480000000447', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0.000', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0.000', 'remain_volume': '0.000', 'fm_state': None, 'fm_state_msg': None, 'rtu_state': None, 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': None, 'power_voltage': None, 'battery_voltage': None, 'battery_level': None, 'press_in': '428.0', 'press_out': '428.0', 'temp_in': '3.0', 'temp_out': '3.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000010处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000059
+此查询区间,当前编号下总共抄表记录: 3
+此查询区间,上一天当前编号下总共抄表记录: 2
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000241'}]
+0000000241
+00036000000059 ☆ sum_total_volume is None 置为0
+00036000000059
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000238')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000241', 'rtu_no': '00030000000101', 'flmeter_no': '00036000000059', 'customer_no': '00030000000007', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 10, 549447), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '13', 'work_sum': '13', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '19.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 14.0, 'total_buy_volume': None, 'total_buy_money': '15', 'remain_money': '1', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '19.0', 'temp_out': '19.0', 'rssi': '19.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000059处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000005
+此查询区间,当前编号下总共抄表记录: 44
+此查询区间,上一天当前编号下总共抄表记录: 49
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000242'}]
+0000000242
+00036000000005 ☆ sum_total_money <0 置为0
+00036000000005
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000219')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000242', 'rtu_no': '00030000000002', 'flmeter_no': '00036000000005', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 10, 787449), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '413', 'work_sum': '420', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '20.0', 'pressure': '100.0', 'price': '2.39', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '413', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '1474.93', 'remain_volume': '0.0', 'fm_state': '10000001', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,未开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '20.0', 'temp_out': '20.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000005处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000067
+此查询区间,当前编号下总共抄表记录: 26
+此查询区间,上一天当前编号下总共抄表记录: 15
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000243'}]
+0000000243
+00036000000067 ☆ sum_total_volume is None 置为0
+00036000000067
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000221')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000243', 'rtu_no': '00030000000109', 'flmeter_no': '00036000000067', 'customer_no': '00030000000036', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 11, 58459), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '15.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 3.0, 'total_buy_volume': None, 'total_buy_money': '5', 'remain_money': '2', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '[充值金额过大超出液晶显示范围][状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '[充值金额过大超出液晶显示范围][状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '15.0', 'temp_out': '15.0', 'rssi': '17.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000067处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000023
+此查询区间,当前编号下总共抄表记录: 11
+此查询区间,上一天当前编号下总共抄表记录: 12
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000244'}]
+0000000244
+00036000000023
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000234')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000244', 'rtu_no': 'FM0000000352', 'flmeter_no': '00036000000023', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 11, 328452), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '187556.770', 'work_sum': '73774.320', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '18.0', 'pressure': '102.0', 'price': '0.000', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0.000', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0.000', 'remain_volume': '0.000', 'fm_state': None, 'fm_state_msg': None, 'rtu_state': None, 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': None, 'power_voltage': None, 'battery_voltage': None, 'battery_level': None, 'press_in': '102.0', 'press_out': '102.0', 'temp_in': '18.0', 'temp_out': '18.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000023处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000062
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 2
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000245'}]
+0000000245
+00036000000062 ☆ sum_total_volume is None 置为0
+00036000000062
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000211')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000245', 'rtu_no': '00030000000104', 'flmeter_no': '00036000000062', 'customer_no': '00030000000007', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 11, 548499), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '16.0', 'pressure': '100.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 899.0, 'total_buy_volume': None, 'total_buy_money': '998', 'remain_money': '99', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '16.0', 'temp_out': '16.0', 'rssi': '38.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000062处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000044
+此查询区间,当前编号下总共抄表记录: 21
+此查询区间,上一天当前编号下总共抄表记录: 24
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000246'}]
+0000000246
+00036000000044 ☆ sum_total_volume is None 置为0
+00036000000044
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000232')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000246', 'rtu_no': '00030000000085', 'flmeter_no': '00036000000044', 'customer_no': '00030000000036', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 11, 792453), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '16.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '5', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '16.0', 'temp_out': '16.0', 'rssi': '12.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000044处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000047
+此查询区间,当前编号下总共抄表记录: 14
+此查询区间,上一天当前编号下总共抄表记录: 25
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000247'}]
+0000000247
+00036000000047 ☆ sum_total_volume is None 置为0
+00036000000047
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000210')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000247', 'rtu_no': '00030000000089', 'flmeter_no': '00036000000047', 'customer_no': '00030000000006', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 12, 24451), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '12', 'work_sum': '12', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '17.0', 'pressure': '100.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 21.0, 'total_buy_volume': None, 'total_buy_money': '119', 'remain_money': '98', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '17.0', 'temp_out': '17.0', 'rssi': '8.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000047处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000072
+此查询区间,当前编号下总共抄表记录: 2
+此查询区间,上一天当前编号下总共抄表记录: 2
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000248'}]
+0000000248
+00036000000072 ☆ sum_total_volume is None 置为0
+00036000000072
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000215')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000248', 'rtu_no': '00030000000115', 'flmeter_no': '00036000000072', 'customer_no': '00030000000002', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 12, 261449), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '15.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 2.0, 'total_buy_volume': None, 'total_buy_money': '2', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '15.0', 'temp_out': '15.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000072处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000061
+此查询区间,当前编号下总共抄表记录: 22
+此查询区间,上一天当前编号下总共抄表记录: 24
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000249'}]
+0000000249
+00036000000061 ☆ sum_total_volume is None 置为0
+00036000000061
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000209')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000249', 'rtu_no': '00030000000103', 'flmeter_no': '00036000000061', 'customer_no': '00030000000007', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 12, 513452), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '15.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 4.0, 'total_buy_volume': None, 'total_buy_money': '4', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '15.0', 'temp_out': '15.0', 'rssi': '17.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000061处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000064
+此查询区间,当前编号下总共抄表记录: 28
+此查询区间,上一天当前编号下总共抄表记录: 30
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000250'}]
+0000000250
+00036000000064 ☆ sum_total_volume is None 置为0
+00036000000064
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000231')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000250', 'rtu_no': '00030000000106', 'flmeter_no': '00036000000064', 'customer_no': '00030000000046', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 12, 781457), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '15.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 4.0, 'total_buy_volume': None, 'total_buy_money': '4', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '15.0', 'temp_out': '15.0', 'rssi': '14.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000064处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000051
+此查询区间,当前编号下总共抄表记录: 29
+此查询区间,上一天当前编号下总共抄表记录: 30
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000251'}]
+0000000251
+00036000000051 ☆ sum_total_volume is None 置为0
+00036000000051
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000235')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000251', 'rtu_no': '00030000000093', 'flmeter_no': '00036000000051', 'customer_no': '00030000000036', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 13, 64457), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '16.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '5', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '16.0', 'temp_out': '16.0', 'rssi': '16.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000051处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000038
+此查询区间,当前编号下总共抄表记录: 10
+此查询区间,上一天当前编号下总共抄表记录: 19
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000252'}]
+0000000252
+00036000000038 ☆ sum_total_volume is None 置为0
+00036000000038
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000206')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000252', 'rtu_no': '00030000000079', 'flmeter_no': '00036000000038', 'customer_no': '00030000000016', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 13, 340449), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '17.0', 'pressure': '100.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 10.0, 'total_buy_volume': None, 'total_buy_money': '15', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '17.0', 'temp_out': '17.0', 'rssi': '13.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000038处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000063
+此查询区间,当前编号下总共抄表记录: 27
+此查询区间,上一天当前编号下总共抄表记录: 27
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000253'}]
+0000000253
+00036000000063 ☆ sum_total_volume is None 置为0
+00036000000063
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000226')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000253', 'rtu_no': '00030000000105', 'flmeter_no': '00036000000063', 'customer_no': '00030000000007', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 13, 660448), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '15.0', 'pressure': '100.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '2', 'remain_money': '2', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '15.0', 'temp_out': '15.0', 'rssi': '7.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000063处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000043
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 2
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000254'}]
+0000000254
+00036000000043 ☆ sum_total_volume is None 置为0
+00036000000043
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000213')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000254', 'rtu_no': '00030000000084', 'flmeter_no': '00036000000043', 'customer_no': '00030000000035', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 13, 949450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '15.0', 'pressure': '100.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '5', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '15.0', 'temp_out': '15.0', 'rssi': '12.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000043处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000065
+此查询区间,当前编号下总共抄表记录: 22
+此查询区间,上一天当前编号下总共抄表记录: 24
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000255'}]
+0000000255
+00036000000065 ☆ sum_total_volume is None 置为0
+00036000000065
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000222')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000255', 'rtu_no': '00030000000107', 'flmeter_no': '00036000000065', 'customer_no': '00030000000036', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 14, 225451), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '15.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '15.0', 'temp_out': '15.0', 'rssi': '14.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000065处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000045
+此查询区间,当前编号下总共抄表记录: 2
+此查询区间,上一天当前编号下总共抄表记录: 1
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000256'}]
+0000000256
+00036000000045 ☆ sum_total_volume is None 置为0
+00036000000045
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000224')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000256', 'rtu_no': '00030000000086', 'flmeter_no': '00036000000045', 'customer_no': '00030000000036', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 14, 535481), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '18.0', 'pressure': '102.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 3.0, 'total_buy_volume': None, 'total_buy_money': '40', 'remain_money': '37', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '102.0', 'press_out': '102.0', 'temp_in': '18.0', 'temp_out': '18.0', 'rssi': '17.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000045处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000024
+此查询区间,当前编号下总共抄表记录: 11
+此查询区间,上一天当前编号下总共抄表记录: 12
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000257'}]
+0000000257
+00036000000024
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000207')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000257', 'rtu_no': 'FM0000000353', 'flmeter_no': '00036000000024', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 14, 816491), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '2579974.290', 'work_sum': '695543.720', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '17.0', 'pressure': '103.0', 'price': '0.000', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0.000', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0.000', 'remain_volume': '0.000', 'fm_state': None, 'fm_state_msg': None, 'rtu_state': None, 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': None, 'power_voltage': None, 'battery_voltage': None, 'battery_level': None, 'press_in': '103.0', 'press_out': '103.0', 'temp_in': '17.0', 'temp_out': '17.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000024处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000012
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 6
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000258'}]
+0000000258
+00036000000012 ☆ sum_total_volume is None 置为0
+00036000000012
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000230')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000258', 'rtu_no': '00030000000043', 'flmeter_no': '00036000000012', 'customer_no': '00030000000005', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 15, 86447), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '6837', 'work_sum': '6828', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '15.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '2999', 'remain_money': '2999', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '15.0', 'temp_out': '15.0', 'rssi': '19.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000012处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000018
+此查询区间,当前编号下总共抄表记录: 3
+此查询区间,上一天当前编号下总共抄表记录: 2
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000259'}]
+0000000259
+00036000000018 ☆ sum_total_volume is None 置为0
+00036000000018
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000225')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000259', 'rtu_no': '00030000000049', 'flmeter_no': '00036000000018', 'customer_no': '00030000000006', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 15, 403538), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '103', 'work_sum': '104', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '18.0', 'pressure': '100.0', 'price': '0.01', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 1.0, 'total_buy_volume': None, 'total_buy_money': '15', 'remain_money': '14', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '43', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '18.0', 'temp_out': '18.0', 'rssi': '20.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000018处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000022
+此查询区间,当前编号下总共抄表记录: 11
+此查询区间,上一天当前编号下总共抄表记录: 12
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000260'}]
+0000000260
+00036000000022
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000227')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000260', 'rtu_no': 'FM0000000351', 'flmeter_no': '00036000000022', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 15, 663453), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '1574574.530', 'work_sum': '446581.200', 'std_flow': '114.0', 'work_flow': '27.0', 'temperature': '18.0', 'pressure': '417.0', 'price': '0.000', 'use_volume_work': '602.6500000000233', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0.000', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0.000', 'remain_volume': '0.000', 'fm_state': None, 'fm_state_msg': None, 'rtu_state': None, 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': None, 'power_voltage': None, 'battery_voltage': None, 'battery_level': None, 'press_in': '417.0', 'press_out': '417.0', 'temp_in': '18.0', 'temp_out': '18.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000022处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000003
+此查询区间,当前编号下总共抄表记录: 44
+此查询区间,上一天当前编号下总共抄表记录: 49
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000261'}]
+0000000261
+00036000000003 ☆ sum_total_money <0 置为0
+00036000000003
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000205')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000261', 'rtu_no': '00030000000002', 'flmeter_no': '00036000000003', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 15, 924486), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '80', 'work_sum': '83', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '21.0', 'pressure': '100.0', 'price': '2.39', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '80', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '1426.0', 'remain_volume': '0.0', 'fm_state': '10000001', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,未开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '21.0', 'temp_out': '21.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000003处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000028
+此查询区间,当前编号下总共抄表记录: 11
+此查询区间,上一天当前编号下总共抄表记录: 12
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000262'}]
+0000000262
+00036000000028
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000217')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000262', 'rtu_no': 'FM0000000355', 'flmeter_no': '00036000000028', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 16, 215499), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '312790.030', 'work_sum': '288130.450', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '16.0', 'pressure': '109.0', 'price': '0.000', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0.000', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0.000', 'remain_volume': '0.000', 'fm_state': None, 'fm_state_msg': None, 'rtu_state': None, 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': None, 'power_voltage': None, 'battery_voltage': None, 'battery_level': None, 'press_in': '109.0', 'press_out': '109.0', 'temp_in': '16.0', 'temp_out': '16.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000028处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000056
+此查询区间,当前编号下总共抄表记录: 2
+此查询区间,上一天当前编号下总共抄表记录: 11
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000263'}]
+0000000263
+00036000000056 ☆ sum_total_volume is None 置为0
+00036000000056
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000208')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000263', 'rtu_no': '00030000000098', 'flmeter_no': '00036000000056', 'customer_no': '00030000000007', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 16, 558492), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '19.0', 'pressure': '100.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '5', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '19.0', 'temp_out': '19.0', 'rssi': '12.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000056处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000054
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 389
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000264'}]
+0000000264
+00036000000054 ☆ sum_total_volume is None 置为0
+00036000000054
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000218')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000264', 'rtu_no': '00030000000096', 'flmeter_no': '00036000000054', 'customer_no': '00030000000030', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 16, 968453), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '7724', 'work_sum': '7489', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '24.0', 'pressure': '103.0', 'price': '1.0', 'use_volume_work': '7455.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 245.0, 'total_buy_volume': None, 'total_buy_money': '245', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '103.0', 'press_out': '103.0', 'temp_in': '24.0', 'temp_out': '24.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000054处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000066
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 14
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000265'}]
+0000000265
+00036000000066 ☆ sum_total_volume is None 置为0
+00036000000066
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000237')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000265', 'rtu_no': '00030000000108', 'flmeter_no': '00036000000066', 'customer_no': '00030000000036', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 17, 265480), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '66', 'work_sum': '62', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '11.0', 'pressure': '105.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '105.0', 'press_out': '105.0', 'temp_in': '11.0', 'temp_out': '11.0', 'rssi': '18.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000066处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000004
+此查询区间,当前编号下总共抄表记录: 44
+此查询区间,上一天当前编号下总共抄表记录: 49
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000266'}]
+0000000266
+00036000000004 ☆ sum_total_money <0 置为0
+00036000000004
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000212')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000266', 'rtu_no': '00030000000002', 'flmeter_no': '00036000000004', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 17, 533476), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '60364', 'work_sum': '51790', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '20.0', 'pressure': '101.0', 'price': '2.39', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '60364', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '52000.2', 'remain_volume': '0.0', 'fm_state': '10000001', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,未开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '20.0', 'temp_out': '20.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000004处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000070
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 3
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000267'}]
+0000000267
+00036000000070 ☆ sum_total_volume is None 置为0
+00036000000070
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000220')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000267', 'rtu_no': '00030000000112', 'flmeter_no': '00036000000070', 'customer_no': '00030000000036', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 17, 806448), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '14.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 4.0, 'total_buy_volume': None, 'total_buy_money': '4', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '14.0', 'temp_out': '14.0', 'rssi': '42.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000070处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000058
+此查询区间,当前编号下总共抄表记录: 29
+此查询区间,上一天当前编号下总共抄表记录: 29
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000268'}]
+0000000268
+00036000000058 ☆ sum_total_volume is None 置为0
+00036000000058
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000236')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000268', 'rtu_no': '00030000000100', 'flmeter_no': '00036000000058', 'customer_no': '00030000000007', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 18, 134452), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '16.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '16.0', 'temp_out': '16.0', 'rssi': '11.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000058处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000099
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 4
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000269'}]
+0000000269
+00036000000099 ☆ sum_total_volume is None 置为0
+00036000000099
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000228')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000269', 'rtu_no': '00030000000139', 'flmeter_no': '00036000000099', 'customer_no': '00030000000052', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 18, 446449), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '17.0', 'pressure': '101.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 1.0, 'total_buy_volume': None, 'total_buy_money': '6', 'remain_money': '5', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '17.0', 'temp_out': '17.0', 'rssi': '12.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000099处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000052
+此查询区间,当前编号下总共抄表记录: 21
+此查询区间,上一天当前编号下总共抄表记录: 23
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000270'}]
+0000000270
+00036000000052 ☆ sum_total_volume is None 置为0
+00036000000052
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000223')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000270', 'rtu_no': '00030000000094', 'flmeter_no': '00036000000052', 'customer_no': '00030000000036', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 18, 740448), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '6888', 'work_sum': '6685', 'std_flow': '4.0', 'work_flow': '0', 'temperature': '23.0', 'pressure': '103.0', 'price': '1.0', 'use_volume_work': '93.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 10.0, 'total_buy_volume': None, 'total_buy_money': '10', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '103.0', 'press_out': '103.0', 'temp_in': '23.0', 'temp_out': '23.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000052处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000053
+此查询区间,当前编号下总共抄表记录: 37
+此查询区间,上一天当前编号下总共抄表记录: 35
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000271'}]
+0000000271
+00036000000053 ☆ sum_total_volume is None 置为0
+00036000000053
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000214')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000271', 'rtu_no': '00030000000095', 'flmeter_no': '00036000000053', 'customer_no': '00030000000030', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 19, 15448), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '16.0', 'pressure': '100.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '53', 'remain_money': '53', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '无报警[状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '无报警[状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '100.0', 'press_out': '100.0', 'temp_in': '16.0', 'temp_out': '16.0', 'rssi': '30.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000053处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+00036000000013
+此查询区间,当前编号下总共抄表记录: 45
+此查询区间,上一天当前编号下总共抄表记录: 49
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0003', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0003', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000272'}]
+0000000272
+00036000000013 ☆ sum_total_money <0 置为0
+00036000000013
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0003', '00032019040000000229')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0003', 'srd_id': '00032019040000000272', 'rtu_no': '00030000000002', 'flmeter_no': '00036000000013', 'customer_no': None, 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 19, 327450), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '2073', 'work_sum': '173', 'std_flow': '0.0', 'work_flow': '0.0', 'temperature': '22.0', 'pressure': '101.0', 'price': '2.39', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '2073', 'sum_total_money': '0', 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '1949.4', 'remain_volume': '0.0', 'fm_state': '10000001', 'fm_state_msg': '外接电,阀门无低电,无卡攻击,未剪线,远程阀开,无低电,阀开,未开户', 'rtu_state': '0000', 'rtu_state_msg': None, 'valve_state': '0', 'valve_state_msg': '阀开', 'power_voltage': '0000', 'battery_voltage': '0000', 'battery_level': None, 'press_in': '101.0', 'press_out': '101.0', 'temp_in': '22.0', 'temp_out': '22.0', 'rssi': '0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00036000000013处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+0003 data_processing is ok
+----------------------------------------------------------------------------------------
+此机构: 0002
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0002 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0010
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0010 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0018
+I am main()
+总共抄表数据: 1
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 5
+0018 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 开始进行计算日报表数据处理
+不同的表计号共有个数: 1
+根据表计号，进行数据的再次筛选，处理，写入数据库
+----------------------------------------------------------------------------------------
+00186000000001
+此查询区间,当前编号下总共抄表记录: 1
+此查询区间,上一天当前编号下总共抄表记录: 5
+开始取自动递增流水号逻辑
+总列表长度: 1
+执行sql:[update SYS_SERIAL_NO set SSN_VALUE= trim(To_Char(SSN_VALUE+1,'0000000000')) where SSN_ORG_ID= :ssn_org_id and SSN_KEY_NAME = :ssn_key_name and SSN_YEAR = :ssn_year and SSN_MONTH = :ssn_month],参数:[{'ssn_org_id': '0018', 'ssn_key_name': 'SCADA_REPORT_DAILY', 'ssn_year': '2019', 'ssn_month': '04'}]
+update sys_serial_no ok
+[{'SSN_ORG_ID': '0018', 'SSN_KEY_NAME': 'SCADA_REPORT_DAILY', 'SSN_KEY_TYPE': '2', 'SSN_KEY_DESCRIPTION': '201904日报表', 'SSN_YEAR': '2019', 'SSN_MONTH': '04', 'SSN_VALUE': '0000000008'}]
+0000000008
+00186000000001 ☆ sum_total_volume is None 置为0
+00186000000001
+总列表长度: 1
+执行sql:[delete from SCADA_REPORT_DAILY where SRD_ORG_ID = :1 and SRD_ID=:2],参数:[('0018', '00182019040000000007')]
+del_by_where ok
+执行sql:[INSERT INTO SCADA_REPORT_DAILY (SRD_ORG_ID,SRD_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO,REPORT_TIME,YEAR,MONTH,DAY, HOUR,STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE,PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY,SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY,REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE,BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN,TEMP_OUT,RSSI, SRD_STATUS ) VALUES(:srd_org_id,:srd_id, :rtu_no,:flmeter_no,:customer_no,:report_time,:year,:month,:day, :hour,:std_sum,:work_sum,:std_flow,:work_flow,:temperature,:pressure,:price,:use_volume_work, :use_volume_std,:use_money,:sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money,:remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage,:battery_voltage,:battery_level,:press_in,:press_out,:temp_in,:temp_out,:rssi, :srd_status)],参数:[{'srd_org_id': '0018', 'srd_id': '00182019040000000008', 'rtu_no': '00180000000001', 'flmeter_no': '00186000000001', 'customer_no': '00180000000001', 'report_time': datetime.datetime(2019, 4, 6, 12, 3, 19, 859448), 'year': '2019', 'month': '04', 'day': '05', 'hour': '', 'std_sum': '0', 'work_sum': '0', 'std_flow': '0.0', 'work_flow': '0', 'temperature': '20.0', 'pressure': '98.0', 'price': '1.0', 'use_volume_work': '0.0', 'use_volume_std': '0.0', 'use_money': '0.0', 'sum_total_volume': '0', 'sum_total_money': 0.0, 'total_buy_volume': None, 'total_buy_money': '0', 'remain_money': '0', 'remain_volume': None, 'fm_state': '1', 'fm_state_msg': '[表内累计充值金额比IC卡内的累计金额大][状态字2备用待定;]', 'rtu_state': '1', 'rtu_state_msg': '[表内累计充值金额比IC卡内的累计金额大][状态字2备用待定;]', 'valve_state': None, 'valve_state_msg': None, 'power_voltage': '00', 'battery_voltage': None, 'battery_level': '100', 'press_in': '98.0', 'press_out': '98.0', 'temp_in': '20.0', 'temp_out': '20.0', 'rssi': '19.0', 'srd_status': '1'}]
+insert sys_serial_no ok
+00186000000001处理好数据已写入oracle
+----------------------------------------------------------------------------------------
+0018 data_processing is ok
+----------------------------------------------------------------------------------------
+此机构: 0006
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0006 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0013
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0013 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+此机构: 0014
+I am main()
+总共抄表数据: 0
+下面是查询当天的上一天数据-总共抄表数据
+总共抄表数据: 0
+0014 ['2019-04-05 00:00:00', '2019-04-05 23:59:59'] 期间无抄表数据，请等待重新计算日报表
+----------------------------------------------------------------------------------------
+all done-日报表整个处理流程完成
+----------------------------------------------------------------------------------------
+程序运行开始时间 2019-04-06 12:03:01.679449
+程序运行结束时间: 2019-04-06 12:03:20.433457
+整个程序运行总时间: 18 秒
+----------------------------------------------------------------------------------------
+程序运行开始time.clock(): 3e-07
+程序运行结束time.clock(): 18.75413
+整个程序运行总时间time.clock()差: 18.7541297 秒
+----------------------------------------------------------------------------------------

@@ -540,6 +540,7 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
         # 处理数据完毕 清除临时使用数据
         flmeter_no_set_copy.remove(fno)
         rm_repeat_sfd_data_list.clear()
+        last_rm_repeat_sfd_data_list.clear()
     pass
     return True
 
