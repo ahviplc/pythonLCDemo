@@ -272,7 +272,7 @@ def insert_scada_report_daily(report_daily_model):
              "battery_voltage": report_daily_model.battery_voltage, "battery_level": report_daily_model.battery_level, "press_in": report_daily_model.press_in, "press_out": report_daily_model.press_out, "temp_in": report_daily_model.temp_in,
              "temp_out": report_daily_model.temp_out, "rssi": report_daily_model.rssi, "srd_status": report_daily_model.srd_status}]
     db.dml_by_where(insert_sql, data)  # ok
-    print('insert sys_serial_no ok')
+    print('insert_scada_report_daily ok')
 
 
 # 删除SCADA_REPORT_DAILY 带条件参数 删除数据

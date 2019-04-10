@@ -291,7 +291,7 @@ def ok_processing_data_insert_into_oracle(report_daily_model, *args, **kwargs):
 
 
 # 处理好数据写入oracle for 月报表
-# @param  日报表对象report_monthly_model-主键【srd_org_id 机构号,srd_id 记录ID 】其他字段
+# @param  月报表对象report_monthly_model-主键【srd_org_id 机构号,srd_id 记录ID 】其他字段
 # @return 处理结果 True成功 False失败
 def ok_processing_data_insert_into_oracle_for_monthly(report_monthly_model, *args, **kwargs):
     print(report_monthly_model.flmeter_no)
@@ -369,7 +369,7 @@ def insert_scada_report_daily(report_daily_model):
              "battery_voltage": report_daily_model.battery_voltage, "battery_level": report_daily_model.battery_level, "press_in": report_daily_model.press_in, "press_out": report_daily_model.press_out, "temp_in": report_daily_model.temp_in,
              "temp_out": report_daily_model.temp_out, "rssi": report_daily_model.rssi, "srd_status": report_daily_model.srd_status}]
     db.dml_by_where(insert_sql, data)  # ok
-    print('insert sys_serial_no ok')
+    print('insert_scada_report_daily ok')
 
 
 # 新增SCADA_REPORT_MONTHLY
@@ -411,7 +411,7 @@ def insert_scada_report_monthly(model):
              "battery_voltage": model.battery_voltage, "battery_level": model.battery_level, "press_in": model.press_in, "press_out": model.press_out, "temp_in": model.temp_in,
              "temp_out": model.temp_out, "rssi": model.rssi, "srm_status": model.srm_status}]
     db.dml_by_where(insert_sql, data)  # ok
-    print('insert sys_serial_no ok')
+    print('insert_scada_report_monthly ok')
 
 
 # 删除SCADA_REPORT_DAILY 带条件参数 删除数据
