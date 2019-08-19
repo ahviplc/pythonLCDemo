@@ -815,7 +815,7 @@ def data_processing(data_for_processing, org_id, **kwargs):
         rym.valve_state = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['VALVE_STATE']
         # 阀门控制器状态解析（期末数）
         rym.valve_state_msg = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['VALVE_STATE_MSG']
-        # 供电电压（周期内平均值）
+        # 供电电压（期末数）
         rym.power_voltage = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['POWER_VOLTAGE']
 
         # 电池电压（期末数）
