@@ -3,13 +3,13 @@
 
 """
 
-python_report_yearly_app_king.py2 加强版本2 封装了年报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
+python_report_yearly_app_king2.py 加强版本2 封装了年报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
 年报表-计算写入数据库oracle的报表脚本
 版本说明:1：跑所有机构的年报表；2:逻辑变更-【周期内工况使用量（本期期末数-上期期末数）】【周期内标况使用量（本期期末数-上期期末数）】 3:整体脚本代码结构变更
 Version: 1.0
 Author: LC
 DateTime: 2019年3月7日14:16:04
-UpdateTime: 2019年3月29日15:56:07
+UpdateTime: 2019年8月19日09:50:59
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 LC博客url: http://oneplusone.vip/index.html
@@ -1002,7 +1002,7 @@ def main(db, org_id, years):
     # 今年的时间减去1，得到去年的时间。last_year等于2018
     last_year = int(now.year) - 1
 
-    return_data, params_data = select_sfd_by_where_for_yearly(org_id, years)  # @param org_id 要查询机构号 @param years 0代表当前年 +n代表n月年 -n代表n月年 默认为-1 跑上一年的数据
+    return_data, params_data = select_sfd_by_where_for_yearly(org_id, years)  # @param org_id 要查询机构号 @param years 0代表当前年 +n代表后n年 -n代表前n年 默认为-1 跑上一年的数据
 
     # 获取查询当年(脚本)的上年最后一天最小时间到最大时间的数据
     print("下面是查询当年的上一年最后一天内数据-总共抄表数据")
@@ -1046,7 +1046,7 @@ if __name__ == '__main__':
     # 查询出所有需要跑脚本的机构id
     org_list = get_all_org_id_for_run_py_command_script_from_select_db()  # 查询出所有需要跑脚本的机构id
 
-    # 循环 org_list @param db实例   # @param org_id 要查询机构号 @param years 0代表当前年 +n代表n月年 -n代表n月年 默认为-1 跑上一年的数据
+    # 循环 org_list @param db实例   # @param org_id 要查询机构号 @param years 0代表当前年 +n代表后n年 -n代表前n年 默认为-1 跑上一年的数据
     for x in org_list:
         print("此机构:", x['ORG_ID'])
         main(db, x['ORG_ID'], -1)  # 传入的机构,设置要查询哪年！运行main方法，将db带过去，机构id， -1跑上年的数据！用于下面的操作！
