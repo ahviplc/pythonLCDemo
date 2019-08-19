@@ -784,7 +784,7 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         ssn_key_name = "SCADA_REPORT_YEARLY"  # 如需修改为其他表的递增流水，请自行修改
         ok_srm_id = get_sys_serial_no(db, ssn_org_id, ssn_key_name, str(now_datetime.year), ok_month)  # 导入获取流水号方法
         print(ok_srm_id)
-        rym.sry_id = ssn_org_id + rym.year + rym.month + ok_srm_id
+        rym.sry_id = ssn_org_id + rym.year + ok_month + ok_srm_id
 
         # 标况总量（期末数）
         rym.std_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['STD_SUM']  # 默认升序，列表最后一个元素，值最大

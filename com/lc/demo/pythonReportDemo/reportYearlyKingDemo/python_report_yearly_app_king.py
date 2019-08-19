@@ -8,7 +8,7 @@ python_report_yearly_app_king.py 加强版本 封装了年报表对象类以及�
 Version: 1.0
 Author: LC
 DateTime: 2019年3月7日14:16:04
-UpdateTime: 2019年3月20日14:46:08
+UpdateTime: 2019年8月19日12:03:00
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 
@@ -709,7 +709,7 @@ def data_processing(data_for_processing, org_id, **kwargs):
         ssn_key_name = "SCADA_REPORT_YEARLY"  # 如需修改为其他表的递增流水，请自行修改
         ok_srm_id = get_sys_serial_no(db, ssn_org_id, ssn_key_name, str(now_datetime.year), ok_month)  # 导入获取流水号方法
         print(ok_srm_id)
-        rym.sry_id = ssn_org_id + rym.year + rym.month + ok_srm_id
+        rym.sry_id = ssn_org_id + rym.year + ok_month + ok_srm_id
 
         # 标况总量（期末数）
         rym.std_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['STD_SUM']  # 默认升序，列表最后一个元素，值最大
@@ -891,7 +891,7 @@ if __name__ == '__main__':
     # 今年的时间减去1，得到去年的时间。last_year等于2018
     last_year = int(now.year) - 1
 
-    return_data, params_data = select_sfd_by_where_for_yearly("0005", -1)  # @param org_id 要查询机构号 @param years 0代表当前年 +n代表n月年 -n代表n月年 默认为-1 跑上一年的数据
+    return_data, params_data = select_sfd_by_where_for_yearly("0005", -1)  # @param org_id 要查询机构号 @param years 0代表当前年 +n代表后n年 -n代表前n年 默认为-1 跑上一年的数据
 
     # print(return_data)
     # print(len(return_data))
