@@ -3,7 +3,7 @@
 """
 
 parsing_message_app_king.py
-解析报文小工具 for lmt King版本
+解析报文小工具 for LMT King版本
 备注：此版本是具体实现版本,在parsing_message_app.py的基础上
 Version: 1.0
 Author: LC
@@ -72,7 +72,7 @@ import json
 
 class Ui_Form(object):
     def setupUi(self, Form):
-        Form.setObjectName("罗美特报文解析小软件")
+        Form.setObjectName("LMT报文解析小软件")
         Form.resize(1117, 862)
         # textEdit 文本编辑框 QTextEdit
         self.textEdit = QtWidgets.QTextEdit(Form)
@@ -105,7 +105,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "罗美特报文解析小软件"))
+        Form.setWindowTitle(_translate("Form", "LMT报文解析小软件"))
         self.label.setText(_translate("Form", "请输入报文:"))
         self.pushButton.setText(_translate("Form", "解析"))
         self.label_2.setText(_translate("Form", "报文解析结果:"))
@@ -156,8 +156,7 @@ class Ui_Form(object):
         dict_request_message_data_list = []  # 请求报文数据域定义 列表
         dict_request_message_data_list.append(dict_request_message_data)
 
-        dict_parsing_message_main_temp[
-            '请求报文数据域定义'] = dict_request_message_data_list  # 将 请求报文数据域定义 赋给 主字典 dict_parsing_message_main_temp
+        dict_parsing_message_main_temp['请求报文数据域定义'] = dict_request_message_data_list  # 将 请求报文数据域定义 赋给 主字典 dict_parsing_message_main_temp
 
         # 日抄表明细
         dict_daily_transcription = {}  # 日抄表明细 字典 具体每帧的数据用list存放
@@ -183,8 +182,7 @@ class Ui_Form(object):
         dict_daily_transcription_list = []  # 日抄表明细 列表
         dict_daily_transcription_list.append(dict_daily_transcription)
 
-        dict_request_message_data[
-            '日抄表明细'] = dict_daily_transcription_list  # 将 日抄表明细 赋给 主字典 dict_parsing_message_main_temp
+        dict_request_message_data['日抄表明细'] = dict_daily_transcription_list  # 将 日抄表明细 赋给 主字典 dict_parsing_message_main_temp
 
         # 密文数据域
         dict_ciphertext_data = {}  # 密文数据域 字典
@@ -196,8 +194,7 @@ class Ui_Form(object):
         dict_ciphertext_data_list = []  # 密文数据域 列表
         dict_ciphertext_data_list.append(dict_ciphertext_data)
 
-        dict_parsing_message_main_temp[
-            '密文数据域'] = dict_ciphertext_data_list  # 将 密文数据域 赋给 主字典 dict_parsing_message_main_temp
+        dict_parsing_message_main_temp['密文数据域'] = dict_ciphertext_data_list  # 将 密文数据域 赋给 主字典 dict_parsing_message_main_temp
 
         # 数据转成json 用于输出到textBrowser
         json_dicts = json.dumps(dict_parsing_message_main_temp, indent=4, ensure_ascii=False)
@@ -438,7 +435,6 @@ if __name__ == "__main__":
     ui = Ui_Form()
     ui.setupUi(widget)
     # widget.setWindowIcon(QtGui.QIcon('pmaLogo.png'))  # 增加icon图标，如果没有图片可以没有这句
-    widget.setWindowIcon(QtGui.QIcon(
-        'pmaLogoByLC.png'))  # 增加icon图标，如果没有图片可以没有这句 或者使用绝对路径:E:\pycharm-professional-2018.1.3\Code\pythonLCDemo\com\lc\demo\PyQt5Demo\parsingMessageDemo\pmaLogoByLC.png
+    widget.setWindowIcon(QtGui.QIcon('pmaLogoByLC.png'))  # 增加icon图标，如果没有图片可以没有这句 或者使用绝对路径:E:\pycharm-professional-2018.1.3\Code\pythonLCDemo\com\lc\demo\PyQt5Demo\parsingMessageDemo\pmaLogoByLC.png
     widget.show()
     sys.exit(app.exec_())

@@ -3,7 +3,7 @@
 """
 
 parsing_message_app.py
-解析报文小工具 for lmt
+解析报文小工具 for LMT
 Version: 1.0
 Author: LC
 DateTime: 2019年8月28日14:05:29
@@ -62,7 +62,7 @@ from print_msg_to_log_model import PrintLogger
 
 class Ui_Form(object):
     def setupUi(self, Form):
-        Form.setObjectName("罗美特报文解析小软件")
+        Form.setObjectName("LMT报文解析小软件")
         Form.resize(1117, 862)
         # textEdit 文本编辑框 QTextEdit
         self.textEdit = QtWidgets.QTextEdit(Form)
@@ -95,7 +95,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "罗美特报文解析小软件"))
+        Form.setWindowTitle(_translate("Form", "LMT报文解析小软件"))
         self.label.setText(_translate("Form", "请输入报文:"))
         self.pushButton.setText(_translate("Form", "解析"))
         self.label_2.setText(_translate("Form", "报文解析结果:"))
