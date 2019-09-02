@@ -15,6 +15,10 @@ def func():
     print("**********")
 
 
+def func_python():
+    print("I am python")
+
+
 # 菜单
 menu = tkinter.Menu(menubar, tearoff=False)
 # 给菜单选项添加内容
@@ -23,6 +27,8 @@ for item in ['python', 'c', 'java', 'c++', 'c#', 'php', 'B', '退出']:
         # 添加分割线
         menu.add_separator()
         menu.add_command(label=item, command=win.quit)
+    elif item == 'python':
+        menu.add_command(label=item, command=func_python)
     else:
         menu.add_command(label=item, command=func)
 
