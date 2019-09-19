@@ -825,11 +825,11 @@ if __name__ == '__main__':
     org_list = get_all_org_id_for_run_py_command_script_from_select_db()  # 查询出所有需要跑脚本的机构id
 
     # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;hours 0代表当前小时 +n代表n小时后 -n代表n小时前 默认为-1 跑一小时前的数据
+    # if x['ORG_ID'] == '0027':
     for x in org_list:
         print("此机构:", x['ORG_ID'])
-        if x['ORG_ID'] == '0027':
-            for hours_temp in range(-23, 1, +1):
-               main(db, x['ORG_ID'], -1, hours_temp)  # 传入的机构,设置要查询哪一天哪一小时！运行main方法，将db带过去，机构id，-1,-0 => -1跑昨天的数据！-0代表昨天0-24点数据，用于下面的操作！
+        for hours_temp in range(-23, 1, +1):
+            main(db, x['ORG_ID'], -1, hours_temp)  # 传入的机构,设置要查询哪一天哪一小时！运行main方法，将db带过去，机构id，-1,-0 => -1跑昨天的数据！-0代表昨天0-24点数据，用于下面的操作！
     print("all done-小时报表整个处理流程完成")
     print("----------------------------------------------------------------------------------------")
     end_time = datetime.datetime.now()
