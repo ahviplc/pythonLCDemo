@@ -443,9 +443,9 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
         max_work_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['WORK_SUM']
         min_work_sum = sorted_rm_repeat_sfd_data_list[0]['WORK_SUM']
         if len(last_rm_repeat_sfd_data_list) > 0:  # （本期期末数-上期期末数）
-            rdm.use_volume_work = str(float(max_work_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']))
+            rdm.use_volume_work = str(round(float(max_work_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']), 2))
         else:  # （本周期内期末数-本周期内期初数）
-            rdm.use_volume_work = str(float(max_work_sum) - float(min_work_sum))
+            rdm.use_volume_work = str(round(float(max_work_sum) - float(min_work_sum), 2))
         if float(rdm.use_volume_work) < 0:  # 如果use_volume_work计算出来小于0，则直接置为0
             rdm.use_volume_work = str(0)
             print(rdm.flmeter_no, "☆ use_volume_work <0 置为0")
@@ -460,9 +460,9 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
         if len(last_rm_repeat_sfd_data_list) > 0:  # （本期期末数-上期期末数）
             if last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL'] is None:
                 last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL'] = str(0)
-            rdm.use_volume_std = str(float(max_std_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL']))
+            rdm.use_volume_std = str(round(float(max_std_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['SUM_TOTAL']), 2))
         else:   # 周期内标况使用量（周期内期末数-期初数）
-            rdm.use_volume_std = str(float(max_std_sum) - float(min_std_sum))
+            rdm.use_volume_std = str(round(float(max_std_sum) - float(min_std_sum), 2))
         if float(rdm.use_volume_std) < 0:  # 如果use_volume_std计算出来小于0，则直接置为0
             rdm.use_volume_std = str(0)
             print(rdm.flmeter_no, "☆ use_volume_std <0 置为0")
