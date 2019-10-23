@@ -18,7 +18,7 @@ EMAIL_CONF = {
     "email": "ahviplc@163.com",
     "notice_email_list": "ahlc@sina.cn",
     "username": "ahviplc@163.com",
-    "password": "lc201088",
+    "password": "###",
     "host": "smtp.163.com",
 }
 
