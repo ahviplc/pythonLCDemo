@@ -1,1 +1,1 @@
-cd developSoftKu/pythonCodeKu/timeClockDemo && nohup python3 -u timeClockApp.py > timeClockApp.py.log 2>&1 &
+cd /home/developSoftKu/pythonCodeKu/timeClockDemo && nohup python3 -u timeClockApp.py > timeClockApp.py.log 2>&1 &
