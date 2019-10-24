@@ -23,6 +23,6 @@ EMAIL_CONF = {
 }
 
 # 软件版本
-Soft_VERSION = "1.0"
+Soft_Version = "1.0"
 # 作者
 Soft_Author = "LC"
