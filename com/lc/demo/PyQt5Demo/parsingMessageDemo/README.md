@@ -32,7 +32,7 @@ pycharm如何将python文件打包为exe格式 - CSDN博客
     加-F参数生成一个exe文件，运行起来慢。
 ```
 
-打包成exe命令如下:
+☆打包成exe命令如下:
 
 > pyinstaller -F parsing_message_app.py
 
@@ -46,6 +46,37 @@ pycharm如何将python文件打包为exe格式 - CSDN博客
 g_message_app.py
 
 大小写都可以！
+
+☆打包成dmg(For MacOS)命令如下: 
+ 
+```
+1、安装py2app，打开终端，执行
+
+pip install py2app
+
+2、在桌面新建一个文件夹，取名xxx，打包的程序dmgAppByLC.py放在里面
+
+3、进入终端，切路径至该文件夹下，执行
+
+py2applet --make-setup dmgAppByLC.py
+
+4、开始打包应用，执行
+
+python setup.py py2app
+
+5、xxx文件下出现dist文件夹，打开后里面有个app，在MacOS下双击即可运行
+
+```
+### copy from:
+
+py2app - Create standalone Mac OS X applications with Python — py2app 0.19 documentation
+> https://py2app.readthedocs.io/en/latest/
+
+使用 py2app 把 python 项目打包成mac下可执行的应用 - 服务器端攻城师 - CSDN博客
+> https://blog.csdn.net/marujunyy/article/details/8988974
+
+Mac系统下将python程序打包成mac应用程序 - 简书
+> https://www.jianshu.com/p/75da02dfa1a3
 
 **欢迎来到 [LC博客-一加壹博客最Top](http://www.oneplusone.vip)**
 
