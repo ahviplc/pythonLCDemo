@@ -204,7 +204,10 @@ def to_get_month_first_last_day_datetime_max_min_time(n, first_or_last_type, typ
     if first_or_last_type == "first":
         return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + n, 1)
     elif first_or_last_type == "last":
-        return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + 1 + n,1) - datetime.timedelta(1)
+        if datetime.date.today().month + 1 + n == 13:  # 如果这个if满足，代表当前月是12月份，取last直接下面操作即可,得到2019-12-31 00:00:00 (备注:12月不可以加1月那样操作了,因为没有月份中没有13月)
+            return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month, 31)
+        else:  # 其他情况 都是 先获得当前月份加上1月的第一天再减去1天 来得到当前月份的最后一天
+            return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + 1 + n, 1) - datetime.timedelta(1)
 
     if types == "max":
         return_time = datetime.datetime.combine(return_time_day + datetime.timedelta(days=0), datetime.time.max)
@@ -879,7 +882,7 @@ if __name__ == '__main__':
     end_time = datetime.datetime.now()
     print("程序运行开始时间", begin_time)
     print("程序运行结束时间:", end_time)
-    print("整个程序运行总时间:", (end_time - begin_time).seconds,"秒")  # (end_time - begin_time).microseconds, "微秒 "1秒 = 10的6次方微秒
+    print("整个程序运行总时间:", (end_time - begin_time).seconds, "秒")  # (end_time - begin_time).microseconds, "微秒 "1秒 = 10的6次方微秒
 
     print("----------------------------------------------------------------------------------------")
     end_time_clock = time.clock()
