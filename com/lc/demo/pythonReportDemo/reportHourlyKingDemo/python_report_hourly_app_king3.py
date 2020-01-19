@@ -830,6 +830,11 @@ if __name__ == '__main__':
         print("此机构:", x['ORG_ID'])
         for hours_temp in range(-23, 1, +1):
             main(db, x['ORG_ID'], -1, hours_temp)  # 传入的机构,设置要查询哪一天哪一小时！运行main方法，将db带过去，机构id，-1,-0 => -1跑昨天的数据！-0代表昨天0-24点数据，用于下面的操作！
+
+    # 单跑某一个机构时  例如 0030
+    # for hours_temp in range(-23, 1, +1):
+    #     main(db, '0030', -1, hours_temp)
+
     print("all done-小时报表整个处理流程完成")
     print("----------------------------------------------------------------------------------------")
     end_time = datetime.datetime.now()
