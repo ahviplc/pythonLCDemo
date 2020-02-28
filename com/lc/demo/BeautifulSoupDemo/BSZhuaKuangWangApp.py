@@ -113,7 +113,7 @@ class ZK:
                 contentHerfItem = BeautifulSoup(str(item.contents[2]), "html.parser").find_all('div', class_='content')
                 # print(contentHerfItem[0].text.strip())
 
-                # # 输出类型以及其判断 判断方法目前总结了以下三种 已测试 可用
+                # # 输出类型以及其判断 目前总结了以下三种判断方法 已测试 可用
                 # print(type(contentHerfItem[0].contents[0]))  # <class 'bs4.element.NavigableString'>
                 # # 方法1：if 类型 语句
                 # if contentHerfItem[0].contents[0] != NavigableString:
@@ -146,7 +146,7 @@ class ZK:
 
 if __name__ == "__main__":
 
-    # sys.stdout = PrintLogger('BSZhuaKuangWangApp.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可 注意：这个放开line132需要隐掉
+    # sys.stdout = PrintLogger('BSZhuaKuangWangApp.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可 注意：这个放开line156需要隐掉
 
     # print(sys.getdefaultencoding())  # utf-8
     # print(sys.stdout.encoding)  # UTF-8
