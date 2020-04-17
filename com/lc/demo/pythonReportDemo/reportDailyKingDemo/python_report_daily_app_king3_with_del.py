@@ -645,8 +645,9 @@ def del_first_before_main(db, days):
     else:
         this_day = str(this_day)
 
-    print('------为了重新日报表计算数据,接下来要删除SCADA_REPORT_DAILY日报表数据,对应年月日为:', str(this_year), this_month, this_day)
-    is_del_flag = input('确定要删除所有机构号：' + ' 时间点(年月日)为: ' + str(this_year) + this_month + this_day + ' 的 SCADA_REPORT_DAILY 日报表数据全部数据吗？确定删除输入y,不删除输入n 请输入: ')
+    print('为了重新日报表计算数据,接下来要删除SCADA_REPORT_DAILY日报表数据,对应年月日为:', str(this_year), this_month, this_day)
+    print('----------------------------------------------------------------------------------------------------')
+    is_del_flag = input('确定要删除所有机构号' + ' 时间点(年月日)为: ' + str(this_year) + this_month + this_day + ' 的 SCADA_REPORT_DAILY 日报表数据全部数据吗？确定删除输入y,不删除输入n 请输入: ')
     if is_del_flag.lower() == 'y':
         del_all_scada_report_daily_by_year_month_day(str(this_year), this_month, this_day)
         print('开始此次日报表计算操作--------------------------------------------------')

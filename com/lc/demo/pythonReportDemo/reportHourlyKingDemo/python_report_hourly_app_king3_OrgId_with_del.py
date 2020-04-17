@@ -847,6 +847,7 @@ def del_first_before_main(db, org_id, days):
         this_day = str(this_day)
 
     print('为了重新小时报表计算数据,接下来要删除SCADA_REPORT_HOURLY小时报表数据,对应年月日为:', str(this_year), this_month, this_day)
+    print('----------------------------------------------------------------------------------------------------')
     is_del_flag = input('确定要删除机构号：' + org_id + ' 时间点(年月日)为: ' + str( this_year) + this_month + this_day + ' 的 SCADA_REPORT_HOURLY 小时报表数据全部数据吗？确定删除输入y,不删除输入n 请输入: ')
     if is_del_flag.lower() == 'y':
         del_all_scada_report_hourly_by_org_id_year_month_day(org_id, str(this_year), this_month, this_day)
