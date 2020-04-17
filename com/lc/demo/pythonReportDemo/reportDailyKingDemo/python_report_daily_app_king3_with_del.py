@@ -3,13 +3,13 @@
 
 """
 
-python_report_hourly_app_king3_OrgId_with_del.py 跑单独机构加强版本3 跑之前删除原有对应年月日数据的版本 再次优化小时报表 封装了小时报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
-指定单机构-小时报表-计算写入数据库oracle的报表脚本
-版本说明:1：跑所有机构的小时报表；2:逻辑变更-【周期内工况使用量（本期期末数-上期期末数）】【周期内标况使用量（本期期末数-上期期末数）】 3:整体脚本代码结构变更
+python_report_daily_app_king3_with_del.py 跑之前先删除所有的相关数据 加强版本2 封装了日报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
+日报表-计算写入数据库oracle的报表脚本
+版本说明:1：跑所有机构的日报表；2:逻辑变更-【周期内工况使用量（本期期末数-上期期末数）】【周期内标况使用量（本期期末数-上期期末数）】 3:整体脚本代码结构变更
 Version: 1.0
 Author: LC
-DateTime: 2019年5月10日09:48:17
-UpdateTime: 2020年4月17日13:58:15
+DateTime: 2019年3月7日14:16:04
+UpdateTime: 2020-4-17 15:02:50
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 LC博客url: http://oneplusone.vip/index.html
@@ -25,7 +25,7 @@ import os
 import sys
 import cx_Oracle
 import operator
-from python_report_hourly_model import ReportHourlyModel  # 导入小时报表对象类
+from python_report_daily_model import ReportDailyModel  # 导入日报表对象类
 from db_utils import get_sys_serial_no  # 导入获取流水号方法
 from print_msg_to_log_model import PrintLogger
 
@@ -175,8 +175,8 @@ class MyOracle:
 
 
 # 获取间隔n天时间的最小时间(0点)和最大时间(23点59分59秒)-datetime.timedelta(days=1)可以处理天，datetime.timedelta(weeks=1)也可以处理周等
-# @param  n,types,isFormat; n代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;
-#                          types取值有max和min,max代表输出当前时间最大时间，min代表输出当前时间最小时间;
+# @param  n,type,isFormat; n代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;
+#                          type取值有max和min,max代表输出当前时间最大时间，min代表输出当前时间最小时间;
 #                          isFormat是否格式化输出，布尔值为True,格式化输出str类型时间,为False,不格式化输出，直接返回datetime类型时间。
 # @return 符合要求的datetime格式日期
 # 使用示例:
@@ -184,64 +184,11 @@ class MyOracle:
 # print(to_n_datetime_max_min_time(0,"min", False))-2019-03-07 00:00:00
 # print(to_n_datetime_max_min_time(-1,"min", False))-2019-03-06 00:00:00
 # print(to_n_datetime_max_min_time(-5, "max", True))-2019-03-02 23:59:59
-def to_n_datetime_max_min_time(n, types, is_format):
-    if types == "max":
+def to_n_datetime_max_min_time(n, type, is_format):
+    if type == "max":
         return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.max)
-    elif types == "min":
+    elif type == "min":
         return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.min)
-    if (is_format):
-        return_time = return_time.strftime('%Y-%m-%d %H:%M:%S')
-    return return_time
-
-
-# 获取间隔n个小时时间的最小时间(0点)和最大时间(23点59分59秒)-datetime.timedelta(days=1)可以处理天，datetime.timedelta(weeks=1)也可以处理周等
-# @param  n,h,types,isFormat; n代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;
-#                             h代表几小时，可以正值(h小时后)，可以负值(h小时前),0代表当前小时 ;
-#                             types取值有max和min,max代表输出当前时间最大时间，min代表输出当前时间最小时间;
-#                             isFormat是否格式化输出，布尔值为True,格式化输出str类型时间,为False,不格式化输出，直接返回datetime类型时间。
-# @return 符合要求的datetime格式日期
-# 使用示例:
-def to_get_hour_first_last_minutes_datetime_max_min_time(n, h, types, is_format):
-    if types == "max":
-        return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.max) + datetime.timedelta(hours=h)
-    elif types == "min":
-        return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.min)
-    if (is_format):
-        return_time = return_time.strftime('%Y-%m-%d %H:%M:%S')
-    return return_time
-
-
-# 获取间隔n个小时时间的最小时间(0点)和最大时间(23点59分59秒)-datetime.timedelta(days=1)可以处理天，datetime.timedelta(weeks=1)也可以处理周等
-# @param  n,h,types,isFormat; n代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;
-#                             h代表几小时，可以正值(h小时后)，可以负值(h小时前),0代表当前小时 ;
-#                             types取值有max和min,max代表输出当前时间+1h的最小时间，min代表输出当前时间最小时间;
-#                             isFormat是否格式化输出，布尔值为True,格式化输出str类型时间,为False,不格式化输出，直接返回datetime类型时间。
-# @return 符合要求的datetime格式日期
-# 使用示例:
-def to_get_hour_first_last_minutes_datetime_max_min_time_ver_2(n, h, types, is_format):
-    if types == "max":
-        return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.min) + datetime.timedelta(hours=h+24)
-    elif types == "min":
-        return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.min)
-    if (is_format):
-        return_time = return_time.strftime('%Y-%m-%d %H:%M:%S')
-    return return_time
-
-
-# 获取间隔n个小时时间的最小时间(0点)和最大时间(23点59分59秒)-datetime.timedelta(days=1)可以处理天，datetime.timedelta(weeks=1)也可以处理周等  凌晨1点数据计算专属方法
-# @param  n,h,types,isFormat; n代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;
-#                             h代表几小时，可以正值(h小时后)，可以负值(h小时前),0代表当前小时 ;
-#                             types取值有max和min,max代表输出当前时间最大时间，min代表输出当前时间最小时间;
-#                             isFormat是否格式化输出，布尔值为True,格式化输出str类型时间,为False,不格式化输出，直接返回datetime类型时间。
-# @return 符合要求的datetime格式日期
-# 使用示例:
-def to_get_hour_first_last_minutes_datetime_max_min_time2(n, h, types, is_format):
-    if types == "max":
-        return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.max) + datetime.timedelta(hours=h)
-    elif types == "min":
-        return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.min)
-    elif types == "min2":
-        return_time = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=n), datetime.time.min) + datetime.timedelta(hours=h)
     if (is_format):
         return_time = return_time.strftime('%Y-%m-%d %H:%M:%S')
     return return_time
@@ -257,60 +204,6 @@ def select_sfd_by_where(org_id, days):
     yesterday_min = to_n_datetime_max_min_time(days, "min", False)
     yesterday_max = to_n_datetime_max_min_time(days, "max", False)
     data = [{"orgid": org_id, "minTime": yesterday_min, "maxTime": yesterday_max}]
-    fc = db.select_by_where_many_params_dict(sql, data)
-    print("总共抄表数据:", len(fc))
-    # for row in fc:
-    #     print(row)
-    return fc, data
-
-
-# 从oracle数据库SCADA_FLMETER_DATA读取所有符合条件的数据
-# 带参数查询
-# @param  org_id 要查询机构号
-# @param days 天数 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天
-# @param  hours 0代表当前小时 +n代表n小时后 -n代表n小时前
-# @return 处理结果 True成功 False失败
-def select_sfd_by_where_for_hourly(org_id, days, hours):
-    sql = "select * from SCADA_FLMETER_DATA where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
-    yesterday_min = to_get_hour_first_last_minutes_datetime_max_min_time(days, hours, "min", False)
-    yesterday_max = to_get_hour_first_last_minutes_datetime_max_min_time(days, hours, "max", False)
-    data = [{"orgid": org_id, "minTime": yesterday_min, "maxTime": yesterday_max}]
-    fc = db.select_by_where_many_params_dict(sql, data)
-    print("总共抄表数据:", len(fc))
-    # for row in fc:
-    #     print(row)
-    return fc, data
-
-
-# 从oracle数据库SCADA_FLMETER_DATA读取所有符合条件的数据
-# 带参数查询
-# @param  org_id 要查询机构号
-# @param days 天数 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天
-# @param  hours 0代表当前小时 +n代表n小时后 -n代表n小时前
-# @return 处理结果 True成功 False失败
-def select_sfd_by_where_for_hourly_ver_2(org_id, days, hours):
-    sql = "select * from SCADA_FLMETER_DATA where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
-    yesterday_min = to_get_hour_first_last_minutes_datetime_max_min_time_ver_2(days, hours, "min", False)
-    yesterday_max = to_get_hour_first_last_minutes_datetime_max_min_time_ver_2(days, hours, "max", False)
-    data = [{"orgid": org_id, "minTime": yesterday_min, "maxTime": yesterday_max}]
-    fc = db.select_by_where_many_params_dict(sql, data)
-    print("总共抄表数据:", len(fc))
-    # for row in fc:
-    #     print(row)
-    return fc, data
-
-
-# 从oracle数据库SCADA_FLMETER_DATA读取所有符合条件的数据  凌晨1点数据计算专属方法
-# 带参数查询
-# @param  org_id 要查询机构号
-# @param days 天数 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天
-# @param  hours 0代表当前小时 +n代表n小时后 -n代表n小时前
-# @return 处理结果 True成功 False失败
-def select_sfd_by_where_for_hourly2(org_id, days, hours):
-    sql = "select * from SCADA_FLMETER_DATA where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
-    yesterday_min_max = to_get_hour_first_last_minutes_datetime_max_min_time2(days, hours, "min", False)
-    yesterday_max_min = to_get_hour_first_last_minutes_datetime_max_min_time2(days, hours+23, "min2", False)
-    data = [{"orgid": org_id, "minTime": yesterday_max_min, "maxTime": yesterday_min_max}]
     fc = db.select_by_where_many_params_dict(sql, data)
     print("总共抄表数据:", len(fc))
     # for row in fc:
@@ -340,28 +233,6 @@ def ok_processing_data_insert_into_oracle(report_daily_model, *args, **kwargs):
     return True
 
 
-# 处理好数据写入oracle for 小时报表
-# @param  小时报表对象report_hourly_model-主键【srh_org_id 机构号, srh_id 记录ID 】其他字段
-# @return 处理结果 True成功 False失败
-def ok_processing_data_insert_into_oracle_for_hourly(report_hourly_model, *args, **kwargs):
-    print(report_hourly_model.flmeter_no)
-    fc = select_scada_report_hourly_is_null_or_not(report_hourly_model.srh_org_id, report_hourly_model.flmeter_no, report_hourly_model.year, report_hourly_model.month, report_hourly_model.day, report_hourly_model.hour)
-    print("总列表长度:", len(fc))
-    if len(fc) == 0:  # 如果为0 代表无数据 先生成一条
-        insert_scada_report_hourly(report_hourly_model)
-        pass
-    else:  # 如果不为0 则根据SRD_ORG_ID，SRD_ID直接删除此条数据 再新增一条
-        ok_srh_id = fc[0]['SRH_ID']
-        del_scada_report_hourly(report_hourly_model.srh_org_id, ok_srh_id)
-        insert_scada_report_hourly(report_hourly_model)
-        pass
-    # print(args)  # (1, 2, 3, '123')
-    # print(kwargs)
-    print(report_hourly_model.flmeter_no+"处理好数据已写入oracle")
-    pass
-    return True
-
-
 # 查询SCADA_REPORT_DAILY表中 此当前年月日数据 是否存在 不存在 新增 存在的话 删除 再新增
 # @param srd_org_id 机构号
 # @param flmeter_no 流量计编号
@@ -372,21 +243,6 @@ def ok_processing_data_insert_into_oracle_for_hourly(report_hourly_model, *args,
 def select_scada_report_daily_is_null_or_not(srd_org_id, flmeter_no, year, month, day):
     sql = "select * from SCADA_REPORT_DAILY where SRD_ORG_ID= :srd_org_id  and FLMETER_NO= :flmeter_no and YEAR = :year and MONTH = :month and DAY = :day"
     data = [{"srd_org_id": srd_org_id, "flmeter_no": flmeter_no, "year": year, "month": month, "day": day}]
-    fc = db.select_by_where_many_params_dict(sql, data)
-    return fc
-
-
-# 查询SCADA_REPORT_HOURLY表中 此当前年月日数据 是否存在 不存在 新增 存在的话 删除 再新增
-# @param srh_org_id 机构号
-# @param flmeter_no 流量计编号
-# @param year  年
-# @param month  月
-# @param day  日
-# @param hour 小时
-# @return 返回查询出的数据list
-def select_scada_report_hourly_is_null_or_not(srh_org_id, flmeter_no, year, month, day, hour):
-    sql = "select * from SCADA_REPORT_HOURLY where SRH_ORG_ID= :srh_org_id  and FLMETER_NO= :flmeter_no and YEAR = :year and MONTH = :month and DAY = :day and  HOUR = :hour"
-    data = [{"srh_org_id": srh_org_id, "flmeter_no": flmeter_no, "year": year, "month": month, "day": day, "hour": hour}]
     fc = db.select_by_where_many_params_dict(sql, data)
     return fc
 
@@ -424,39 +280,6 @@ def insert_scada_report_daily(report_daily_model):
     print('insert_scada_report_daily ok')
 
 
-# 新增SCADA_REPORT_HOURLY
-# @param report_hourly_model 小时报表对象类
-# @return null 插入成功或失败
-def insert_scada_report_hourly(report_hourly_model):
-    insert_sql = "INSERT INTO SCADA_REPORT_HOURLY (SRH_ORG_ID,SRH_ID, RTU_NO,FLMETER_NO,CUSTOMER_NO," \
-                 "REPORT_TIME,YEAR,MONTH,DAY, HOUR," \
-                 "STD_SUM,WORK_SUM,STD_FLOW,WORK_FLOW,TEMPERATURE," \
-                 "PRESSURE,PRICE,USE_VOLUME_WORK, USE_VOLUME_STD,USE_MONEY," \
-                 "SUM_TOTAL_VOLUME,SUM_TOTAL_MONEY,TOTAL_BUY_VOLUME,TOTAL_BUY_MONEY,REMAIN_MONEY," \
-                 "REMAIN_VOLUME,FM_STATE,FM_STATE_MSG,RTU_STATE,RTU_STATE_MSG,VALVE_STATE,VALVE_STATE_MSG,POWER_VOLTAGE," \
-                 "BATTERY_VOLTAGE,BATTERY_LEVEL,PRESS_IN,PRESS_OUT,TEMP_IN," \
-                 "TEMP_OUT,RSSI, SRH_STATUS ) " \
-                 "VALUES" \
-                 "(:srh_org_id,:srh_id, :rtu_no,:flmeter_no,:customer_no," \
-                 ":report_time,:year,:month,:day, :hour," \
-                 ":std_sum,:work_sum,:std_flow,:work_flow,:temperature," \
-                 ":pressure,:price,:use_volume_work, :use_volume_std,:use_money," \
-                 ":sum_total_volume,:sum_total_money,:total_buy_volume,:total_buy_money,:remain_money," \
-                 ":remain_volume,:fm_state,:fm_state_msg,:rtu_state,:rtu_state_msg,:valve_state,:valve_state_msg,:power_voltage," \
-                 ":battery_voltage,:battery_level,:press_in,:press_out,:temp_in," \
-                 ":temp_out,:rssi, :srh_status)"
-    data = [{"srh_org_id": report_hourly_model.srh_org_id, "srh_id": report_hourly_model.srh_id, "rtu_no": report_hourly_model.rtu_no, "flmeter_no": report_hourly_model.flmeter_no,"customer_no": report_hourly_model.customer_no,
-             "report_time": report_hourly_model.report_time, "year": report_hourly_model.year, "month": report_hourly_model.month, "day": report_hourly_model.day, "hour": report_hourly_model.hour,
-             "std_sum": report_hourly_model.std_sum, "work_sum": report_hourly_model.work_sum, "std_flow": report_hourly_model.std_flow, "work_flow": report_hourly_model.work_flow, "temperature": report_hourly_model.temperature,
-             "pressure": report_hourly_model.pressure, "price": report_hourly_model.price, "use_volume_work": report_hourly_model.use_volume_work, "use_volume_std": report_hourly_model.use_volume_std, "use_money": report_hourly_model.use_money,
-             "sum_total_volume": report_hourly_model.sum_total_volume, "sum_total_money": report_hourly_model.sum_total_money, "total_buy_volume": report_hourly_model.total_buy_volume, "total_buy_money": report_hourly_model.total_buy_money, "remain_money": report_hourly_model.remain_money,
-             "remain_volume": report_hourly_model.remain_volume, "fm_state": report_hourly_model.fm_state,"fm_state_msg": report_hourly_model.fm_state_msg, "rtu_state": report_hourly_model.rtu_state,"rtu_state_msg": report_hourly_model.rtu_state_msg, "valve_state": report_hourly_model.valve_state, "valve_state_msg": report_hourly_model.valve_state_msg, "power_voltage": report_hourly_model.power_voltage,
-             "battery_voltage": report_hourly_model.battery_voltage, "battery_level": report_hourly_model.battery_level, "press_in": report_hourly_model.press_in, "press_out": report_hourly_model.press_out, "temp_in": report_hourly_model.temp_in,
-             "temp_out": report_hourly_model.temp_out, "rssi": report_hourly_model.rssi, "srh_status": report_hourly_model.srh_status}]
-    db.dml_by_where(insert_sql, data)  # ok
-    print('insert_scada_report_hourly ok')
-
-
 # 删除SCADA_REPORT_DAILY 带条件参数 删除数据
 # @param srd_org_id 机构号
 # @param srd_id 记录id
@@ -468,28 +291,17 @@ def del_scada_report_daily(srd_org_id, srd_id):
     print('del_by_where ok')
 
 
-# 删除SCADA_REPORT_HOURLY 带条件参数 删除数据
-# @param srh_org_id 机构号
-# @param srh_id 记录id
-# @return null 删除成功或失败
-def del_scada_report_hourly(srh_org_id, srh_id):
-    sql = "delete from SCADA_REPORT_HOURLY where SRH_ORG_ID = :1 and SRH_ID=:2"
-    data = [(srh_org_id, srh_id)]
-    db.dml_by_where(sql, data)
-    print('del_by_where del_scada_report_hourly ok')
-
-
-# 删除SCADA_REPORT_HOURLY 带条件参数 删除数据 删除所有 指定到年月日
-# @param srh_org_id 机构号
+# 删除SCADA_REPORT_DAILY 带条件参数 删除数据 删除所有 指定到年月日
 # @param srh_year 年
 # @param srh_month 月
 # @param srh_day 日
 # @return null 删除成功或失败
-def del_all_scada_report_hourly_by_org_id_year_month_day(srh_org_id, srh_year, srh_month, srh_day):
-    sql = "delete from SCADA_REPORT_HOURLY where SRH_ORG_ID = :1 and YEAR=:2 and MONTH=:3 and DAY=:4"
-    data = [(srh_org_id, srh_year, srh_month, srh_day)]
+def del_all_scada_report_daily_by_year_month_day(srh_year, srh_month, srh_day):
+    sql = "delete from SCADA_REPORT_DAILY where YEAR=:1 and MONTH=:2 and DAY=:3"
+    data = [(srh_year, srh_month, srh_day)]
     db.dml_by_where(sql, data)
-    print('del_all_scada_report_hourly_by_org_id_year_month_day ok')
+    print('del_all_scada_report_daily_by_year_month_day ok')
+
 
 # 获取所有需要跑脚本的机构信息
 # 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1生成
@@ -526,7 +338,7 @@ def get_average_period(data_list, key):
 # @param org_id 机构号
 # @param 字典传参 query_datetime 查询操作的日期
 # @return 处理结果 True成功 False失败
-def data_processing(data_for_processing, last_data_for_processing, org_id, **kwargs):
+def data_processing(data_for_processing,last_data_for_processing,org_id, **kwargs):
     rm_repeat_sfd_data_list = []  # 用于临时存放已删除重复的字典数据
     last_rm_repeat_sfd_data_list = []  # 用于临时存放已删除重复的字典数据 上一天的 上一次的
 
@@ -569,11 +381,11 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
 
         # 排序完成之后，具体字段补充
 
-        # 新建一个小时报表类，用于接收收据
-        rdm = ReportHourlyModel()
+        # 新建一个日报表类，用于接收收据
+        rdm = ReportDailyModel()
 
         # 机构号
-        rdm.srh_org_id = sorted_rm_repeat_sfd_data_list[0]['SFD_ORG_ID']
+        rdm.srd_org_id = sorted_rm_repeat_sfd_data_list[0]['SFD_ORG_ID']
 
         # 记录id srd_id 移到line385
 
@@ -609,20 +421,20 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         else:
             rdm.day = str(kwargs['query_datetime'].day)
 
-        # 处理小时 处理了 小时报表需要用到
+        # 处理小时 不处理了 togo
         # print(len(str(rdm.hour)))
         # 如果小时小于10 补零 让9变为09小时
-        if len(str(kwargs['query_datetime'].hour + 1)) < 2:
-            rdm.hour = "0" + str(kwargs['query_datetime'].hour + 1)
-        else:
-            rdm.hour = str(kwargs['query_datetime'].hour + 1)
+        # if len(str(now_datetime.hour)) < 2:
+        #     rdm.hour = "0" + str(now_datetime.hour)
+        # else:
+        #     rdm.hour = str(now_datetime.hour)
 
         # 记录ID-取自动递增流水号
         ssn_org_id = org_id  # 传入过来的org_id
-        ssn_key_name = "SCADA_REPORT_HOURLY"  # 如需修改为其他表的递增流水，请自行修改
+        ssn_key_name = "SCADA_REPORT_DAILY"  # 如需修改为其他表的递增流水，请自行修改
         ok_srd_id = get_sys_serial_no(db, ssn_org_id, ssn_key_name, rdm.year, rdm.month)  # 导入获取流水号方法
         print(ok_srd_id)
-        rdm.srh_id = ssn_org_id + rdm.year + rdm.month + ok_srd_id
+        rdm.srd_id = ssn_org_id + rdm.year + rdm.month + ok_srd_id
 
         # 标况总量（期末数）
         rdm.std_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['STD_SUM']  # 默认升序，列表最后一个元素，值最大
@@ -727,14 +539,14 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         # 信号强度（平均值）
         rdm.rssi = get_average_period(sorted_rm_repeat_sfd_data_list, "RSSI")
         # 删除标识符 1正常，9不正常已删除 默认置为1
-        rdm.srh_status = "1"
+        rdm.srd_status = "1"
 
         # print(sorted_rm_repeat_sfd_data_list)
         # print(len(sorted_rm_repeat_sfd_data_list), sorted_rm_repeat_sfd_data_list[0]['FLMETER_NO'], max_std_sum,min_std_sum, ok_std_sum)
         # print('----------------------------------------------------------------------------------------')
 
         # 写入数据库
-        is_success = ok_processing_data_insert_into_oracle_for_hourly(rdm)  # 将完善好数据的小时报表对象rdm-(其实该是rhm)传入
+        is_success = ok_processing_data_insert_into_oracle(rdm)  # 将完善好数据的日报表对象rdm传入
         print('----------------------------------------------------------------------------------------')
 
         # 处理数据完毕 清除临时使用数据
@@ -769,9 +581,8 @@ def is_number(s):
 # @param db 数据库实例
 # @param org_id 机构号
 # @param days 天数
-# @param hours 小时数
 # @return main方法运行处理结果 执行完毕即可
-def main(db, org_id, days, hours):
+def main(db, org_id, days):
 
     print("I am main()")
 
@@ -779,48 +590,36 @@ def main(db, org_id, days, hours):
     # 设置机构号(传参接收过来了 )和序列号名称代码位置
     # com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king2.py:419
 
-    if hours == -23: # 凌晨1点的数据
-        # 设置查询的机构,要查询哪一小时 【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2】
-        return_data, params_data = select_sfd_by_where_for_hourly_ver_2(org_id, days, hours)  # @param org_id 要查询机构号 @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天; hours 0代表小时 +n代表n小时后 -n代表n小时前 默认为-1 跑1小时前的数据
+    # 设置查询的机构,要查询哪一天
+    return_data, params_data = select_sfd_by_where(org_id, days)  # @param org_id 要查询机构号 @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
 
-        # 查询当天的上一天数据 凌晨1点数据计算专属方法
-        print("下面是查询当前小时的上一小时数据-总共抄表数据")
-        last_return_data, last_params_data = select_sfd_by_where_for_hourly2(org_id, days, hours - 1)
-
-        pass
-    else:
-        # 设置查询的机构,要查询哪一小时 由方法【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2】
-        return_data, params_data = select_sfd_by_where_for_hourly_ver_2(org_id, days, hours)  # @param org_id 要查询机构号 @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天; hours 0代表小时 +n代表n小时后 -n代表n小时前 默认为-1 跑1小时前的数据
-
-        # 查询当天的上一天数据
-        print("下面是查询当前小时的上一小时数据-总共抄表数据")
-        # 由【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2】
-        last_return_data, last_params_data = select_sfd_by_where_for_hourly_ver_2(org_id, days, hours - 1)
+    # 查询当天的上一天数据
+    print("下面是查询当天的上一天数据-总共抄表数据")
+    last_return_data, last_params_data = select_sfd_by_where(org_id, days-1)
 
     # print(return_data)
     # print(len(return_data))
 
     # 接下来开始处理查询出数据
     if len(return_data) > 0:
-        print(params_data[0]['orgid'], [params_data[0]['minTime'].strftime('%Y-%m-%d %H:%M:%S'),params_data[0]['maxTime'].strftime('%Y-%m-%d %H:%M:%S')], "开始进行计算小时报表数据处理")
-        is_ok = data_processing(return_data, last_return_data, params_data[0]['orgid'],query_datetime=last_params_data[0]['maxTime'])  # 数据处理函数，处理小时报表 , 小时报表数据计算，写入数据库操作
+        print(params_data[0]['orgid'], [params_data[0]['minTime'].strftime('%Y-%m-%d %H:%M:%S'),params_data[0]['maxTime'].strftime('%Y-%m-%d %H:%M:%S')], "开始进行计算日报表数据处理")
+        is_ok = data_processing(return_data, last_return_data, params_data[0]['orgid'],query_datetime=params_data[0]['minTime'])  # 数据处理函数，处理日报表 , 日报表数据计算，写入数据库操作
         if is_ok:
             print(params_data[0]['orgid'],"data_processing is ok")
             print('----------------------------------------------------------------------------------------')
         pass
     else:
-        print(params_data[0]['orgid'], [params_data[0]['minTime'].strftime('%Y-%m-%d %H:%M:%S'),params_data[0]['maxTime'].strftime('%Y-%m-%d %H:%M:%S')], "期间无抄表数据，请等待重新计算小时报表")
+        print(params_data[0]['orgid'], [params_data[0]['minTime'].strftime('%Y-%m-%d %H:%M:%S'),params_data[0]['maxTime'].strftime('%Y-%m-%d %H:%M:%S')], "期间无抄表数据，请等待重新计算日报表")
         print("----------------------------------------------------------------------------------------")
     pass
 
 
 # del_first_before_main方法
 # @param db 数据库实例
-# @param org_id 机构号
 # @param days 天数
 
 # @return main方法运行之前删除数据处理结果 完成返回True 否则为False
-def del_first_before_main(db, org_id, days):
+def del_first_before_main(db, days):
     yesterday_min_datetime = to_n_datetime_max_min_time(days, "min", False)  # 如果是False 会直接返回datetime
 
     # yesterday_max = to_n_datetime_max_min_time(days, "max", True)  # 如果是True 会转换成str
@@ -846,21 +645,21 @@ def del_first_before_main(db, org_id, days):
     else:
         this_day = str(this_day)
 
-    print('为了重新小时报表计算数据,接下来要删除SCADA_REPORT_HOURLY小时报表数据,对应年月日为:', str(this_year), this_month, this_day)
-    is_del_flag = input('确定要删除机构号：' + org_id + ' 时间点(年月日)为: ' + str( this_year) + this_month + this_day + ' 的 SCADA_REPORT_HOURLY 小时报表数据全部数据吗？确定删除输入y,不删除输入n 请输入: ')
+    print('------为了重新日报表计算数据,接下来要删除SCADA_REPORT_DAILY日报表数据,对应年月日为:', str(this_year), this_month, this_day)
+    is_del_flag = input('确定要删除所有机构号：' + ' 时间点(年月日)为: ' + str(this_year) + this_month + this_day + ' 的 SCADA_REPORT_DAILY 日报表数据全部数据吗？确定删除输入y,不删除输入n 请输入: ')
     if is_del_flag.lower() == 'y':
-        del_all_scada_report_hourly_by_org_id_year_month_day(org_id, str(this_year), this_month, this_day)
-        print('开始此次小时报表计算操作--------------------------------------------------')
+        del_all_scada_report_daily_by_year_month_day(str(this_year), this_month, this_day)
+        print('开始此次日报表计算操作--------------------------------------------------')
         return True
     else:
-        print('你选择了不删除原有数据,取消此次小时报表计算操作')
+        print('你选择了不删除原有数据,取消此次日报表计算操作')
         return False
     # print(yesterday_min, yesterday_max)  # 2020-04-16 00:00:00 2020-04-16 23:59:59.999999
 
 
 if __name__ == '__main__':
 
-    # sys.stdout = PrintLogger('python_report_hourly_app_king3_OrgId_with_del.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    # sys.stdout = PrintLogger('python_report_daily_app_king3_with_del.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
 
     print("============================================================================================================================================================分隔符")
 
@@ -880,24 +679,16 @@ if __name__ == '__main__':
     # 查询出所有需要跑脚本的机构id
     org_list = get_all_org_id_for_run_py_command_script_from_select_db()  # 查询出所有需要跑脚本的机构id
 
-    # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;hours 0代表当前小时 +n代表n小时后 -n代表n小时前 默认为-1 跑一小时前的数据
-    # # if x['ORG_ID'] == '0027':
-    # for x in org_list:
-    #     print("此机构:", x['ORG_ID'])
-    #     for hours_temp in range(-23, 1, +1):
-    #         main(db, x['ORG_ID'], -1, hours_temp)  # 传入的机构,设置要查询哪一天哪一小时！运行main方法，将db带过去，机构id，-1,-0 => -1跑昨天的数据！-0代表昨天0-24点数据，用于下面的操作！
-
-    # which_day代表跑哪一天 which_org_id哪个机构
+    # which_day代表跑哪一天
     # del_first_before_main(db, which_org_id, which_day)
     which_day = -1
-    which_org_id = '0039'
+    if del_first_before_main(db, which_day):
+        # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
+        for x in org_list:
+            print("此机构:", x['ORG_ID'])
+            main(db, x['ORG_ID'], which_day)  # 传入的机构,设置要查询哪一天！运行main方法，将db带过去，机构id， -1跑昨天的数据！用于下面的操作！
 
-    if del_first_before_main(db, which_org_id, which_day):
-        # 单跑某一个机构时  例如  which_org_id = '0039'
-        for hours_temp in range(-23, 1, +1):
-            main(db, which_org_id, which_day, hours_temp)
-
-    print("all done-指定单机构-小时报表整个处理流程完成")
+    print("all done-日报表整个处理流程完成")
     print("----------------------------------------------------------------------------------------")
     end_time = datetime.datetime.now()
     print("程序运行开始时间", begin_time)
