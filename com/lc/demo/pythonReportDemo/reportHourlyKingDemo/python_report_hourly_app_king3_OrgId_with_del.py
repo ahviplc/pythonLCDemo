@@ -859,7 +859,7 @@ def del_first_before_main(db, org_id, days):
 
 if __name__ == '__main__':
 
-    # sys.stdout = PrintLogger('python_report_hourly_app_king3_OrgId.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    # sys.stdout = PrintLogger('python_report_hourly_app_king3_OrgId_with_del.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
 
     print("============================================================================================================================================================分隔符")
 
@@ -892,7 +892,7 @@ if __name__ == '__main__':
     which_org_id = '0039'
 
     if del_first_before_main(db, which_org_id, which_day):
-        # 单跑某一个机构时  例如 0030
+        # 单跑某一个机构时  例如  which_org_id = '0039'
         for hours_temp in range(-23, 1, +1):
             main(db, which_org_id, which_day, hours_temp)
 
