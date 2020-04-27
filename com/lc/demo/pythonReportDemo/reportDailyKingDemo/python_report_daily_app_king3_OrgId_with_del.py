@@ -3,7 +3,7 @@
 
 """
 
-python_report_daily_app_king3_with_del.py 跑之前先删除所有的相关数据 加强版本2 封装了日报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
+python_report_daily_app_king3_OrgId_with_del.py 跑之前先删除所有的相关数据 带机构号版本 加强版本2 封装了日报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
 日报表-计算写入数据库oracle的报表脚本
 版本说明:1：跑所有机构的日报表；2:逻辑变更-【周期内工况使用量（本期期末数-上期期末数）】【周期内标况使用量（本期期末数-上期期末数）】 3:整体脚本代码结构变更
 Version: 1.0
@@ -627,11 +627,11 @@ def main(db, org_id, days):
     pass
 
 
-# del_first_before_main方法
+# del_first_before_main2方法 不带机构号
 # @param db 数据库实例
 # @param days 天数
 # @return main方法运行之前删除数据处理结果 完成返回True 否则为False
-def del_first_before_main(db, days):
+def del_first_before_main2(db, days):
     yesterday_min_datetime = to_n_datetime_max_min_time(days, "min", False)  # 如果是False 会直接返回datetime
 
     # yesterday_max = to_n_datetime_max_min_time(days, "max", True)  # 如果是True 会转换成str
