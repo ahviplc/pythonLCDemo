@@ -12,7 +12,11 @@ class ListNode:
 # main方法
 if __name__ == '__main__':
     slt = Solution()
-    lostnode1 = ListNode(243)
-    lostnode2 = ListNode(564)
-    temp = slt.addTwoNumbers(lostnode1, lostnode2)
-    print(temp.val, temp.next.val, temp.next.next.val)
+    listnode1 = ListNode(2)
+    listnode1.next = ListNode(4)
+    listnode1.next.next = ListNode(3)
+    listnode2 = ListNode(5)
+    listnode2.next = ListNode(6)
+    listnode2.next.next = ListNode(4)
+    temp = slt.addTwoNumbers(listnode1, listnode2)
+    print(temp.val, temp.next.val, temp.next.next.val)  # 7 0 8
