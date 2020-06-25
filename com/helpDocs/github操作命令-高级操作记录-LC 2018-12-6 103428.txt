@@ -494,6 +494,18 @@ $ git branch -r
   origin/dev
   origin/master
 
+git tag相关:
+首先本地打tag:
+git tag -a v0.2 -m 'v0.2'
+
+推送到远端
+git push origin v0.2
+推送所有tag到远端
+git push origin --tags
+
+查看原程tag
+git ls-remote
+
 其他Git操作 去看:
 Git教程 - 廖雪峰的官方网站
 https://www.liaoxuefeng.com/wiki/896043488029600
