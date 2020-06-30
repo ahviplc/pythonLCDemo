@@ -887,7 +887,7 @@ def del_first_before_main(db, months):
 
 if __name__ == '__main__':
 
-    # sys.stdout = PrintLogger('python_report_monthly_app_king2.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    # sys.stdout = PrintLogger('python_report_monthly_app_king3_with_del.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
 
     print("============================================================================================================================================================分隔符")
 
