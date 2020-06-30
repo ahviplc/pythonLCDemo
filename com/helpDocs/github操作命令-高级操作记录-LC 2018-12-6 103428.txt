@@ -556,7 +556,22 @@ git reset --hard 版本库ID
     （2）如果不想保留这些修改，可以直接使用彻底的恢复命令，git reset --hard 版本库ID。
     （3）为什么不使用--soft呢，因为它只是恢复了版本库，暂存区仍然存在你错误提交的文件索引，还需要进一步使用上一节的删除错误添加到暂存区的文件，
 ---------------------------------------------------------------------------------------------------------------------------
+git merge –no-ff -m "写message" 可以保存你之前的分支历史。能够更好的查看 merge历史，以及branch 状态。 使用这个
+【git merge –no-ff -m "写message"】
 
+git merge 则不会显示 feature，只保留单条分支记录。
+
+比如：我当前分支是master, 修复bug的分支是issue-001
+
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 2 commits.
+$ git merge --no-ff -m "merged bug fix 001" issue-001 //合并issue-001分支  使用这个.
+Merge made by the 'recursive' strategy.
+ readme.txt |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git branch -d issue-001
+Deleted branch issue-101 (was cc17032).
 ---------------------------------------------------------------------------------------------------------------------------
 其他Git操作 去看:
 Git教程 - 廖雪峰的官方网站
