@@ -4,9 +4,12 @@
 
 ###### 如何玩转PyQt5(其控件等)?
 
-程序员之路：python3+PyQt5+pycharm桌面GUI开发 - 莫水千流 - 博客园 - 我就是按照这个配置pycharm的
+程序员之路：python3+PyQt5+pycharm桌面GUI开发 - 莫水千流 - 博客园 - 我就是按照这个配置pycharm的 废弃 图片已失效
 
 > https://www.cnblogs.com/zhoug2020/p/9039993.html
+
+Python3+PyQt5+PyCharm 桌面GUI开发环境搭建 - 整合侠 - 博客园 可以的
+> https://www.cnblogs.com/lizm166/p/10286555.html
 
 【 分类 】- PyQt5基本窗口控件 - jia666666的博客 - CSDN博客 - 点我学习吧
 
