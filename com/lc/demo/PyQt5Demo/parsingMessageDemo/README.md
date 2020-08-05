@@ -2,9 +2,14 @@
 
 报文解析小软件, 小工具
 
-程序员之路：python3+PyQt5+pycharm桌面GUI开发 - 莫水千流 - 博客园 - 我就是按照这个配置pycharm的
+程序员之路：python3+PyQt5+pycharm桌面GUI开发 - 莫水千流 - 博客园 - 我就是按照这个配置pycharm的 - 图片失效
 
 > https://www.cnblogs.com/zhoug2020/p/9039993.html
+
+这个配置介绍的图片未失效-可以的-【和com/lc/demo/PyQt5Demo/parsingMessageDemo/uiKu/README.md中介绍的配置路径一样的 和上面失效的也是一样的】
+
+Pycharm+Python+PyQt5使用 - 大蓝鲸 - 博客园
+> https://www.cnblogs.com/dalanjing/p/6978373.html
 
 【 分类 】- PyQt5基本窗口控件 - jia666666的博客 - CSDN博客 - 点我学习吧
 
