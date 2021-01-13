@@ -820,7 +820,7 @@ def for_main(name, org_list):
 
 if __name__ == '__main__':
 
-    # sys.stdout = PrintLogger('python_report_hourly_app_king3.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    # sys.stdout = PrintLogger('python_report_hourly_app_king4_threading.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
 
     print("============================================================================================================================================================分隔符")
 
@@ -840,7 +840,7 @@ if __name__ == '__main__':
     # 查询出所有需要跑脚本的机构id
     org_list = get_all_org_id_for_run_py_command_script_from_select_db()  # 查询出所有需要跑脚本的机构id
 
-    # 将org_list分成两份 先测试
+    # 将org_list分成三份 测试无实际抄表数据干跑 线程版本76秒 不使用线程版本159秒
     org_list1 = org_list[0:20]
     org_list2 = org_list[20:40]
     org_list3 = org_list[40:len(org_list)]
