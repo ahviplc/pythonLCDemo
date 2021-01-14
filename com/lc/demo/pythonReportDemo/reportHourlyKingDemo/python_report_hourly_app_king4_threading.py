@@ -840,10 +840,14 @@ if __name__ == '__main__':
     # 查询出所有需要跑脚本的机构id
     org_list = get_all_org_id_for_run_py_command_script_from_select_db()  # 查询出所有需要跑脚本的机构id
 
-    # 将org_list分成三份 测试无实际抄表数据干跑 线程版本76秒 不使用线程版本159秒
-    org_list1 = org_list[0:20]
-    org_list2 = org_list[20:40]
-    org_list3 = org_list[40:len(org_list)]
+    # 将org_list分成六份 测试无实际抄表数据干跑 起三个线程版本76秒 起六个线程版本57秒 不使用线程版本159秒
+    # 起六个线程
+    org_list1 = org_list[0:10]
+    org_list2 = org_list[10:20]
+    org_list3 = org_list[20:30]
+    org_list4 = org_list[30:40]
+    org_list5 = org_list[40:50]
+    org_list6 = org_list[50:len(org_list)]
 
     # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;hours 0代表当前小时 +n代表n小时后 -n代表n小时前 默认为-1 跑一小时前的数据
     # if x['ORG_ID'] == '0027':
@@ -853,14 +857,23 @@ if __name__ == '__main__':
     t1 = Thread(target=for_main, args=('第一个线程', org_list1))
     t2 = Thread(target=for_main, args=('第二个线程', org_list2))
     t3 = Thread(target=for_main, args=('第三个线程', org_list3))
+    t4 = Thread(target=for_main, args=('第四个线程', org_list4))
+    t5 = Thread(target=for_main, args=('第五个线程', org_list5))
+    t6 = Thread(target=for_main, args=('第六个线程', org_list6))
     # 启动线程运行
     t1.start()
     t2.start()
     t3.start()
+    t4.start()
+    t5.start()
+    t6.start()
     # 等待所有线程执行完毕
     t1.join()  # join() 等待线程终止，要不然一直挂起
     t2.join()
     t3.join()
+    t4.join()
+    t5.join()
+    t6.join()
     # 多线程代码结束================================================
 
     # 单跑某一个机构时  例如 0030
