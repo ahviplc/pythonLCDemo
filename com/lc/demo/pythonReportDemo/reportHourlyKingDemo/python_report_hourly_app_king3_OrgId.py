@@ -300,6 +300,24 @@ def select_sfd_by_where_for_hourly_ver_2(org_id, days, hours):
     return fc, data
 
 
+# 从oracle数据库SCADA_FLMETER_DATA读取所有符合条件的数据
+# 带参数查询
+# @param  org_id 要查询机构号
+# @param days 天数 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天
+# @param  hours 0代表当前小时 +n代表n小时后 -n代表n小时前
+# @return 处理结果 True成功 False失败
+def select_sfd_by_where_for_hourly_ver_2_pro(org_id, days, hours):
+    sql = "select * from SCADA_FLMETER_DATA where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
+    yesterday_min = to_get_hour_first_last_minutes_datetime_max_min_time_ver_2(days, hours - 1, "max", False)
+    yesterday_max = to_get_hour_first_last_minutes_datetime_max_min_time_ver_2(days, hours, "max", False)
+    data = [{"orgid": org_id, "minTime": yesterday_min, "maxTime": yesterday_max}]
+    fc = db.select_by_where_many_params_dict(sql, data)
+    print("总共抄表数据:", len(fc))
+    # for row in fc:
+    #     print(row)
+    return fc, data
+
+
 # 从oracle数据库SCADA_FLMETER_DATA读取所有符合条件的数据  凌晨1点数据计算专属方法
 # 带参数查询
 # @param  org_id 要查询机构号
@@ -777,13 +795,13 @@ def main(db, org_id, days, hours):
 
         pass
     else:
-        # 设置查询的机构,要查询哪一小时 由方法【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2】
-        return_data, params_data = select_sfd_by_where_for_hourly_ver_2(org_id, days, hours)  # @param org_id 要查询机构号 @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天; hours 0代表小时 +n代表n小时后 -n代表n小时前 默认为-1 跑1小时前的数据
+        # 设置查询的机构,要查询哪一小时 由方法【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2 再改为 select_sfd_by_where_for_hourly_ver_2_pro】
+        return_data, params_data = select_sfd_by_where_for_hourly_ver_2_pro(org_id, days, hours)  # @param org_id 要查询机构号 @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天; hours 0代表小时 +n代表n小时后 -n代表n小时前 默认为-1 跑1小时前的数据
 
         # 查询当天的上一天数据
         print("下面是查询当前小时的上一小时数据-总共抄表数据")
-        # 由【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2】
-        last_return_data, last_params_data = select_sfd_by_where_for_hourly_ver_2(org_id, days, hours - 1)
+        # 由【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2 再改为 select_sfd_by_where_for_hourly_ver_2_pro】
+        last_return_data, last_params_data = select_sfd_by_where_for_hourly_ver_2_pro(org_id, days, hours - 1)
 
     # print(return_data)
     # print(len(return_data))

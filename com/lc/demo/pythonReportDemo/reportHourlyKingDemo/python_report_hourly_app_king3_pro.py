@@ -797,12 +797,12 @@ def main(db, org_id, days, hours):
 
         pass
     else:
-        # 设置查询的机构,要查询哪一小时 由方法【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2】
+        # 设置查询的机构,要查询哪一小时 由方法【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2 再改为 select_sfd_by_where_for_hourly_ver_2_pro】
         return_data, params_data = select_sfd_by_where_for_hourly_ver_2_pro(org_id, days, hours)  # @param org_id 要查询机构号 @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天; hours 0代表小时 +n代表n小时后 -n代表n小时前 默认为-1 跑1小时前的数据
 
         # 查询当天的上一天数据
         print("下面是查询当前小时的上一小时数据-总共抄表数据")
-        # 由【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2】
+        # 由【select_sfd_by_where_for_hourly 改为 select_sfd_by_where_for_hourly_ver_2 再改为 select_sfd_by_where_for_hourly_ver_2_pro】
         last_return_data, last_params_data = select_sfd_by_where_for_hourly_ver_2_pro(org_id, days, hours - 1)
 
     # print(return_data)
