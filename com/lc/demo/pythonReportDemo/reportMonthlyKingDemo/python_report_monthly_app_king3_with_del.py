@@ -3,13 +3,13 @@
 
 """
 
-python_report_monthly_app_king3_with_del.py 加强版本3 新增月数据之前 先直接删除原有数据 再新增新的月报表数据 封装了月报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
+python_report_monthly_app_king3_with_del.py 修复大bug 月份支持传入-n了 加强版本3 新增月数据之前 先直接删除原有数据 再新增新的月报表数据 封装了月报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
 月报表-计算写入数据库oracle的报表脚本
 版本说明:1：跑所有机构的月报表；2:逻辑变更-【周期内工况使用量（本期期末数-上期期末数）】【周期内标况使用量（本期期末数-上期期末数）】 3:整体脚本代码结构变更
 Version: 1.0
 Author: LC
 DateTime: 2020年6月30日13:34:03
-UpdateTime:
+UpdateTime: 2021年1月20日14:33:53
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 LC博客url: http://oneplusone.vip/index.html
@@ -18,6 +18,7 @@ LC博客url: http://oneplusone.vip/index.html
 http://lc.oneplusone.vip/donateMeByLC.html
 
 """
+import math
 import time
 import datetime
 import calendar
@@ -194,7 +195,8 @@ def to_n_datetime_max_min_time(n, types, is_format):
     return return_time
 
 
-# 获取间隔n月的第一天的最小时间和最后一天的最大时间
+# 获取间隔n月的第一天的最小时间和最后一天的最大时间 此方法 n为-1时 传first 有bug 其他传 -n n很大 都有bug
+# 此方法弃用 存在严重bug 请使用【to_get_month_first_last_day_datetime_max_min_time_pro】方法.
 # @param  n,first_or_last_type,types,isFormat; n代表几月，可以正值(n月后)，可以负值(n月前),0代表当前月 ;
 #                          first_or_last_type取值有first和last,first代表月的第一天,last代表月的最后一天
 #                          types取值有max和min,max代表输出当前时间最大时间，min代表输出当前时间最小时间;
@@ -217,6 +219,79 @@ def to_get_month_first_last_day_datetime_max_min_time(n, first_or_last_type, typ
     if (is_format):
         return_time = return_time.strftime('%Y-%m-%d %H:%M:%S')
     return return_time
+
+
+# 获取间隔n月的第一天的最小时间和最后一天的最大时间 此方法 n为-1时 传first 有bug 其他传 -n n很大 都有bug 这是方法【to_get_month_first_last_day_datetime_max_min_time】bug修复版本
+# 此方法彻底修复bug
+# @param  n,first_or_last_type,types,isFormat; n代表几月，可以正值(n月后)，可以负值(n月前),0代表当前月 ;
+#                          first_or_last_type取值有first和last,first代表月的第一天,last代表月的最后一天
+#                          types取值有max和min,max代表输出当前时间最大时间，min代表输出当前时间最小时间;
+#                          isFormat是否格式化输出，布尔值为True,格式化输出str类型时间,为False,不格式化输出，直接返回datetime类型时间。
+# @return 符合要求的datetime格式日期
+def to_get_month_first_last_day_datetime_max_min_time_pro(n, first_or_last_type, types, is_format):
+    if first_or_last_type == "first":
+        return_time_day = get_datetime_year_month_for_monthly(n, 1)
+    elif first_or_last_type == "last":
+        # 后一月的1号 减 1天 就是 月 的最后一天
+        return_time_day = get_datetime_year_month_for_monthly(n + 1, 1) - datetime.timedelta(1)
+
+    if types == "max":
+        return_time = datetime.datetime.combine(return_time_day + datetime.timedelta(days=0), datetime.time.max)
+    elif types == "min":
+        return_time = datetime.datetime.combine(return_time_day + datetime.timedelta(days=0), datetime.time.min)
+
+    if (is_format):
+        return_time = return_time.strftime('%Y-%m-%d %H:%M:%S')
+    return return_time
+
+
+# 月份加减的函数 获取 datetime
+# param n: 要加(减)的月份数量
+# param which_day: 哪一天 用来拼接datetime
+# return: datetime
+# 测试
+# print(add_month('201501', 5))
+# print(add_month("202101", 0))  # 202101
+# print(add_month("202101", 1))  # 202102
+# print(add_month("202101", 2))  # 202103
+# print(add_month("202101", -1))  # 202012
+# print(add_month("202101", -2))  # 202011
+def get_datetime_year_month_for_monthly(n, which_day):
+    # 处理年
+    this_year = str(datetime.date.today().year)
+    # 处理月
+    this_month = str(datetime.date.today().month)
+    # print(len(str(rdm.month)))
+    # 如果月份小于10 补零 让9变为09月
+    if len(this_month) < 2:
+        this_month = "0" + this_month
+    str_year_month = add_month(this_year + this_month, n)
+    return datetime.datetime(int(str_year_month[0:4]), int(str_year_month[4:6]), which_day)
+
+
+# 月份加减的函数
+# param data_month: 时间(201501)
+# param num: 要加(减)的月份数量
+# return: 时间(str)
+# 测试
+# print(add_month('201501', 5))
+def add_month(data_month, num):
+    """
+    月份加减函数,返回字符串类型
+    :param data_month: 时间(201501)
+    :param num: 要加(减)的月份数量
+    :return: 时间(str)
+    """
+    months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+    data_month = int(data_month)
+    num = int(num)
+    year = data_month // 100
+    new_list = []
+    s = math.ceil(abs(num) / 12)
+    for i in range(int(-s), s + 1):
+        new_list += [str(year + i) + x for x in months]
+    new_list = [int(x) for x in new_list]
+    return str(new_list[new_list.index(data_month) + num])
 
 
 # 从oracle数据库SCADA_FLMETER_DATA读取所有符合条件的数据
@@ -243,8 +318,8 @@ def select_sfd_by_where(org_id, days):
 # @return 处理结果 True成功 False失败
 def select_sfd_by_where_for_monthly(org_id, months):
     sql = "select * from SCADA_FLMETER_DATA where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
-    month_first_min = to_get_month_first_last_day_datetime_max_min_time(months, "first", "min", False)  # 方法:获取间隔n月的第一天的最小时间和最后一天的最大时间
-    month_last_max = to_get_month_first_last_day_datetime_max_min_time(months, "last", "max", False)
+    month_first_min = to_get_month_first_last_day_datetime_max_min_time_pro(months, "first", "min", False)  # 方法:获取间隔n月的第一天的最小时间和最后一天的最大时间
+    month_last_max = to_get_month_first_last_day_datetime_max_min_time_pro(months, "last", "max", False)
     data = [{"orgid": org_id, "minTime": month_first_min, "maxTime": month_last_max}]
     fc = db.select_by_where_many_params_dict(sql, data)
     print("总共抄表数据:", len(fc))
@@ -261,8 +336,8 @@ def select_sfd_by_where_for_monthly(org_id, months):
 # @return 处理结果 True成功 False失败
 def select_sfd_by_where_for_monthly_last_min_and_last_max(org_id, months):
     sql = "select * from SCADA_FLMETER_DATA where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
-    month_first_min = to_get_month_first_last_day_datetime_max_min_time(months, "last", "min", False)  # 方法:获取间隔n月的最后一天的最小时间和最后一天的最大时间
-    month_last_max = to_get_month_first_last_day_datetime_max_min_time(months, "last", "max", False)
+    month_first_min = to_get_month_first_last_day_datetime_max_min_time_pro(months, "last", "min", False)  # 方法:获取间隔n月的最后一天的最小时间和最后一天的最大时间
+    month_last_max = to_get_month_first_last_day_datetime_max_min_time_pro(months, "last", "max", False)
     data = [{"orgid": org_id, "minTime": month_first_min, "maxTime": month_last_max}]
     fc = db.select_by_where_many_params_dict(sql, data)
     print("总共抄表数据:", len(fc))
@@ -452,8 +527,9 @@ def del_all_scada_report_monthly_by_year_month(srh_year, srh_month):
 
 # 获取所有需要跑脚本的机构信息
 # 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1生成
+# 根据 ORG_ID 排序,倒叙
 def get_all_org_id_for_run_py_command_script_from_select_db():
-    sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE= :org_report_generate"
+    sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE= :org_report_generate order by ORG_ID desc"
     data = [{"org_report_generate": "1"}]
     fc = db.select_by_where_many_params_dict(sql, data)
     return fc
@@ -866,7 +942,7 @@ def main(db, org_id, months):
 # @param months 月数
 # @return main方法运行之前删除数据处理结果 完成返回True 否则为False
 def del_first_before_main(db, months):
-    month_first_min = to_get_month_first_last_day_datetime_max_min_time(months, "first", "min", False)  # 方法:获取间隔n月的第一天的最小时间和最后一天的最大时间
+    month_first_min = to_get_month_first_last_day_datetime_max_min_time_pro(months, "first", "min", False)  # 方法:获取间隔n月的第一天的最小时间和最后一天的最大时间
     this_year = month_first_min.year
     this_month = month_first_min.month
 
