@@ -1,3 +1,11 @@
+import sys
+import os
+
+# pythonLCDemo下的com/lc/demo/pianoPlayerDemo
+# pythonLCDemo/com/lc/demo/pianoPlayerDemo
+# 将此路径加入系统路径 此路径下piano_player的包才可被找到
+sys.path.append(os.path.abspath('..'))
+# 下面这个引入才可用
 from piano_player import Player
 
 sheet_music = [
