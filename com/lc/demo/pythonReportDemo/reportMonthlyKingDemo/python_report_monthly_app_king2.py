@@ -690,8 +690,15 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         # 周期内工况使用量（周期内期末数-期初数）
         max_work_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['WORK_SUM']
         min_work_sum = sorted_rm_repeat_sfd_data_list[0]['WORK_SUM']
+        if max_work_sum is None:
+            max_work_sum = str(0)
+        if min_work_sum is None:
+            min_work_sum = str(0)
         if len(last_rm_repeat_sfd_data_list) > 0:  # （本期期末数-上期期末数）
-            rdm.use_volume_work = str(round(float(max_work_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']), 2))
+            last_max_work_sum = last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']
+            if last_max_work_sum is None:
+                last_max_work_sum = str(0)
+            rdm.use_volume_work = str(round(float(max_work_sum) - float(last_max_work_sum), 2))
         else:  # （本周期内期末数-本周期内期初数）
             rdm.use_volume_work = str(round(float(max_work_sum) - float(min_work_sum), 2))
         if float(rdm.use_volume_work) < 0:  # 如果use_volume_work计算出来小于0，则直接置为0
