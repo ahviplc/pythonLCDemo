@@ -391,11 +391,9 @@ def data_processing(data_for_processing, org_id, **kwargs):
         rdm.srd_id = ssn_org_id + rdm.year + rdm.month + ok_srd_id
 
         # 标况总量（期末数）
-        rdm.std_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1][
-            'STD_SUM']  # 默认升序，列表最后一个元素，值最大
+        rdm.std_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['STD_SUM']  # 默认升序，列表最后一个元素，值最大
         # 工况总量（期末数）
-        rdm.work_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1][
-            'WORK_SUM']  # 默认升序，列表最后一个元素，值最大
+        rdm.work_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['WORK_SUM']  # 默认升序，列表最后一个元素，值最大
         # 标况流量（周期内平均值）
         rdm.std_flow = get_average_period(sorted_rm_repeat_sfd_data_list, "STD_FLOW")  # 使用周期内平均值计算方法 计算平均值
         # 工况流量（周期内平均值）
