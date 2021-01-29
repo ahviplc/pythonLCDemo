@@ -649,8 +649,15 @@ def data_processing(data_for_processing, last_data_for_processing, org_id, **kwa
         # 周期内工况使用量（周期内期末数-期初数）
         max_work_sum = sorted_rm_repeat_sfd_data_list[len(sorted_rm_repeat_sfd_data_list) - 1]['WORK_SUM']
         min_work_sum = sorted_rm_repeat_sfd_data_list[0]['WORK_SUM']
+        if max_work_sum is None:
+            max_work_sum = str(0)
+        if min_work_sum is None:
+            min_work_sum = str(0)
         if len(last_rm_repeat_sfd_data_list) > 0:  # （本期期末数-上期期末数）
-            rdm.use_volume_work = str(round(float(max_work_sum) - float(last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']), 2))
+            last_max_work_sum = last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']
+            if last_max_work_sum is None:
+                last_max_work_sum = str(0)
+            rdm.use_volume_work = str(round(float(max_work_sum) - float(last_max_work_sum), 2))
         else:  # （本周期内期末数-本周期内期初数）
             rdm.use_volume_work = str(round(float(max_work_sum) - float(min_work_sum), 2))
         if float(rdm.use_volume_work) < 0:  # 如果use_volume_work计算出来小于0，则直接置为0
@@ -843,6 +850,8 @@ if __name__ == '__main__':
 
     # 查询出所有需要跑脚本的机构id
     org_list = get_all_org_id_for_run_py_command_script_from_select_db()  # 查询出所有需要跑脚本的机构id
+    # 将org_list分段 0029再往下
+    # org_list = org_list[45:len(org_list)]
 
     # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 代表几天，可以正值(n天后)，可以负值(n天前),0代表今天 ;hours 0代表当前小时 +n代表n小时后 -n代表n小时前 默认为-1 跑一小时前的数据
     # if x['ORG_ID'] == '0027':
