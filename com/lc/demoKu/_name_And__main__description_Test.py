@@ -61,6 +61,96 @@ sys.path.append(os.path.abspath('..'))
 print(sys.path)
 # 即可看到 'C:\\_developSoftKu\\PyCharm 2019.1.3\\#CodeKu\\pythonLCDemo\\com\\lc' 加入了系统路径
 
+print("------------------------------------------------------------------------------------------------")
+# 接着使用 【'C:\\_developSoftKu\\PyCharm 2019.1.3\\#CodeKu\\pythonLCDemo\\com\\lc'】路径下 自定义包模块 DiyPackagePy
+# com/lc/DiyPackagePy
+
+import DiyPackagePy  # import 就会打印 【hi DiyPackagePy from __init__.py】
+
+from DiyPackagePy.Employee import Employee, IT, love_py as lp_pro
+
+lp_pro()  # i love you py from Employee.py ...
+
+DiyPackagePy.hi()
+
+DiyPackagePy.print_line()
+
+"创建 Employee 类的第一个对象"
+emp1 = Employee("Zara", 2000)
+"创建 Employee 类的第二个对象"
+emp2 = Employee("Manni", 5000)
+
+"创建 Employee 类的第三个对象"
+import DiyPackagePy.Employee as Emp
+
+Emp.love_py()  # i love you py from Employee.py ...
+
+emp3 = Emp.Employee("Jane", 6000)
+
+# 执行类的自带方法
+emp1.displayEmployee()
+emp2.displayEmployee()
+emp3.displayEmployee()
+print("Total Employee %d" % Employee.empCount)
+
+DiyPackagePy.print_line()
+
+"创建 Employee 类的 子类 IT 对象"
+it = Emp.IT("Python,Go")
+it.name = 'ahviplc'
+it.salary = '30000'
+print("it -> ", it.name, it.salary, it.skill)
+it.displayEmployee()
+it.coding()
+
+DiyPackagePy.print_line()
+
+it1 = IT("Java")
+it1.name = 'LC'
+it1.salary = '26000'
+print("it1 -> ", it1.name, it1.salary, it1.skill)
+print("Total Employee %d" % Employee.empCount)
+it1.coding()
+# 调用父类方法
+it1.displayEmployee()
+it1.displayCount()
+
+DiyPackagePy.print_line()
+# 引入并使用类中公共方法
+from DiyPackagePy.Employee import love_py
+
+love_py()  # i love you py from Employee.py ...
+
+from DiyPackagePy.Employee import love_py as lp
+
+lp()  # i love you py from Employee.py ...
+
+DiyPackagePy.print_line()
+
+import DiyPackagePy.util
+
+# 引入并使用工具类中的方法
+import DiyPackagePy.util.get_util_info as gui
+
+gui.get_util_info()
+
+from DiyPackagePy.util.get_util_info import get_util_info
+
+get_util_info()
+
+from DiyPackagePy.util.get_util_info import get_util_info as gui2
+
+gui2()
+
+DiyPackagePy.print_line()
+
+from DiyPackagePy.util.get_now_time import get_now_time as gnt
+
+now_time_str = gnt()
+print(now_time_str)
+
+DiyPackagePy.print_line()
+
 # import说明:
 # python import模块时， 是在sys.path里按顺序查找的。
 # sys.path是一个列表，里面以字符串的形式存储了许多路径。
