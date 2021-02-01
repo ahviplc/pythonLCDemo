@@ -23,34 +23,43 @@
 
 print('恋习Python')
 print(__name__)
+
+
 def main():
-    print('恋习Python')
+    print('恋习Python2 from main()')
+
+
+# diy 方法
+def diy_function():
+    print('恋习diy_function')
+
 
 if __name__ == '__main__':
     main()
     print('跟着菜鸟分析，练习Python越练越恋')
 
-
 # D:\all_develop_soft\python-3.6.5-amd64-exe-ver\python.exe D:/all_develop_soft/pycharm-professional-2018.1.3/codeKu/pythonLCDemo/com/lc/demoKu/_name_And__main__description.py
 # 恋习Python
-# 恋习Python
+# 恋习Python2 from main()
 # 跟着菜鸟分析，练习Python越练越恋
-
 
 
 # 当我在其它地方引用这个_name_And__main__description.py时，就不执行  main()
 
-#执行 _name_And__main__description_Test.py
+# 执行 _name_And__main__description_Test.py
 
 # PS D:\all_develop_soft\pycharm-professional-2018.1.3\codeKu\pythonLCDemo\com\lc\demoKu> python .\_name_And__main__description_Test.py
 # 恋习Python
+# _name_And__main__description
+# 恋习Python2 from main()
+# 恋习diy_function
 
-# 现在，我们在test.py脚本的if __name__=="__main__":之前加入print __name__，即将__name__打印出来，则最后运行结果如下：
+# 现在，我们在test.py脚本的if __name__=="__main__":之前加入print(__name__)，即将__name__打印出来，则最后运行结果如下：
 
 # D:\all_develop_soft\python-3.6.5-amd64-exe-ver\python.exe D:/all_develop_soft/pycharm-professional-2018.1.3/codeKu/pythonLCDemo/com/lc/demoKu/_name_And__main__description.py
 # 恋习Python
 # __main__
-# 恋习Python
+# 恋习Python2 from main()
 # 跟着菜鸟分析，练习Python越练越恋
 
 
@@ -61,10 +70,11 @@ if __name__ == '__main__':
 # PS D:\all_develop_soft\pycharm-professional-2018.1.3\codeKu\pythonLCDemo\com\lc\demoKu> python _name_And__main__description_Test.py
 # 恋习Python
 # _name_And__main__description
+# 恋习Python2 from main()
+# 恋习diy_function
 
 
 # 此时，_name_And__main__description_Test.py中的__name__变量值为_name_And__main__description，不满足__name__=="__main__"的条件，因此，无法执行其后的代码。
-
 
 
 #
