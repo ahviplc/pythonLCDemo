@@ -69,4 +69,11 @@ https://blog.csdn.net/u014487025/article/details/88684541
 
 只有Python魔法少女才知道的PonyORM
 https://farer.org/2018/07/09/ponyorm/
+
+Python 线程安全（同步锁Lock）详解
+http://c.biancheng.net/view/2617.html
+
+详解python的ORM中Pony用法_python_脚本之家 对应源码【https://github.com/flowpig/daily_demos】
+https://www.jb51.net/article/134781.htm
+pony学习 - 【https://github.com/flowpig/daily_demos/tree/master/Pony%E5%AD%A6%E4%B9%A0】
 ```

@@ -6,7 +6,7 @@ pony_orm_DBHelper.py
 """
 
 import datetime
-from pony.orm import *  # 引入
+from pony.orm import *  # 引入pony
 from utils.util import make_db_config_oracle_better
 
 # 导出数据库配置信息 mysql 生产环境

@@ -59,8 +59,21 @@ def run_pony():
     pod.run_db_session()
 
 
+def run_test():
+    # 引入测试逻辑服务类
+    from services import pony_orm_test_service as pots
+    print('进行测试业务逻辑')
+    pots.init_db()
+    pots.add_data_artist_for_mysql()
+    pots.add_data_artist_for_oracle()
+    pass
+
+
 def run_lmt():
+    # 引入lmt逻辑服务类
+    from services import pony_orm_lmt_service as pols
     print('进行罗美特业务逻辑')
+    # todo
     pass
 
 
@@ -71,7 +84,8 @@ if __name__ == '__main__':
     # run()
     # run_pymysql_dbhelper()
     # run_cx_Oracle_dbhelper()
-    run_pony()
+    # run_pony()
+    run_test()
     run_lmt()
     # ------------------------------------------
     start_and_end(False, 1)
