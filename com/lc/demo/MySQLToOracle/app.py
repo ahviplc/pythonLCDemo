@@ -85,7 +85,7 @@ if __name__ == '__main__':
     # run_pymysql_dbhelper()
     # run_cx_Oracle_dbhelper()
     # run_pony()
-    run_test()
+    # run_test()
     run_lmt()
     # ------------------------------------------
     start_and_end(False, 1)
