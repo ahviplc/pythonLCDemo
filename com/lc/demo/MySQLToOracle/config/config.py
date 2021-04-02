@@ -9,7 +9,7 @@ common_config = {
 # mysql for pony【pony_orm_DBHelper.py】
 mysql_db_config = {
     "provider": "mysql",  # 声明数据库种类
-    "host": "192.168.0.17",  # 数据库主机地址，也可以是域名
+    "host": "47.103.91.193",  # 数据库主机地址，也可以是域名
     "port": 3306,  # 端口
     "database": "htiot_qinghaixn_report",  # 数据库名
     "user": "root",  # 用户名
@@ -35,7 +35,7 @@ oracle_db_config = {
 # mysql for pymysql【pymysql_DBHelper.py】
 # 这个测试使用,无需修改,生产环境用不到
 mysql_db_config_for_pymysql = {
-    'host': '192.168.0.17',
+    'host': '47.103.91.193',
     'port': 3306,
     'username': 'root',
     'password': 'Lmtmysql@1',

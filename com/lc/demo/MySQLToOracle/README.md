@@ -1,4 +1,4 @@
-# MysqlToOracle
+# MySQLToOracle
 
 > 一款mysql向oracle的数据转移app.
 
@@ -42,6 +42,12 @@ https://docs.ponyorm.org/api_reference.html#oracle
 
 Getting Started with Pony — Pony ORM documentation
 https://docs.ponyorm.org/firststeps.html#pony-examples
+
+pony/pony/orm/examples at orm · ponyorm/pony · GitHub
+https://github.com/ponyorm/pony/tree/orm/pony/orm/examples
+
+ponyorm/pony - GitHub1s - 在1s的vscode编辑器中打开
+https://github1s.com/ponyorm/pony/blob/orm/pony/orm/examples/demo.py
 ```
 
 ## 其他链接
@@ -60,4 +66,7 @@ https://blog.csdn.net/justonlyyo/article/details/102523602
 
 随笔之pymysql查询结果转字典dict_家住海边，见过大风大浪-CSDN博客
 https://blog.csdn.net/u014487025/article/details/88684541
+
+只有Python魔法少女才知道的PonyORM
+https://farer.org/2018/07/09/ponyorm/
 ```

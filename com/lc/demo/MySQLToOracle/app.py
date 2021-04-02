@@ -23,7 +23,7 @@ def run_pymysql_dbhelper():
     db = pd.DBHelper('select * from settings')
     # db.select()
     # db.selectDict()
-    for i in [1,3]:
+    for i in [1, 3]:
         db.selectDict_finally_close_db()
     pass
 
@@ -59,13 +59,19 @@ def run_pony():
     pod.run_db_session()
 
 
+def run_lmt():
+    print('进行罗美特业务逻辑')
+    pass
+
+
 if __name__ == '__main__':
-    sys.stdout = PrintLogger('MySQLToOracle.app.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    # sys.stdout = PrintLogger('MySQLToOracle.app.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
     start_and_end(True, 1)
     # ------------------------------------------
     # run()
-    run_pymysql_dbhelper()
-    run_cx_Oracle_dbhelper()
-    # run_pony()
+    # run_pymysql_dbhelper()
+    # run_cx_Oracle_dbhelper()
+    run_pony()
+    run_lmt()
     # ------------------------------------------
     start_and_end(False, 1)

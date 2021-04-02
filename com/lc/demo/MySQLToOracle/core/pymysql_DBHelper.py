@@ -156,6 +156,7 @@ class DBHelper:
 
     # 用来查询表数据 - 字典显示 关闭数据库连接版本方法 最好使用这个
     # 在 selectDict 上添加
+    # 运行sql语句，获取结果，并根据表中字段名，转化成dict格式（默认是tuple格式）
     def selectDict_finally_close_db(self):
         try:
             self.connectiondatabase()

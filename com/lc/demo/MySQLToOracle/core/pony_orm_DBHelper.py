@@ -26,6 +26,12 @@ db_config_oracle = make_db_config_oracle_better(db_config_oracle)
 db_oracle = Database(**db_config_oracle)
 
 
+# 上面与下面 只是不同写法 上面更简洁
+# 创建数据库对象
+# db = Database()
+# # 建立数据库连接
+# db.bind(provider='mysql', host='localhost', user='user', passwd='pass', db='mydb')
+
 # 员工类 db_mysql
 class Employee(db_mysql.Entity):
     """员工类"""
@@ -45,6 +51,7 @@ class Employee2(db_oracle.Entity):
 
 
 # 员工类3 db_oracle
+# 若报错 用 employee3
 class Employee3(db_oracle.Entity):
     """员工类"""
     _table_ = "EMPLOYEE3"
@@ -53,9 +60,21 @@ class Employee3(db_oracle.Entity):
     born = Required(datetime.datetime, nullable=False, column="born_date", default=datetime.datetime.today)  # 🏠出生年月日
 
 
+# BLACK_LIST
+class BLACK_LIST(db_oracle.Entity):
+    _table_ = "BLACK_LIST"
+    BL_ORG_ID = PrimaryKey(str, max_len=6, nullable=False)
+    CUSTOMER_NO = Optional(str, max_len=50, nullable=True)
+    ADD_TIME = Optional(datetime.datetime, nullable=True, column="ADD_TIME")  # default=datetime.datetime.today
+    ADD_REASON = Optional(str, max_len=200, nullable=True, column="ADD_REASON")
+    OPERATOR = Optional(str, max_len=50, nullable=True, column="OPERATOR")
+    BL_STATUS = Optional(str, max_len=1, nullable=True)
+
+
 # 删除表
 # 生成实体
 def run_pony():
+    sql_debug(True)  # True 显示sql_debug 执行显示sql语句 False 则代表 否
     # db_mysql.drop_table(table_name="employee", if_exists=True, with_all_data=True)  # 删除表，演示实体声明时用于快速清除旧表
     db_mysql.generate_mapping(create_tables=False)  # 生成实体，表和映射关系
     db_oracle.generate_mapping(create_tables=False)  # 生成实体，表和映射关系
@@ -126,17 +145,41 @@ def run_db_session():
         # list_born.show()
         # print('---------------------------------------------------------------')
 
+        # 如果要直接使用数据库，避免使用实体，可以使用Database.select（）方法
         # res_settings = db_mysql.select('* FROM settings')
         # print(res_settings)
 
         # res2 = db_mysql.select('* FROM meter_report_month_202104')
         # print(res2)
 
-        res = db_mysql.select('* FROM employee')
-        print(res)
+        # res = db_mysql.select('* FROM employee')
+        # print(res)
+        #
+        # res2 = db_oracle.select('* FROM BRANCH_INFO where rownum <= 3')
+        # print(res2)
 
-        res2 = db_oracle.select('* FROM BRANCH_INFO where rownum <= 3')
-        print(res2)
+        # BLACK_LIST
+        # BLACK_LIST.select().show() # 可用
+        # bl = BLACK_LIST.select()
+        # bl = BLACK_LIST.select()[:]
+        # print(bl._items)
+        # b1 = bl.to_list()  # 这个和【bl._items】等价
+        # print(bl[0].to_dict())
+        # # 遍历输出所有
+        # for blObj in bl:
+        #     print(blObj)
+        #     print(blObj.to_dict())
+
+        # 高级查询 条件查询 使用 select
+        # bl2 = select(p for p in BLACK_LIST if p.BL_STATUS == "2")[:]
+        # bl2.show()
+        # bl2_dict = bl2.to_list()[0].to_dict()
+        # print(bl2_dict)
+        # print(bl2_dict['ADD_REASON'])
+
+        # print(db_oracle.entities)  # 打印all entities
+
+        pass
 
 
 # 使用装饰器db_session
