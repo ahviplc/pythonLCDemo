@@ -5,17 +5,9 @@ import datetime
 from pony.orm import sql_debug, db_session
 # 从models导出类
 from models.models import Artist, Artist2, Album
-# 从models导出方法
-from models.models import get_dbs
 
-# 获取在model层 生成的 双db
-db_mysql, db_oracle = get_dbs()
-
-
-def init_db():
-    sql_debug(True)  # 显示debug信息(sql语句)  turn on debug mode
-    db_mysql.generate_mapping(create_tables=True)
-    db_oracle.generate_mapping(create_tables=True)
+# 现在在db包下进行db初始化操作
+pass
 
 
 @db_session
