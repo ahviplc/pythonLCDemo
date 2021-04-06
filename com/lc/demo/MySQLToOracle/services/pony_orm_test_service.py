@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 # test 测试服务类 pony_orm_test_service.py
 import datetime
-from pony.orm import sql_debug, db_session
+from pony.orm import db_session
 # 从models导出类
 from models.models import Artist, Artist2, Album
 
