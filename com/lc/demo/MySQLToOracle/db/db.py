@@ -5,6 +5,7 @@ db.py 生成数据库引擎 初始化db 公共db类
 
 from pony.orm import *  # 引入pony
 
+# 导入 make_db_config_oracle_better 方法
 from utils.util import make_db_config_oracle_better
 
 # 导出数据库配置信息 mysql 生产环境
@@ -33,7 +34,11 @@ def get_dbs():
 
 
 # 初始化db
-def init_db():
-    sql_debug(True)  # 显示debug信息(sql语句)  turn on debug mode
-    db_mysql.generate_mapping(create_tables=True)
-    db_oracle.generate_mapping(create_tables=True)
+# is_show_sql 是否显示sql
+# is_mysql_create_tables 其MySQL引擎是否创建表
+# is_oracle_create_tables 其Oracle引擎是否创建表
+# 注意点【core/pony_orm_DBHelper.py:78】有【删除表，实体声明时用于快速清除旧表】的数据库引擎初始化配置,可具体使用,具体参考.
+def init_db(is_show_sql, is_mysql_create_tables, is_oracle_create_tables):
+    sql_debug(is_show_sql)  # 显示debug信息(sql语句)  turn on debug mode
+    db_mysql.generate_mapping(create_tables=is_mysql_create_tables)
+    db_oracle.generate_mapping(create_tables=is_oracle_create_tables)

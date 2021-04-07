@@ -1,9 +1,9 @@
 """
 MySQLToOracle
 app_for_tests.py - 测试程序主执行文件
-Desc:作用:mysql数据转到oracle数据
+Desc:作用:测试一下
 Author:LC
-DateTime: 20210331
+DateTime: 20210406
 """
 
 import sys
@@ -11,7 +11,7 @@ import sys
 from utils.print_msg_to_log_model import PrintLogger
 # 耗时工具类专用
 from utils.start_to_end_time_consuming import start_and_end
-# 其他
+# 其他 单独导入utils.util的方法 get_now_time
 from utils.util import get_now_time
 
 
@@ -64,7 +64,8 @@ def run_test():
     from services import pony_orm_test_service as pots
     from db import db
     print('进行测试业务逻辑')
-    db.init_db()
+    # pony db 数据库引擎初始化
+    db.init_db(True, True, False)
     pots.add_data_artist_for_mysql()
     pots.add_data_artist_for_oracle()
     pass
@@ -74,7 +75,6 @@ def run_lmt():
     # 引入lmt逻辑服务类
     from services import pony_orm_lmt_service as pols
     print('进行罗美特业务逻辑')
-    # todo
     pass
 
 
