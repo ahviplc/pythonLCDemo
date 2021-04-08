@@ -238,3 +238,15 @@ def get_days_list_from_day_min_to_day_max(that_day_min, that_day_max):
         # print(i)
         days_list.append(get_real_year_month_day(i))
     return min_this_year, max_this_month, days_list
+
+
+# 打印一条直线 用于分割日志 是log日志更加直观
+# @param counts '-'的数量 如果传0 则使用默认值 95
+# @return 返回 加工好的直线
+def print_a_line(counts):
+    if counts == 0:
+        counts = 95
+    a_line = '-' * counts
+    print(a_line)
+    return a_line
+

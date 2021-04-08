@@ -5,6 +5,10 @@ common_config = {
     "days": -2,  # run_type为0时使用 【days 0代表今天 -1代表昨天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据】
     "diy_date": "20210405",  # run_type为1时使用 【20210402 代表就是 抓取 20210402这一天的数据】
     "diy_range_date": "20210405#20210412",  # run_type为2时使用 【20210301#20210331 代表就是 抓取 20210301这一天的最小时间到20210331这一天的最大时间的数据】
+    "is_open_log": False,  # 是否开启log日志 | False 不开启 True 开启
+    "is_show_sql": False,  # 是否显示pony 执行过程中 SQL语句 | False 不显示 True 显示
+    "is_mysql_create_tables": False,  # 默认False即可 不用动 MySQL对象关系映射ORM时是否建表
+    "is_oracle_create_tables": False,  # 默认False即可 不用动 Oracle对象关系映射ORM时是否建表
 }
 
 # mysql for pony【pony_orm_DBHelper.py】

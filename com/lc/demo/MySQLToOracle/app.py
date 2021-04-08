@@ -40,7 +40,8 @@ def run_lmt():
     # 引入lmt逻辑服务类
     from services import pony_orm_lmt_service as pols
     print('进行罗美特业务逻辑')
-    print('----------------------------------------------------------------------------------------------')
+    # 打印一条直线 95个'-'
+    util.print_a_line(0)
     if before_run():
         if run():
             after_run()
@@ -97,7 +98,8 @@ def before_run():
         return False
     finally:
         pass
-        print('----------------------------------------------------------------------------------------------')
+        # 打印一条直线 95个'-'
+        util.print_a_line(95)
     # 走到这里的话 那就代表公共参数不合法不对 跳出 before_run 返回 False
     return False
 
@@ -116,8 +118,10 @@ def run():
         from services import pony_orm_lmt_service as pols
         from db import db
         print('...机构号:', org_id, '进行罗美特业务逻辑')
+        # 从通用配置里拿出以下三个配置
+        is_show_sql, is_mysql_create_tables, is_oracle_create_tables = cc['is_show_sql'],cc['is_mysql_create_tables'],cc['is_oracle_create_tables']
         # pony db 数据库引擎初始化
-        db.init_db(False, False, False)
+        db.init_db(is_show_sql, is_mysql_create_tables, is_oracle_create_tables)
         # 方法1
         # # 首先 通过日期查询当前日期是否已经写入lmt Oracle数据库
         # srxm_list, srxm_qr = pols.deal_with_data_for_oracle_srxm_select_where(that_day_min)
@@ -152,7 +156,8 @@ def run():
         return False
     finally:
         pass
-        print('----------------------------------------------------------------------------------------------')
+        # 打印一条直线 95个'-'
+        util.print_a_line(95)
     # 走到这里的话 那就代表run执行完毕
     return True
 
@@ -173,8 +178,16 @@ def after_run():
 
 
 if __name__ == '__main__':
-    # sys.stdout = PrintLogger('MySQLToOracle.app.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
     start_and_end(True, 1)
+    # 是否开启日志
+    is_open_log = cc['is_open_log']
+    if is_open_log:
+        print('...MySQLToOracle...log日志...开启了...')
+        sys.stdout = PrintLogger('MySQLToOracle.app.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    else:
+        print('...MySQLToOracle...log日志...未开启...')
+    # 打印一条直线 95个'-'
+    util.print_a_line(95)
     # ------------------------------------------
     run_lmt()
     # ------------------------------------------
