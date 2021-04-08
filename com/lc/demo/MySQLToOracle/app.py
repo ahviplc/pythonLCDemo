@@ -40,7 +40,7 @@ def run_lmt():
     # 引入lmt逻辑服务类
     from services import pony_orm_lmt_service as pols
     print('进行罗美特业务逻辑')
-    # 打印一条直线 95个'-'
+    # 打印一条直线 95个'-' 如果传0 则counts使用默认值 95
     util.print_a_line(0)
     if before_run():
         if run():

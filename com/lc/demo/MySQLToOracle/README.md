@@ -91,6 +91,9 @@ https://www.runoob.com/python/python-func-range.html
 
 Python 3 实现定义跨模块的全局变量和使用 - _Suwings - 博客园
 https://www.cnblogs.com/suwings/p/6358061.html
+
+Python __all__变量用法
+http://c.biancheng.net/view/2401.html
 ```
 
 ## 两个核心SQL脚本

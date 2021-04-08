@@ -241,12 +241,19 @@ def get_days_list_from_day_min_to_day_max(that_day_min, that_day_max):
 
 
 # 打印一条直线 用于分割日志 是log日志更加直观
-# @param counts '-'的数量 如果传0 则使用默认值 95
+# @param counts_tuple '-'的数量 传来的可变元组（Tuple） 如果不传或者传0 则使用默认值 95 如果传多值 则取第一个值
 # @return 返回 加工好的直线
-def print_a_line(counts):
-    if counts == 0:
+def print_a_line(*counts_tuple):
+    counts = None
+    # 不传
+    if len(counts_tuple) == 0:
         counts = 95
+    # 传1值 并且值是0
+    elif len(counts_tuple) == 1 and counts_tuple[0] == 0:
+        counts = 95
+    # 传其他 多值的话 取第一个值
+    else:
+        counts = counts_tuple[0]
     a_line = '-' * counts
     print(a_line)
     return a_line
-
