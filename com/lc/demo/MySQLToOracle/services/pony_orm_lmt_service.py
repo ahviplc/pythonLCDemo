@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 # lmt 服务类 pony_orm_lmt_service.py
-from pony.orm import db_session, select, delete
+from pony.orm import db_session, select, delete, commit
 # 其他 单独导入utils.util的方法 get_year_month_day_from_datetime和get_random_str_with_counts和get_real_year_month_day和get_float_str
 from utils.util import get_year_month_day_from_datetime,get_random_str_with_counts, get_real_year_month_day, get_float_str
 # 导入获取流水号方法
@@ -118,11 +118,17 @@ def datas_from_mysql_to_oracle(org_id, mrm_list, mrm_qr):
             print('...cx_Oracle_db_utils.py...get_sys_serial_no...ok_srd_id 为None,使用continue 跳出本次for循环...')
         # 如果ok_srd_id不等于None 则为正常值 继续后续逻辑
         srxm_id = ssn_org_id + get_real_year_month_day(mrn.report_year) + get_real_year_month_day(mrn.report_month) + ok_srd_id
+        # 通过机构号和通讯编号 查询出其在lmt系统中对应的设备编号
+        comm_no = mrn.meter_comm_no
+        flmeterNoList = db_oracle.select('FLMETER_NO FROM SCADA_FLMETER_INFO where SFI_ORG_ID = \'' + str(org_id) + '\' and COMM_NO = \'' + str(comm_no) + '\'')
+        flmeterNo = ''
+        if len(flmeterNoList) >= 1:
+            flmeterNo = flmeterNoList[0]
         # 假流水 随机数 测试使用
         # srxm_id = get_random_str_with_counts(8)
         # 这就是在Oracle中 新增数据
         # 包含数据的再次加工
-        tmp = ScadaReportXNMid(SRXM_ORG_ID=org_id, SRXM_ID=srxm_id, COMM_NO=mrn.meter_comm_no,
+        tmp = ScadaReportXNMid(SRXM_ORG_ID=org_id, SRXM_ID=srxm_id, FLMETER_NO=flmeterNo, COMM_NO=mrn.meter_comm_no,
                                YEAR=get_real_year_month_day(mrn.report_year),
                                MONTH=get_real_year_month_day(mrn.report_month),
                                DAY=get_real_year_month_day(mrn.report_day), STD_SUM=get_float_str(mrn.std_sum),
@@ -133,6 +139,7 @@ def datas_from_mysql_to_oracle(org_id, mrm_list, mrm_qr):
                                REMAIN_VOLUME=get_float_str(mrn.remain_volume), FM_STATE=str(mrn.meter_state),
                                BATTERY_VOLTAGE=get_float_str(mrn.battery_voltage), BATTERY_LEVEL=str(mrn.battery_level),
                                RSSI=str(mrn.rssi), FM_STATE_MSG=mrn.meter_stat_emsg)
+        commit()  # 提交事务
         print('...机构号:', org_id, '...datas_from_mysql_to_oracle...meter_comm_no通讯编号: ' + mrn.meter_comm_no, '入库成功', '对应srxm_id为:', srxm_id)
     pass
 # and so on.
