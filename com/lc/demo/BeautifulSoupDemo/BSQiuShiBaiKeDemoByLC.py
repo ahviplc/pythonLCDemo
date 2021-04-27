@@ -6,6 +6,7 @@
 https://www.qiushibaike.com/hot/page/1/
 爬：糗事百科段子
 
+BSQiuShiBaiKeDemoByLC.py
 Version: 1.0
 Author: LC
 DateTime: 2018年12月21日14:15:19
@@ -63,7 +64,7 @@ class QSBK:
                                                                                           class_='author clearfix')
                 if (authorItem[0].contents[3].text.strip() != '匿名用户'):
 
-                    printFormat1='用户名称:' + authorItem[0].contents[3].text.strip() + '丨' + '用户等级:' + authorItem[0].contents[5].text.strip() + '丨' + '用户主页:【https://www.qiushibaike.com' + authorItem[0].contents[1].get('href') + '】' + '丨' + '用户头像:【https://' + authorItem[0].contents[1].contents[1].get('src')[2:] + '】'
+                    printFormat1='用户名称:' + authorItem[0].contents[3].text.strip() + '丨' + '用户等级:' + authorItem[0].contents[5].text.strip() + '丨' + '用户主页:【https://www.qiushibaike.com' + authorItem[0].contents[3].get('href') + '】' + '丨' + '用户头像:【https://' + authorItem[0].contents[1].contents[1].get('src')[2:] + '】'
                     print(printFormat1)
                     # 写入txt
                     txtflie.write(printFormat1+'\n')
