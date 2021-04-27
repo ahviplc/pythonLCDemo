@@ -2,6 +2,7 @@ import datetime
 import random
 import string
 import re
+import decimal
 from cx_Oracle import makedsn
 
 # 导入执行公共配置
@@ -257,3 +258,86 @@ def print_a_line(*counts_tuple):
     a_line = '-' * counts
     print(a_line)
     return a_line
+
+
+# 获取当前脚本执行 要处理对应数据周二日期时间 和七天之后 周一
+# 从config里 通用配置 可算出 拿到
+# @return 通过run_type判断 得出不同的that_week_min, that_week_max
+def get_run_which_datetime_max_min_week():
+    # 导入执行公共配置
+    from config.config import common_config_for_app2 as ccfa
+    from utils.day_of_week_model import DayOfWeek
+    that_week_min = None
+    that_week_max = None
+    run_type = ccfa['run_type']
+    if run_type == 0:
+        week_num = ccfa['week_num']
+        # 类DayOfWeek的实例化
+        dow = DayOfWeek(week_num)
+        # 周二-那个周二日期的最小时间 - 周二的日期
+        that_Tuesday = dow.that_Tuesday
+        # 周一-那个周二日期7天之后的最大时间 也就是周一 - 上面周二日期时间的七天后
+        that_Tuesday_after_seven_day = dow.that_Tuesday_after_seven_day
+        # 某周二 日期时间最小值 不单单指上周的 承载着任何一周【that_week】
+        that_week_min = to_diy_date_datetime_max_min_time(that_Tuesday, "min", False)
+        # 某周一 日期时间最大值 不单单指上周的 承载着任何一周【that_week】
+        that_week_max = to_diy_date_datetime_max_min_time(that_Tuesday_after_seven_day, "max", False)
+    elif run_type == 1:
+        diy_range_date = ccfa['diy_range_date']
+        diy_range_date_list = diy_range_date.split('#')
+        diy_date_min = diy_range_date_list[0]
+        diy_date_max = diy_range_date_list[1]
+        that_week_min = to_diy_date_datetime_max_min_time(diy_date_min, "min", False)
+        that_week_max = to_diy_date_datetime_max_min_time(diy_date_max, "max", False)
+    else:
+        # 类DayOfWeek的实例化
+        dow = DayOfWeek(-1)
+        # 周二-那个周二日期的最小时间 - 上周二
+        that_Tuesday = dow.that_Tuesday
+        # 周一-那个周二日期7天之后的最大时间 也就是周一 上周二日期时间的七天后
+        that_Tuesday_after_seven_day = dow.that_Tuesday_after_seven_day
+        that_week_min = to_diy_date_datetime_max_min_time(that_Tuesday, "min", False)
+        that_week_max = to_diy_date_datetime_max_min_time(that_Tuesday_after_seven_day, "max", False)
+        print('...get_run_which_datetime_max_min_time...run_type 为', run_type, '不存在', 'that_day_min，that_day_max 取上周', that_week_min, that_week_max)
+    return that_week_min, that_week_max
+
+
+# grade3_price_volume
+# 当阶梯价格处理 函数处理，
+# 把END_THIS_CYCLE_SUM当成使用量参数USE_VOLUME_STD调用GRADE3_PRICE_VOLUME（）函数算出结果集END（）。
+# 把BEGIN_THIS_CYCLE_SUM当成使用量参数USE_VOLUME_STD调用GRADE3_PRICE_VOLUME（）函数算出结果集BEGIN（）。
+# price1_volume, price1_money, price2_volume, price2_money,price3_volume,price3_money,use_money
+# =
+# grade3_price_volume(use_volume_std,gp1,gv1,gp2,gv2,gp3)
+def grade3_price_volume(use_volume_std, gp1, gv1, gp2, gv2, gp3):
+    if decimal.Decimal(use_volume_std) <= decimal.Decimal(gv1):
+        price1_volume = decimal.Decimal(use_volume_std)
+        price1_money = decimal.Decimal(gp1) * decimal.Decimal(use_volume_std)
+        # 其他均为0
+        price2_volume, price2_money, price3_volume, price3_money = 0, 0, 0, 0
+        # 三阶梯 金额 加一起 就是 use_money
+        use_money = decimal.Decimal(price1_money) + decimal.Decimal(price2_money) + decimal.Decimal(price3_money)
+        return price1_volume, price1_money, price2_volume, price2_money, price3_volume, price3_money, use_money
+    elif decimal.Decimal(gv1) < decimal.Decimal(use_volume_std) <= decimal.Decimal(gv2):
+        price1_volume = gv1
+        price1_money = decimal.Decimal(gp1) * decimal.Decimal(gv1)
+        price2_volume = decimal.Decimal(use_volume_std) - decimal.Decimal(price1_volume)
+        price2_money = decimal.Decimal(gp2) * price2_volume
+        # 其他均为0
+        price3_volume, price3_money = 0, 0
+        # 三阶梯 金额 加一起 就是 use_money
+        use_money = decimal.Decimal(price1_money) + decimal.Decimal(price2_money) + decimal.Decimal(price3_money)
+        return price1_volume, price1_money, price2_volume, price2_money, price3_volume, price3_money, use_money
+    elif decimal.Decimal(use_volume_std) > decimal.Decimal(gv2):
+        price1_volume = gv1
+        price1_money = decimal.Decimal(gp1) * decimal.Decimal(gv1)
+        price2_volume = gv2
+        price2_money = decimal.Decimal(gp2) * decimal.Decimal(gv2)
+        price3_volume = decimal.Decimal(use_volume_std) - decimal.Decimal(price2_volume)
+        price3_money = decimal.Decimal(gp3) * price3_volume
+        # 三阶梯 金额 加一起 就是 use_money
+        use_money = decimal.Decimal(price1_money) + decimal.Decimal(price2_money) + decimal.Decimal(price3_money)
+        return price1_volume, price1_money, price2_volume, price2_money, price3_volume, price3_money, use_money
+    else:
+        print("...grade3_price_volume... if均没有命中")
+    pass

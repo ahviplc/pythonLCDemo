@@ -69,6 +69,7 @@ class MeterReportMonth(db_mysql.Entity):
 
 ########################################################################
 # Oracle - 数据接收者
+# ScadaReportXNMid
 # pony_orm_lmt_service.py 供lmt使用
 class ScadaReportXNMid(db_oracle.Entity):
     _table_ = "SCADA_REPORT_XN_MID"
@@ -100,3 +101,43 @@ class ScadaReportXNMid(db_oracle.Entity):
     BATTERY_LEVEL = Optional(str, max_len=18, nullable=True, default=None)
     RSSI = Optional(str, max_len=10, nullable=True, default=None)
     FM_STATE_MSG = Optional(str, max_len=200, nullable=True, default=None)
+
+
+# ScadaReportXNWeek
+# pony_orm_lmt_service.py 供lmt使用
+class ScadaReportXNWeek(db_oracle.Entity):
+    _table_ = "SCADA_REPORT_XN_WEEK"
+    SRXW_ORG_ID = Optional(str, max_len=6, nullable=True)
+    FLMETER_NO = Optional(str, max_len=20, nullable=True, default=None)
+    COMM_NO = PrimaryKey(str, max_len=20, nullable=False, auto=False)  # 主键
+    CUSTOMER_NO = Optional(str, max_len=20, nullable=True, default=None)
+    REPORT_TIME = Required(datetime.datetime, nullable=False, column="REPORT_TIME", default=datetime.datetime.today)
+
+    REPORT_BEGIN_DATE = Required(datetime.date, nullable=False, column="REPORT_BEGIN_DATE", default=datetime.date.today())
+    BEGIN_STD_SUM = Optional(str, max_len=18, nullable=True, default=None)
+    BEGIN_PRICE = Optional(str, max_len=18, nullable=True, default=None)
+    BEGIN_THIS_CYCLE_SUM = Optional(str, max_len=18, nullable=True, default=None)
+    REPORT_END_DATE = Required(datetime.date, nullable=False, column="REPORT_END_DATE", default=datetime.date.today())
+
+    END_STD_SUM = Optional(str, max_len=18, nullable=True, default=None)
+    END_PRICE = Optional(str, max_len=18, nullable=True, default=None)
+    END_THIS_CYCLE_SUM = Optional(str, max_len=18, nullable=True, default=None)
+    USE_VOLUME_STD = Optional(str, max_len=18, nullable=True, default=None)
+    PRICE1_VOLUME = Optional(str, max_len=20, nullable=True, default=None)
+
+    PRICE1_MONEY = Optional(str, max_len=20, nullable=True, default=None)
+    PRICE2_VOLUME = Optional(str, max_len=20, nullable=True, default=None)
+    PRICE2_MONEY = Optional(str, max_len=20, nullable=True, default=None)
+    PRICE3_VOLUME = Optional(str, max_len=20, nullable=True, default=None)
+    PRICE3_MONEY = Optional(str, max_len=120, nullable=True, default=None)
+
+    USE_MONEY = Optional(str, max_len=18, nullable=True, default=None)
+    REMAIN_MONEY = Optional(str, max_len=18, nullable=True, default=None)
+    REMAIN_VOLUME = Optional(str, max_len=18, nullable=True, default=None)
+    PRICE_NO = Optional(str, max_len=20, nullable=True, default=None)
+    GRADE_PRICE1 = Optional(str, max_len=20, nullable=True, default=None)
+
+    GRADE_VOLUME1 = Optional(str, max_len=20, nullable=True, default=None)
+    GRADE_PRICE2 = Optional(str, max_len=20, nullable=True, default=None)
+    GRADE_VOLUME2 = Optional(str, max_len=20, nullable=True, default=None)
+    GRADE_PRICE3 = Optional(str, max_len=20, nullable=True, default=None)
