@@ -341,3 +341,81 @@ def grade3_price_volume(use_volume_std, gp1, gv1, gp2, gv2, gp3):
     else:
         print("...grade3_price_volume... if均没有命中")
     pass
+
+
+# 获取当前脚本执行 要处理对应数据某月1号 日期时间最小值 和 某月最后一天 日期时间最大值
+# 从config里 通用配置 可算出 拿到
+# @return 通过run_type判断 得出不同的that_month_min, that_month_max
+def get_run_which_datetime_max_min_month():
+    # 导入执行公共配置
+    from config.config import common_config_for_app3 as ccfa
+    from utils.day_of_week_model import DayOfWeek
+    that_month_min = None
+    that_month_max = None
+    run_type = ccfa['run_type']
+    if run_type == 0:
+        month_num = ccfa['month_num']
+        that_month_min = to_get_month_first_last_day_datetime_max_min_time(month_num, "first", "min", False)  # 方法:获取间隔n月的第一天的最小时间和最后一天的最大时间
+        that_month_max = to_get_month_first_last_day_datetime_max_min_time(month_num, "last", "max", False)
+    elif run_type == 1:
+        diy_range_date = ccfa['diy_range_date']
+        diy_range_date_list = diy_range_date.split('#')
+        diy_date_min = diy_range_date_list[0]
+        diy_date_max = diy_range_date_list[1]
+        that_month_min = to_diy_date_datetime_max_min_time(diy_date_min, "min", False)
+        that_month_max = to_diy_date_datetime_max_min_time(diy_date_max, "max", False)
+    else:
+        that_month_min = to_get_month_first_last_day_datetime_max_min_time(-1, "first", "min", False)  # 方法:获取间隔n月的第一天的最小时间和最后一天的最大时间
+        that_month_max = to_get_month_first_last_day_datetime_max_min_time(-1, "last", "max", False)
+        print('...get_run_which_datetime_max_min_month...run_type 为', run_type, '不存在', 'that_day_min，that_day_max 取上月', that_month_min, that_month_max)
+    return that_month_min, that_month_max
+
+
+# 获取间隔n月的第一天的最小时间和最后一天的最大时间
+# @param  n,first_or_last_type,types,isFormat; n代表几月，可以正值(n月后)，可以负值(n月前),0代表当前月 ;
+#                          first_or_last_type取值有first和last,first代表月的第一天,last代表月的最后一天
+#                          types取值有max和min,max代表输出当前时间最大时间，min代表输出当前时间最小时间;
+#                          isFormat是否格式化输出，布尔值为True,格式化输出str类型时间,为False,不格式化输出，直接返回datetime类型时间。
+# @return 符合要求的datetime格式日期
+def to_get_month_first_last_day_datetime_max_min_time(n, first_or_last_type, types, is_format):
+    if first_or_last_type == "first":
+        return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + n, 1)
+    elif first_or_last_type == "last":
+        if datetime.date.today().month + 1 + n == 13:  # 如果这个if满足，代表当前月是12月份，取last直接下面操作即可,得到2019-12-31 00:00:00 (备注:12月不可以加1月那样操作了,因为没有月份中没有13月)
+            return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month, 31)
+        else:  # 其他情况 都是 先获得当前月份加上1月的第一天再减去1天 来得到当前月份的最后一天
+            return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + 1 + n, 1) - datetime.timedelta(1)
+
+    if types == "max":
+        return_time = datetime.datetime.combine(return_time_day + datetime.timedelta(days=0), datetime.time.max)
+    elif types == "min":
+        return_time = datetime.datetime.combine(return_time_day + datetime.timedelta(days=0), datetime.time.min)
+
+    if (is_format):
+        return_time = return_time.strftime('%Y-%m-%d %H:%M:%S')
+    return return_time
+
+
+# 获取间隔n月的第一天的最小时间和最后一天的最大时间
+# @param  n,first_or_last_type,types,isFormat; n代表几月，可以正值(n月后)，可以负值(n月前),0代表当前月 ;
+#                          first_or_last_type取值有first和last,first代表月的第一天,last代表月的最后一天
+#                          types取值有max和min,max代表输出当前时间最大时间，min代表输出当前时间最小时间;
+#                          isFormat是否格式化输出，布尔值为True,格式化输出str类型时间,为False,不格式化输出，直接返回datetime类型时间。
+# @return 符合要求的datetime格式日期
+def to_get_month_first_last_day_datetime_max_min_time(n, first_or_last_type, types, is_format):
+    if first_or_last_type == "first":
+        return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + n, 1)
+    elif first_or_last_type == "last":
+        if datetime.date.today().month + 1 + n == 13:  # 如果这个if满足，代表当前月是12月份，取last直接下面操作即可,得到2019-12-31 00:00:00 (备注:12月不可以加1月那样操作了,因为没有月份中没有13月)
+            return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month, 31)
+        else:  # 其他情况 都是 先获得当前月份加上1月的第一天再减去1天 来得到当前月份的最后一天
+            return_time_day = datetime.datetime(datetime.date.today().year, datetime.date.today().month + 1 + n, 1) - datetime.timedelta(1)
+
+    if types == "max":
+        return_time = datetime.datetime.combine(return_time_day + datetime.timedelta(days=0), datetime.time.max)
+    elif types == "min":
+        return_time = datetime.datetime.combine(return_time_day + datetime.timedelta(days=0), datetime.time.min)
+
+    if (is_format):
+        return_time = return_time.strftime('%Y-%m-%d %H:%M:%S')
+    return return_time

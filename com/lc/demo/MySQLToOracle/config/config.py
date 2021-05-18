@@ -11,12 +11,24 @@ common_config = {
     "is_oracle_create_tables": False,  # 默认False即可 不用动 Oracle对象关系映射ORM时是否建表
 }
 
-# common_config_for_app2 通用配置
+# common_config_for_app2 通用配置 周
 common_config_for_app2 = {
     "org_id": "0080",  # org_id 要查询机构号 目前均是 0080
     "run_type": 0,  # run_type 为 0 代表是命令自动执行 无需手动yes确认 【取用 week_num】 |为 1 代表 手动执行 针对某段日期 需要手动yes确认 【取用 自定义日期范围 diy_range_date】
     "week_num": -2,  # run_type为0时使用 【week_num 0代表这周二到下周一 -1代表上周二到这周一 1代表下周二到下下周一】
     "diy_range_date": "20210406#20210412",  # run_type为1时使用 【20210406#20210412 代表就是 抓取 20210406#20210412 某周二到某下周一 时间的7天数据】
+    "is_open_log": True,  # 是否开启log日志 | False 不开启 True 开启
+    "is_show_sql": False,  # 是否显示pony 执行过程中 SQL语句 | False 不显示 True 显示
+    "is_mysql_create_tables": False,  # 默认False即可 不用动 MySQL对象关系映射ORM时是否建表
+    "is_oracle_create_tables": False,  # 默认False即可 不用动 Oracle对象关系映射ORM时是否建表
+}
+
+# common_config_for_app3 通用配置 月
+common_config_for_app3 = {
+    "org_id": "0080",  # org_id 要查询机构号 目前均是 0080
+    "run_type": 0,  # run_type 为 0 代表是命令自动执行 无需手动yes确认 【取用 month_num】 |为 1 代表 手动执行 针对某段日期 需要手动yes确认 【取用 自定义日期范围 diy_range_date】
+    "month_num": -1,  # month_num为0时使用 【month_num 0代表这月1号最小时间到这月最大时间 -1代表上月1号最小时间到这月最大时间 1代表下月1号最小时间到这月最大时间】
+    "diy_range_date": "20210401#20210430",  # run_type为1时使用 【20210401#20210430 代表就是 抓取 20210401#20210430 某月1号到某月最后一天的月处理数据】
     "is_open_log": True,  # 是否开启log日志 | False 不开启 True 开启
     "is_show_sql": False,  # 是否显示pony 执行过程中 SQL语句 | False 不显示 True 显示
     "is_mysql_create_tables": False,  # 默认False即可 不用动 MySQL对象关系映射ORM时是否建表

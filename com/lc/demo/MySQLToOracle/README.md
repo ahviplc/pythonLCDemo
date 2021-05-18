@@ -2,11 +2,17 @@
 
 > 一款mysql向oracle的数据转移app.
 
-## 安装驱动
+## 安装依赖
 
-> pip install pony  
-> pip install PyMySQL  
-> pip install cx-Oracle
+`使用阿里镜像源 安装更快`
+
+> pip install pony -i https://mirrors.aliyun.com/pypi/simple/
+> pip install PyMySQL -i https://mirrors.aliyun.com/pypi/simple/
+> pip install cx-Oracle -i https://mirrors.aliyun.com/pypi/simple/
+
+`使用requirements.txt安装类库 进行一次性安装`
+
+> pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ```markdown
 mysql
@@ -96,6 +102,9 @@ https://www.cnblogs.com/suwings/p/6358061.html
 
 Python __all__变量用法
 http://c.biancheng.net/view/2401.html
+
+Python + logging 输出到屏幕，将log日志写入文件 - nancy05 - 博客园
+https://www.cnblogs.com/nancyzhu/p/8551506.html
 ```
 
 ## 两个核心SQL脚本
