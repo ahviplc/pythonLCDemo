@@ -139,3 +139,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# music app
+!com/lc/demo/justMusicDemo/dist

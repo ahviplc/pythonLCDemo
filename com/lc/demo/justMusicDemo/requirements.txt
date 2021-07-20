@@ -1,0 +1,6 @@
+eyed3==0.9.6
+jsonpath==0.82
+mutagen==1.45.1
+PyQt5==5.15.4
+qtawesome==1.0.3
+pyinstaller==4.4
