@@ -336,7 +336,13 @@ class Ui_Form(object):
             battery_voltage_msg = serial_no_msg[i * 110 + 66: i * 110 + 70]  # 电池电压
             dict_daily_transcription['电池电压'] = str(int(battery_voltage_msg[0:2], 16) + int(battery_voltage_msg[2:4], 16) / 100) + ' V'
 
-            dict_daily_transcription['预留字节'] = serial_no_msg[i * 110 + 70: i * 110 + 110]
+            # 电池电量2 阀门剩余电量百分比整数
+            # 电池电量3 RTU剩余电量百分比整数
+            battery_power_msg = serial_no_msg[i * 110 + 70: i * 110 + 74]  # 电池电量
+            dict_daily_transcription['电池电量2'] = str(int(battery_power_msg[0:2], 16)) + '%'
+            dict_daily_transcription['电池电量3'] = str(int(battery_power_msg[2:4], 16)) + '%'
+
+            dict_daily_transcription['预留字节'] = serial_no_msg[i * 110 + 74: i * 110 + 110]
             # 将当前list append进 dict_daily_transcription_list
             dict_daily_transcription_list.append(dict_daily_transcription)
 
@@ -461,7 +467,16 @@ class Ui_Form(object):
             battery_voltage_msg = serial_no_msg[i * 118 + 74: i * 118 + 78]  # 电池电压
             dict_daily_transcription['电池电压'] = str(int(battery_voltage_msg[0:2], 16) + int(battery_voltage_msg[2:4], 16) / 100) + ' V'
 
-            dict_daily_transcription['预留字节'] = serial_no_msg[i * 118 + 78: i * 118 + 118]
+            sum_total_msg = serial_no_msg[i * 118 + 78: i * 118 + 86]  # 控制器总累积量
+            dict_daily_transcription['控制器总累积量'] = str(int(sum_total_msg, 16)) + ' m³'  # 此为16进制需要转10机制
+
+            # 电池电量2 阀门剩余电量百分比整数
+            # 电池电量3 RTU剩余电量百分比整数
+            battery_power_msg = serial_no_msg[i * 118 + 86: i * 118 + 90]  # 电池电量
+            dict_daily_transcription['电池电量2'] = str(int(battery_power_msg[0:2], 16)) + '%'
+            dict_daily_transcription['电池电量3'] = str(int(battery_power_msg[2:4], 16)) + '%'
+
+            dict_daily_transcription['预留字节'] = serial_no_msg[i * 118 + 90: i * 118 + 118]
             # 将当前list append进 dict_daily_transcription_list
             dict_daily_transcription_list.append(dict_daily_transcription)
 
@@ -588,7 +603,16 @@ class Ui_Form(object):
             battery_voltage_msg = serial_no_msg[i * 134 + 90: i * 134 + 94]  # 电池电压
             dict_daily_transcription['电池电压'] = str(int(battery_voltage_msg[0:2], 16) + int(battery_voltage_msg[2:4], 16) / 100) + ' V'
 
-            dict_daily_transcription['预留字节'] = serial_no_msg[i * 134 + 94: i * 134 + 134]
+            sum_total_msg = serial_no_msg[i * 134 + 94: i * 134 + 102]  # 控制器总累积量
+            dict_daily_transcription['控制器总累积量'] = str(int(sum_total_msg, 16)) + ' m³'  # 此为16进制需要转10机制
+
+            # 电池电量2 阀门剩余电量百分比整数
+            # 电池电量3 RTU剩余电量百分比整数
+            battery_power_msg = serial_no_msg[i * 134 + 102: i * 134 + 106]  # 电池电量
+            dict_daily_transcription['电池电量2'] = str(int(battery_power_msg[0:2], 16)) + '%'
+            dict_daily_transcription['电池电量3'] = str(int(battery_power_msg[2:4], 16)) + '%'
+
+            dict_daily_transcription['预留字节'] = serial_no_msg[i * 134 + 106: i * 134 + 134]
             # 将当前list append进 dict_daily_transcription_list
             dict_daily_transcription_list.append(dict_daily_transcription)
 
@@ -697,7 +721,7 @@ class Ui_Form(object):
             dict_daily_transcription['温度'] = self.translate_temptrue(serial_no_msg[i * 110 + 34: i * 110 + 38]) + ' ℃/摄氏度'  # 解析温度 写个解析温度的方法
             dict_daily_transcription['压力'] = str(int(serial_no_msg[i * 110 + 38: i * 110 + 42], 16) / 10) + ' KPa'  # 此为16进制需要转10机制 然后除以10
             dict_daily_transcription['阀门状态'] = serial_no_msg[i * 110 + 42: i * 110 + 44]  # 1字节 2字符
-            # dict_daily_transcription['工况瞬时流量转换系数'] = serial_no_msg[i * 110 + 44: i * 110 + 46]  # 不使用 废弃 1字节 2字符
+            # dict_daily_transcription['工况瞬时流量转换系数'] = serial_no_msg[i * 110 + 44: i * 110 + 46]  # 不使用 废弃 1字节 2字符 成预留了
             dict_daily_transcription['状态字'] = serial_no_msg[i * 110 + 46: i * 110 + 58]  # 6字节 12字符
 
             # 3044
@@ -818,7 +842,7 @@ class Ui_Form(object):
             dict_daily_transcription['温度'] = self.translate_temptrue(serial_no_msg[i * 118 + 34: i * 118 + 38]) + ' ℃/摄氏度'  # 解析温度 写个解析温度的方法
             dict_daily_transcription['压力'] = str(int(serial_no_msg[i * 118 + 38: i * 118 + 42], 16) / 10) + ' KPa'  # 此为16进制需要转10机制 然后除以10
             dict_daily_transcription['阀门状态'] = serial_no_msg[i * 118 + 42: i * 118 + 44]  # 1字节 2字符
-            # dict_daily_transcription['工况瞬时流量转换系数'] = serial_no_msg[i * 118 + 44: i * 118 + 46]  # 不使用 废弃 1字节 2字符
+            # dict_daily_transcription['工况瞬时流量转换系数'] = serial_no_msg[i * 118 + 44: i * 118 + 46]  # 不使用 废弃 1字节 2字符 成预留了
             dict_daily_transcription['状态字'] = serial_no_msg[i * 118 + 46: i * 118 + 58]  # 6字节 12字符
 
             # 3045
@@ -939,7 +963,7 @@ class Ui_Form(object):
             dict_daily_transcription['温度'] = self.translate_temptrue(serial_no_msg[i * 134 + 34: i * 134 + 38]) + ' ℃/摄氏度'  # 解析温度 写个解析温度的方法
             dict_daily_transcription['压力'] = str(int(serial_no_msg[i * 134 + 38: i * 134 + 42], 16) / 10) + ' KPa'  # 此为16进制需要转10机制 然后除以10
             dict_daily_transcription['阀门状态'] = serial_no_msg[i * 134 + 42: i * 134 + 44]  # 1字节 2字符
-            # dict_daily_transcription['工况瞬时流量转换系数'] = serial_no_msg[i * 134 + 44: i * 134 + 46]  # 不使用 废弃 1字节 2字符
+            # dict_daily_transcription['工况瞬时流量转换系数'] = serial_no_msg[i * 134 + 44: i * 134 + 46]  # 不使用 废弃 1字节 2字符 成预留了
             dict_daily_transcription['状态字'] = serial_no_msg[i * 134 + 46: i * 134 + 58]  # 6字节 12字符
 
             # 3046
@@ -996,8 +1020,9 @@ class Ui_Form(object):
         # self.textEdit.setText(str2)
         # # 读取textEdit中的文字：textEdit和LineEdit中的文字读取方法是不一样的
 
-        str3 = self.textEdit.toPlainText()
-        print("解析原报文的字符创度为:", len(str3))
+        # strip()方法，去除字符串开头或者结尾的空格
+        str3 = self.textEdit.toPlainText().strip()
+        print("解析原报文的字符长度为:", len(str3))
 
         # 判断输入框报文是不是为空
         if len(str3) < 1:
@@ -1037,7 +1062,7 @@ class Ui_Form(object):
         start_character = msg[0:2]  # 头68 起始符
         msg_length = msg[2:6]  # 报文长度 16进制 包含起始符和结束符
         func_code =  msg[6:10]
-        print(func_code)
+        print("功能码 func_code:", func_code)
         if func_code == '3041':
             json_dicts = self.parsing_message_for_func_code_3041(msg)
         elif func_code == '3042':
@@ -1084,7 +1109,7 @@ if __name__ == "__main__":
     import sys, datetime
     from PyQt5.QtGui import QIcon
 
-    sys.stdout = PrintLogger('parsing_message_app_king.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    # sys.stdout = PrintLogger('parsing_message_app_king.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
 
     app = QtWidgets.QApplication(sys.argv)
     widget = QtWidgets.QWidget()
