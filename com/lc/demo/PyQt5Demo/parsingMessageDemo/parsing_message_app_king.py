@@ -424,7 +424,7 @@ class Ui_Form(object):
         print('本帧明细记录数', serial_count_int)
 
         # 处理具体帧数据报文
-        serial_no_msg = data_content_msg[40: 40 + serial_count_int * 118]  # 乘以110 因为一帧的数据(一帧日抄表明细数据) 为 110字符
+        serial_no_msg = data_content_msg[40: 40 + serial_count_int * 118]  # 乘以118 因为一帧的数据(一帧日抄表明细数据) 为 118字符
 
         dict_request_message_data_list = []  # 请求报文数据域定义 列表
         dict_request_message_data_list.append(dict_request_message_data)
@@ -558,7 +558,7 @@ class Ui_Form(object):
         print('本帧明细记录数', serial_count_int)
 
         # 处理具体帧数据报文
-        serial_no_msg = data_content_msg[40: 40 + serial_count_int * 134]  # 乘以110 因为一帧的数据(一帧日抄表明细数据) 为 110字符
+        serial_no_msg = data_content_msg[40: 40 + serial_count_int * 134]  # 乘以134 因为一帧的数据(一帧日抄表明细数据) 为 134字符
 
         dict_request_message_data_list = []  # 请求报文数据域定义 列表
         dict_request_message_data_list.append(dict_request_message_data)
@@ -635,7 +635,7 @@ class Ui_Form(object):
 
         return json_dicts
 
-    # parsing_message_for_func_code_3044 功能码 3044 具体解析方法
+    # parsing_message_for_func_code_3044 功能码 3044 具体解析方法 只支持响应报文数据域解析
     # @param msg 要解析的原报文
     # @return 处理好的解析过的报文详细参数的json串
     def parsing_message_for_func_code_3044(self, msg):
@@ -671,9 +671,9 @@ class Ui_Form(object):
 
         dict_parsing_message_main_temp['报文头'] = dict_message_head_list  # 将 报文头 赋给 主字典 dict_parsing_message_main_temp
 
-        # 请求报文数据域定义
-        dict_request_message_data = {}  # 请求报文数据域定义 字典
-        dict_request_message_data['who'] = '请求报文数据域定义'
+        # 响应报文数据域定义
+        dict_request_message_data = {}  # 响应报文数据域定义 字典
+        dict_request_message_data['who'] = '响应报文数据域定义'
 
         dict_request_message_data['流量计表编号'] = data_content_msg[0:14]
 
@@ -692,10 +692,10 @@ class Ui_Form(object):
         # 处理具体帧数据报文
         serial_no_msg = data_content_msg[22: 22 + serial_count_int * 110]  # 乘以110 因为一帧的数据(一帧日抄表明细数据) 为 110字符
 
-        dict_request_message_data_list = []  # 请求报文数据域定义 列表
+        dict_request_message_data_list = []  # 响应报文数据域定义 列表
         dict_request_message_data_list.append(dict_request_message_data)
 
-        dict_parsing_message_main_temp['请求报文数据域定义'] = dict_request_message_data_list  # 将 请求报文数据域定义 赋给 主字典 dict_parsing_message_main_temp
+        dict_parsing_message_main_temp['响应报文数据域定义'] = dict_request_message_data_list  # 将 响应报文数据域定义 赋给 主字典 dict_parsing_message_main_temp
 
         # 日抄表明细
         dict_daily_transcription_list = []  # 日抄表明细 列表
@@ -811,7 +811,7 @@ class Ui_Form(object):
         print('本帧明细记录数', serial_count_int)
 
         # 处理具体帧数据报文
-        serial_no_msg = data_content_msg[22: 22 + serial_count_int * 118]  # 乘以110 因为一帧的数据(一帧日抄表明细数据) 为 110字符
+        serial_no_msg = data_content_msg[22: 22 + serial_count_int * 118]  # 乘以118 因为一帧的数据(一帧日抄表明细数据) 为 118字符
 
         dict_request_message_data_list = []  # 请求报文数据域定义 列表
         dict_request_message_data_list.append(dict_request_message_data)
@@ -932,7 +932,7 @@ class Ui_Form(object):
         print('本帧明细记录数', serial_count_int)
 
         # 处理具体帧数据报文
-        serial_no_msg = data_content_msg[22: 22 + serial_count_int * 134]  # 乘以110 因为一帧的数据(一帧日抄表明细数据) 为 110字符
+        serial_no_msg = data_content_msg[22: 22 + serial_count_int * 134]  # 乘以134 因为一帧的数据(一帧日抄表明细数据) 为 134字符
 
         dict_request_message_data_list = []  # 请求报文数据域定义 列表
         dict_request_message_data_list.append(dict_request_message_data)
@@ -999,6 +999,399 @@ class Ui_Form(object):
         json_dicts = json.dumps(dict_parsing_message_main_temp, indent=4, ensure_ascii=False)
 
         return json_dicts
+
+
+    # parsing_message_for_func_code_3047 功能码 3047 具体解析方法
+    # @param msg 要解析的原报文
+    # @return 处理好的解析过的报文详细参数的json串
+    def parsing_message_for_func_code_3047(self, msg):
+
+        # json输出版本
+        dict_parsing_message_main_temp = {}  # 报文解析结果 主要字典
+
+        dict_parsing_message_main_temp['功能码'] = 3047
+        dict_parsing_message_main_temp['功能码介绍'] = '后付费或预付费后台结算膜表主动上报'
+        dict_parsing_message_main_temp['通讯类型'] = 'UDP/TCP/CoAP'
+        dict_parsing_message_main_temp['功能说明'] = '表具自醒后，主动上报数据，并主动向平台发送从上次上报后到当前的采集记录。每帧发送固定条数数据，分帧发送 从3041衍生.'
+
+        # 报文头
+        dict_message_head = {}  # 报文头 字典
+        dict_message_head['who'] = '报文头'
+
+        dict_message_head['报文长度'] = str(int(msg[2:6], 16))  # 报文长度 16进制 包含起始符和结束符 这里有16进制转换10进制处理
+        dict_message_head['功能码'] = msg[6:10]
+        dict_message_head['传送方向'] = msg[10:12]
+        dict_message_head['请求响应标志'] = msg[12:14]
+        dict_message_head['RTU表具编号'] = msg[14:28]
+
+        dict_message_head['报文ID'] = msg[28:42]
+
+        data_content_length = msg[42:46]  # 此代表报文内容的长度 16进制
+        data_content_length_dec = int(msg[42:46], 16)  # 转成10进制 代表n字节 2n字符
+
+        print("数据域长度(字节数)data_content_length_dec: ", data_content_length_dec)
+
+        # 报文内容 data_content_msg
+        data_content_msg = msg[46: 46 + data_content_length_dec * 2]  # 46 至 46+2n字符 即为 报文内容
+
+        dict_message_head_list = []  # 报文头 列表
+        dict_message_head_list.append(dict_message_head)
+
+        dict_parsing_message_main_temp['报文头'] = dict_message_head_list  # 将 报文头 赋给 主字典 dict_parsing_message_main_temp
+
+        # 请求报文数据域定义
+        dict_request_message_data = {}  # 请求报文数据域定义 字典
+        dict_request_message_data['who'] = '请求报文数据域定义'
+
+        dict_request_message_data['流量计表编号'] = data_content_msg[0:14]
+        dict_request_message_data['信号强度 '] = data_content_msg[14:16]
+        dict_request_message_data['电源类型'] = data_content_msg[16:18]
+        dict_request_message_data['电池电量'] = str(int(data_content_msg[18:20], 16)) + '%'
+        dict_request_message_data['最后一帧标志'] = data_content_msg[20:22]
+
+        dict_request_message_data['帧序号'] = data_content_msg[22:26]
+        dict_request_message_data['本帧明细记录数'] = data_content_msg[26:28]  # 16进制
+
+        #  本帧明细记录数 16进制转10进制
+        serial_count_int = int(data_content_msg[26:28], 16)
+        print('本帧明细记录数', serial_count_int)
+
+        # 处理具体帧数据报文
+        serial_no_msg = data_content_msg[28: 28 + serial_count_int * 144]  # 乘以144 因为一帧的数据(一帧日抄表明细数据) 为 144字符
+
+        dict_request_message_data_list = []  # 请求报文数据域定义 列表
+        dict_request_message_data_list.append(dict_request_message_data)
+
+        dict_parsing_message_main_temp['请求报文数据域定义'] = dict_request_message_data_list  # 将 请求报文数据域定义 赋给 主字典 dict_parsing_message_main_temp
+
+        # 日抄表明细
+        dict_daily_transcription_list = []  # 日抄表明细 列表
+        # 具体计算解析抄表明细
+        for i in range(0, serial_count_int):
+            # print(i)
+
+            # 日抄表明细 字典 dict_daily_transcription
+            dict_daily_transcription = {}  # 日抄表明细 字典 具体每帧的数据用list存放
+
+            dict_daily_transcription['who'] = '日抄表明细'
+            dict_daily_transcription['serial_no'] = i + 1
+
+            read_date = serial_no_msg[i * 144 + 0:i * 144 + 6]  # 读数日期
+            read_time = serial_no_msg[i * 144 + 6: i * 144 + 10]  # 读数时间
+
+            dict_daily_transcription['读数日期'] = self.parse_to_two_byte_hex_string(str(int(read_date[0:2], 16))) + self.parse_to_two_byte_hex_string(str(int(read_date[2:4], 16))) + self.parse_to_two_byte_hex_string(str( int(read_date[4:6], 16)))
+            dict_daily_transcription['读数时间'] = self.parse_to_two_byte_hex_string(str(int(read_time[0:2], 16))) + ':' + self.parse_to_two_byte_hex_string(str(int(read_time[2:4], 16)))
+            dict_daily_transcription['累积工况总量'] = str(int(serial_no_msg[i * 144 + 10: i * 144 + 18], 16)) + ' m³' # 此为16进制需要转10机制
+            dict_daily_transcription['累积标况总量'] = str(int(serial_no_msg[i * 110 + 18: i * 144 + 26], 16)) + ' m³'  # 此为16进制需要转10机制
+            dict_daily_transcription['标况瞬时流量'] = str(int(serial_no_msg[i * 144 + 26: i * 144 + 34], 16) / 100) + ' m³/H'  # 此为16进制需要转10机制 然后除以100
+
+            dict_daily_transcription['温度'] = self.translate_temptrue(serial_no_msg[i * 144 + 34: i * 144 + 38]) + ' ℃/摄氏度'  # 解析温度 写个解析温度的方法
+            dict_daily_transcription['压力'] = str(int(serial_no_msg[i * 144 + 38: i * 144 + 42], 16)/10) + ' KPa' # 此为16进制需要转10机制 然后除以10
+            dict_daily_transcription['阀门状态'] = serial_no_msg[i * 144 + 42: i * 144 + 44]  # 1字节 2字符
+            dict_daily_transcription['预留'] = serial_no_msg[i * 144 + 44: i * 144 + 46]  # 预留 1字节 2字符
+            dict_daily_transcription['状态字'] = serial_no_msg[i * 144 + 46: i * 144 + 58]  # 6字节 12字符
+
+            dict_daily_transcription['工况瞬时流量'] = str(int(serial_no_msg[i * 144 + 58: i * 144 + 66], 16) / 100) + ' m³/H'  # 此为16进制需要转10机制 然后除以100
+
+            battery_voltage_msg = serial_no_msg[i * 144 + 66: i * 144 + 70]  # 电池电压
+            dict_daily_transcription['电池电压'] = str(int(battery_voltage_msg[0:2], 16) + int(battery_voltage_msg[2:4], 16) / 100) + ' V'
+
+            snr_msg = serial_no_msg[i * 144 + 70: i * 144 + 74]  # 信噪比
+            dict_daily_transcription['信噪比(SNR)'] = str(int(snr_msg, 16)) + ' db'
+
+            rsrp_msg = serial_no_msg[i * 144 + 74: i * 144 + 78]  # 信号接收功率
+            dict_daily_transcription['信号接收功率(RSRP)'] = str(int(rsrp_msg, 16)) + ' dBm'
+
+            cel_msg = serial_no_msg[i * 144 + 78: i * 144 + 80]  # 覆盖增强等级
+            dict_daily_transcription['覆盖增强等级(CEL)'] = str(int(cel_msg, 16)) + ' dB'
+
+            cell_id_msg = serial_no_msg[i * 144 + 80: i * 144 + 88]  # 基站小区号
+            dict_daily_transcription['基站小区号(Cell ID)'] = str(int(cell_id_msg, 16))  # 小区全球识别码
+
+            sim_no_msg = serial_no_msg[i * 144 + 88: i * 144 + 108]  # SIM卡号
+            dict_daily_transcription['SIM卡号'] = sim_no_msg
+
+            imei_no_msg = serial_no_msg[i * 144 + 108: i * 144 + 124]  # IMEI号
+            dict_daily_transcription['IMEI号'] = imei_no_msg
+
+            dict_daily_transcription['预留字节'] = serial_no_msg[i * 144 + 124: i * 144 + 144]
+            # 将当前list append进 dict_daily_transcription_list
+            dict_daily_transcription_list.append(dict_daily_transcription)
+
+        dict_request_message_data['日抄表明细'] = dict_daily_transcription_list  # 将 日抄表明细 赋给 主字典 dict_parsing_message_main_temp
+
+        # 密文数据域
+        dict_ciphertext_data = {}  # 密文数据域 字典
+        dict_ciphertext_data['who'] = '密文数据域'
+
+        dict_ciphertext_data['密钥版本'] = data_content_msg[-10:-8]
+        dict_ciphertext_data['密文'] = data_content_msg[-8:]
+
+        dict_ciphertext_data_list = []  # 密文数据域 列表
+        dict_ciphertext_data_list.append(dict_ciphertext_data)
+
+        dict_parsing_message_main_temp['密文数据域'] = dict_ciphertext_data_list  # 将 密文数据域 赋给 主字典 dict_parsing_message_main_temp
+
+        # 数据转成json 用于输出到textBrowser
+        json_dicts = json.dumps(dict_parsing_message_main_temp, indent=4, ensure_ascii=False)
+
+        return json_dicts
+
+    # parsing_message_for_func_code_3048 功能码 3048 具体解析方法 只支持响应报文数据域解析
+    # @param msg 要解析的原报文
+    # @return 处理好的解析过的报文详细参数的json串
+    def parsing_message_for_func_code_3048(self, msg):
+
+        # json输出版本
+        dict_parsing_message_main_temp = {}  # 报文解析结果 主要字典
+
+        dict_parsing_message_main_temp['功能码'] = 3048
+        dict_parsing_message_main_temp['功能码介绍'] = '后付费膜表补抄'
+        dict_parsing_message_main_temp['通讯类型'] = 'UDP/TCP/CoAP'
+        dict_parsing_message_main_temp['功能说明'] = '平台下发补抄某个时间段数据的指令，表具将所有数据分帧上, 从3044衍生.'
+
+        # 报文头
+        dict_message_head = {}  # 报文头 字典
+        dict_message_head['who'] = '报文头'
+
+        dict_message_head['报文长度'] = str(int(msg[2:6], 16))  # 报文长度 16进制 包含起始符和结束符 这里有16进制转换10进制处理
+        dict_message_head['功能码'] = msg[6:10]
+        dict_message_head['传送方向'] = msg[10:12]
+        dict_message_head['请求响应标志'] = msg[12:14]
+        dict_message_head['RTU表具编号'] = msg[14:28]
+
+        dict_message_head['报文ID'] = msg[28:42]
+
+        data_content_length = msg[42:46]  # 此代表报文内容的长度 16进制
+        data_content_length_dec = int(msg[42:46], 16)  # 转成10进制 代表n字节 2n字符
+
+        print("数据域长度(字节数)data_content_length_dec: ", data_content_length_dec)
+
+        # 报文内容 data_content_msg
+        data_content_msg = msg[46: 46 + data_content_length_dec * 2]  # 46 至 46+2n字符 即为 报文内容
+
+        dict_message_head_list = []  # 报文头 列表
+        dict_message_head_list.append(dict_message_head)
+
+        dict_parsing_message_main_temp['报文头'] = dict_message_head_list  # 将 报文头 赋给 主字典 dict_parsing_message_main_temp
+
+        # 响应报文数据域定义
+        dict_request_message_data = {}  # 响应报文数据域定义 字典
+        dict_request_message_data['who'] = '响应报文数据域定义'
+
+        dict_request_message_data['流量计表编号'] = data_content_msg[0:14]
+
+        # 3048
+        dict_request_message_data['最后一帧标志'] = data_content_msg[14:16]
+        dict_request_message_data['帧序号'] = data_content_msg[16:20]
+        dict_request_message_data['本帧明细记录数'] = data_content_msg[20:22]  # 16进制
+
+        #  本帧明细记录数 16进制转10进制
+        serial_count_int = int(data_content_msg[20:22], 16)
+        print('本帧明细记录数', serial_count_int)
+
+        # 处理具体帧数据报文
+        serial_no_msg = data_content_msg[22: 22 + serial_count_int * 144]  # 乘以144 因为一帧的数据(一帧日抄表明细数据) 为 144字符
+
+        dict_request_message_data_list = []  # 响应报文数据域定义 列表
+        dict_request_message_data_list.append(dict_request_message_data)
+
+        dict_parsing_message_main_temp['响应报文数据域定义'] = dict_request_message_data_list  # 将 响应报文数据域定义 赋给 主字典 dict_parsing_message_main_temp
+
+        # 日抄表明细
+        dict_daily_transcription_list = []  # 日抄表明细 列表
+        # 具体计算解析抄表明细
+        for i in range(0, serial_count_int):
+            # print(i)
+
+            # 日抄表明细 字典 dict_daily_transcription
+            dict_daily_transcription = {}  # 日抄表明细 字典 具体每帧的数据用list存放
+
+            dict_daily_transcription['who'] = '日抄表明细'
+            dict_daily_transcription['serial_no'] = i + 1
+
+            read_date = serial_no_msg[i * 144 + 0:i * 144 + 6]  # 读数日期
+            read_time = serial_no_msg[i * 144 + 6: i * 144 + 10]  # 读数时间
+
+            dict_daily_transcription['读数日期'] = self.parse_to_two_byte_hex_string(str(int(read_date[0:2], 16))) + self.parse_to_two_byte_hex_string(str(int(read_date[2:4], 16))) + self.parse_to_two_byte_hex_string(str(int(read_date[4:6], 16)))
+            dict_daily_transcription['读数时间'] = self.parse_to_two_byte_hex_string(str(int(read_time[0:2], 16))) + ':' + self.parse_to_two_byte_hex_string(str(int(read_time[2:4], 16)))
+            dict_daily_transcription['累积工况总量'] = str(int(serial_no_msg[i * 144 + 10: i * 144 + 18], 16)) + ' m³'  # 此为16进制需要转10机制
+            dict_daily_transcription['累积标况总量'] = str(int(serial_no_msg[i * 144 + 18: i * 144 + 26], 16)) + ' m³'  # 此为16进制需要转10机制
+            dict_daily_transcription['标况瞬时流量'] = str(int(serial_no_msg[i * 144 + 26: i * 144 + 34], 16) / 100) + ' m³/H'  # 此为16进制需要转10机制 然后除以100
+
+            dict_daily_transcription['温度'] = self.translate_temptrue(serial_no_msg[i * 144 + 34: i * 144 + 38]) + ' ℃/摄氏度'  # 解析温度 写个解析温度的方法
+            dict_daily_transcription['压力'] = str(int(serial_no_msg[i * 144 + 38: i * 144 + 42], 16) / 10) + ' KPa'  # 此为16进制需要转10机制 然后除以10
+            dict_daily_transcription['阀门状态'] = serial_no_msg[i * 144 + 42: i * 144 + 44]  # 1字节 2字符
+            dict_daily_transcription['预留'] = serial_no_msg[i * 144 + 44: i * 144 + 46]  # 预留 1字节 2字符
+            dict_daily_transcription['状态字'] = serial_no_msg[i * 144 + 46: i * 144 + 58]  # 6字节 12字符
+
+            # 3048
+
+            dict_daily_transcription['工况瞬时流量'] = str(int(serial_no_msg[i * 144 + 58: i * 144 + 66], 16) / 100) + ' m³/H'  # 此为16进制需要转10机制 然后除以100
+
+            battery_voltage_msg = serial_no_msg[i * 144 + 66: i * 144 + 70]  # 电池电压
+            dict_daily_transcription['电池电压'] = str(int(battery_voltage_msg[0:2], 16) + int(battery_voltage_msg[2:4], 16) / 100) + ' V'
+
+            snr_msg = serial_no_msg[i * 144 + 70: i * 144 + 74]  # 信噪比
+            dict_daily_transcription['信噪比(SNR)'] = str(int(snr_msg, 16)) + ' db'
+
+            rsrp_msg = serial_no_msg[i * 144 + 74: i * 144 + 78]  # 信号接收功率
+            dict_daily_transcription['信号接收功率(RSRP)'] = str(int(rsrp_msg, 16)) + ' dBm'
+
+            cel_msg = serial_no_msg[i * 144 + 78: i * 144 + 80]  # 覆盖增强等级
+            dict_daily_transcription['覆盖增强等级(CEL)'] = str(int(cel_msg, 16)) + ' dB'
+
+            cell_id_msg = serial_no_msg[i * 144 + 80: i * 144 + 88]  # 基站小区号
+            dict_daily_transcription['基站小区号(Cell ID)'] = str(int(cell_id_msg, 16))  # 小区全球识别码
+
+            sim_no_msg = serial_no_msg[i * 144 + 88: i * 144 + 108]  # SIM卡号
+            dict_daily_transcription['SIM卡号'] = sim_no_msg
+
+            imei_no_msg = serial_no_msg[i * 144 + 108: i * 144 + 124]  # IMEI号
+            dict_daily_transcription['IMEI号'] = imei_no_msg
+
+            dict_daily_transcription['预留字节'] = serial_no_msg[i * 144 + 124: i * 144 + 144]
+            # 将当前list append进 dict_daily_transcription_list
+            dict_daily_transcription_list.append(dict_daily_transcription)
+
+        dict_request_message_data['日抄表明细'] = dict_daily_transcription_list  # 将 日抄表明细 赋给 主字典 dict_parsing_message_main_temp
+
+        # 密文数据域
+        dict_ciphertext_data = {}  # 密文数据域 字典
+        dict_ciphertext_data['who'] = '密文数据域'
+
+        dict_ciphertext_data['密钥版本'] = data_content_msg[-10:-8]
+        dict_ciphertext_data['密文'] = data_content_msg[-8:]
+
+        dict_ciphertext_data_list = []  # 密文数据域 列表
+        dict_ciphertext_data_list.append(dict_ciphertext_data)
+
+        dict_parsing_message_main_temp['密文数据域'] = dict_ciphertext_data_list  # 将 密文数据域 赋给 主字典 dict_parsing_message_main_temp
+
+        # 数据转成json 用于输出到textBrowser
+        json_dicts = json.dumps(dict_parsing_message_main_temp, indent=4, ensure_ascii=False)
+
+        return json_dicts
+
+    # parsing_message_for_func_code_3049 功能码 3049 变送器数据主动上报
+    # @param msg 要解析的原报文
+    # @return 处理好的解析过的报文详细参数的json串
+    def parsing_message_for_func_code_3049(self, msg):
+
+        # json输出版本
+        dict_parsing_message_main_temp = {}  # 报文解析结果 主要字典
+
+        dict_parsing_message_main_temp['功能码'] = 3049
+        dict_parsing_message_main_temp['功能码介绍'] = '变送器数据主动上报'
+        dict_parsing_message_main_temp['通讯类型'] = 'UDP/TCP/CoAP'
+        dict_parsing_message_main_temp['功能说明'] = '变送器自醒后，主动上报数据，并主动向平台发送从上次上报后到当前的采集记录。每帧发送固定条数数据，分帧发送。'
+
+        # 报文头
+        dict_message_head = {}  # 报文头 字典
+        dict_message_head['who'] = '报文头'
+
+        dict_message_head['报文长度'] = str(int(msg[2:6], 16))  # 报文长度 16进制 包含起始符和结束符 这里有16进制转换10进制处理
+        dict_message_head['功能码'] = msg[6:10]
+        dict_message_head['传送方向'] = msg[10:12]
+        dict_message_head['请求响应标志'] = msg[12:14]
+        dict_message_head['RTU表具编号'] = msg[14:28]
+
+        dict_message_head['报文ID'] = msg[28:42]
+
+        data_content_length = msg[42:46]  # 此代表报文内容的长度 16进制
+        data_content_length_dec = int(msg[42:46], 16)  # 转成10进制 代表n字节 2n字符
+
+        print("数据域长度(字节数)data_content_length_dec: ", data_content_length_dec)
+
+        # 报文内容 data_content_msg
+        data_content_msg = msg[46: 46 + data_content_length_dec * 2]  # 46 至 46+2n字符 即为 报文内容
+
+        dict_message_head_list = []  # 报文头 列表
+        dict_message_head_list.append(dict_message_head)
+
+        dict_parsing_message_main_temp['报文头'] = dict_message_head_list  # 将 报文头 赋给 主字典 dict_parsing_message_main_temp
+
+        # 请求报文数据域定义
+        dict_request_message_data = {}  # 请求报文数据域定义 字典
+        dict_request_message_data['who'] = '请求报文数据域定义'
+
+        dict_request_message_data['流量计表编号'] = data_content_msg[0:14]
+        dict_request_message_data['信号强度 '] = data_content_msg[14:16]
+        dict_request_message_data['电源类型'] = data_content_msg[16:18]
+        dict_request_message_data['电池电量'] = str(int(data_content_msg[18:20], 16)) + '%'
+
+        # 3049
+        dict_request_message_data['最后一帧标志'] = data_content_msg[20:22]
+        dict_request_message_data['帧序号'] = data_content_msg[22:26]
+        dict_request_message_data['本帧明细记录数'] = data_content_msg[26:28]  # 16进制
+
+        #  本帧明细记录数 16进制转10进制
+        serial_count_int = int(data_content_msg[26:28], 16)
+        print('本帧明细记录数', serial_count_int)
+
+        # 处理具体帧数据报文
+        serial_no_msg = data_content_msg[28: 28 + serial_count_int * 94]  # 乘以94 因为一帧的数据(一帧日抄表明细数据) 为 94字符
+
+        dict_request_message_data_list = []  # 响应报文数据域定义 列表
+        dict_request_message_data_list.append(dict_request_message_data)
+
+        dict_parsing_message_main_temp['响应报文数据域定义'] = dict_request_message_data_list  # 将 响应报文数据域定义 赋给 主字典 dict_parsing_message_main_temp
+
+        # 日抄表明细
+        dict_daily_transcription_list = []  # 日抄表明细 列表
+        # 具体计算解析抄表明细
+        for i in range(0, serial_count_int):
+            # print(i)
+
+            # 日抄表明细 字典 dict_daily_transcription
+            dict_daily_transcription = {}  # 日抄表明细 字典 具体每帧的数据用list存放
+
+            dict_daily_transcription['who'] = '日抄表明细'
+            dict_daily_transcription['serial_no'] = i + 1
+
+            read_date = serial_no_msg[i * 94 + 0:i * 94 + 6]  # 读数日期
+            read_time = serial_no_msg[i * 94 + 6: i * 94 + 10]  # 读数时间
+
+            dict_daily_transcription['读数日期'] = self.parse_to_two_byte_hex_string(str(int(read_date[0:2], 16))) + self.parse_to_two_byte_hex_string(str(int(read_date[2:4], 16))) + self.parse_to_two_byte_hex_string(str(int(read_date[4:6], 16)))
+            dict_daily_transcription['读数时间'] = self.parse_to_two_byte_hex_string(str(int(read_time[0:2], 16))) + ':' + self.parse_to_two_byte_hex_string(str(int(read_time[2:4], 16)))
+            dict_daily_transcription['变送器1'] = str(int(serial_no_msg[i * 94 + 10: i * 94 + 14], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器2'] = str(int(serial_no_msg[i * 94 + 14: i * 94 + 18], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器3'] = str(int(serial_no_msg[i * 94 + 18: i * 94 + 22], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+
+            dict_daily_transcription['变送器4'] = str(int(serial_no_msg[i * 94 + 22: i * 94 + 26], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器5'] = str(int(serial_no_msg[i * 94 + 26: i * 94 + 30], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器6'] = str(int(serial_no_msg[i * 94 + 30: i * 94 + 34], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器7'] = str(int(serial_no_msg[i * 94 + 34: i * 94 + 38], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器8'] = str(int(serial_no_msg[i * 94 + 38: i * 94 + 42], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+
+            dict_daily_transcription['变送器9'] = str(int(serial_no_msg[i * 94 + 42: i * 94 + 46], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器10'] = str(int(serial_no_msg[i * 94 + 46: i * 94 + 50], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器11'] = str(int(serial_no_msg[i * 94 + 50: i * 94 + 54], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+            dict_daily_transcription['变送器12'] = str(int(serial_no_msg[i * 94 + 54: i * 94 + 58], 16)) + ' MPa'  # 此为16进制需要转10机制 Int16（818 - 4095）对应变送器量程值 如0~0.4MPa
+
+            dict_daily_transcription['预留字节'] = serial_no_msg[i * 94 + 58: i * 94 + 94]
+            # 将当前list append进 dict_daily_transcription_list
+            dict_daily_transcription_list.append(dict_daily_transcription)
+
+        dict_request_message_data['日抄表明细'] = dict_daily_transcription_list  # 将 日抄表明细 赋给 主字典 dict_parsing_message_main_temp
+
+        # 密文数据域
+        dict_ciphertext_data = {}  # 密文数据域 字典
+        dict_ciphertext_data['who'] = '密文数据域'
+
+        dict_ciphertext_data['密钥版本'] = data_content_msg[-10:-8]
+        dict_ciphertext_data['密文'] = data_content_msg[-8:]
+
+        dict_ciphertext_data_list = []  # 密文数据域 列表
+        dict_ciphertext_data_list.append(dict_ciphertext_data)
+
+        dict_parsing_message_main_temp['密文数据域'] = dict_ciphertext_data_list  # 将 密文数据域 赋给 主字典 dict_parsing_message_main_temp
+
+        # 数据转成json 用于输出到textBrowser
+        json_dicts = json.dumps(dict_parsing_message_main_temp, indent=4, ensure_ascii=False)
+
+        return json_dicts
+
 
     # 点击鼠标触发函数
     def clickbtn(self):
@@ -1085,8 +1478,20 @@ class Ui_Form(object):
             json_dicts = '3046'
             json_dicts = self.parsing_message_for_func_code_3046(msg)
             pass
+        elif func_code == '3047':
+            json_dicts = '3047'
+            json_dicts = self.parsing_message_for_func_code_3047(msg)
+            pass
+        elif func_code == '3048':
+            json_dicts = '3048'
+            json_dicts = self.parsing_message_for_func_code_3048(msg)
+            pass
+        elif func_code == '3049':
+            json_dicts = '3049'
+            json_dicts = self.parsing_message_for_func_code_3049(msg)
+            pass
         else:
-            json_dicts = '不是功能码为【3041 3042 3043 3044 3045 3046】的报文,或者报文格式不正确,请检查后重新输入！'
+            json_dicts = '不是功能码为【3041 3042 3043 3044 3045 3046 3047 3048 3049】的报文,或者报文格式不正确,请检查后重新输入！'
 
         # 将json_dicts的结果 赋到 textBrowser
         self.textBrowser.setPlainText(json_dicts)
