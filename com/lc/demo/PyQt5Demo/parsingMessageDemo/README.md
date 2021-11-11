@@ -45,6 +45,8 @@ pycharm如何将python文件打包为exe格式 - CSDN博客
 
 > pyinstaller --version
 
+> pyinstaller -F -w parsing_message_app_king.py
+
 注意:打开cmd或者powershell
 
 > PS E:\pycharm-professional-2018.1.3\Code\pythonLCDemo\com\lc\demo\PyQt5Demo\parsingMessageDemo> pyinstaller -F -w parsin
