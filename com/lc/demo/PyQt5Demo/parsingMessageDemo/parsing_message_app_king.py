@@ -3,8 +3,13 @@
 """
 
 parsing_message_app_king.py
-解析报文小工具 for LMT King版本 ok版本 全部完成 只支持 指令【3041 3042 3043 3044 3045 3046】
+解析报文小工具 for LMT King版本 ok版本 全部完成 只支持 指令【3041 3042 3043 3044 3045 3046 2047 3048 3049】
 备注：此版本是具体实现版本,在parsing_message_app.py的基础上
+changelog:
+# 支持指令【3041 3042 3043 3044 3045 3046 2047 3048 3049】
+# 输入的待解析报文允许中间有空格了 2021-11-26 09:51:25
+# todo
+app信息:
 Version: 1.0
 Author: LC
 DateTime: 2019年8月29日09:26:09
@@ -1415,7 +1420,10 @@ class Ui_Form(object):
 
         # strip()方法，去除字符串开头或者结尾的空格
         str3 = self.textEdit.toPlainText().strip()
-        print("解析原报文的字符长度为:", len(str3))
+        print("解析原报文的字符长度为(去除中间所有的空格前):", len(str3))
+        # 去除所有的空格
+        str3 = self.remove_all_blanks(str3)
+        print("解析原报文的字符长度为(去除中间所有的空格后):", len(str3))
 
         # 判断输入框报文是不是为空
         if len(str3) < 1:
@@ -1508,6 +1516,14 @@ class Ui_Form(object):
     def clickbtn2(self):
         str3 = self.textEdit.toPlainText()
         self.textBrowser.setHtml("<font color='red' size='6'><red>Hello PyQt5 By LC!\n单击按钮。</font>")
+
+    # 去除字符串全部空格
+    def remove_all_blanks(self, old_str):
+        # join为字符字符串合成传入一个字符串列表，split用于字符串分割可以按规则进行分割
+        # old_str.split() # 字符串按空格分割成列表
+        # "".join(old_str.split()) # 使用一个空字符串合成列表内容生成新的字符串
+        # 一行代码就是
+        return "".join(old_str.split())
 
 
 if __name__ == "__main__":
