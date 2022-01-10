@@ -6,10 +6,11 @@
 python_report_daily_app_king3_OrgId_with_del.py 跑之前先删除所有的相关数据 带机构号版本 加强版本2 封装了日报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
 日报表-计算写入数据库oracle的报表脚本
 版本说明:1：跑所有机构的日报表；2:逻辑变更-【周期内工况使用量（本期期末数-上期期末数）】【周期内标况使用量（本期期末数-上期期末数）】 3:整体脚本代码结构变更
+        4: 现在查询 0089 ['2022-01-09 00:00:00', '2022-01-10 00:00:00'] 抄表数据 来算1月9号的日报表了
 Version: 1.0
 Author: LC
 DateTime: 2019年3月7日14:16:04
-UpdateTime: 2020-4-17 15:02:50
+UpdateTime: 2022年1月10日10:13:26
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 LC博客url: http://oneplusone.vip/index.html
@@ -202,7 +203,8 @@ def to_n_datetime_max_min_time(n, type, is_format):
 def select_sfd_by_where(org_id, days):
     sql = "select * from SCADA_FLMETER_DATA where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
     yesterday_min = to_n_datetime_max_min_time(days, "min", False)
-    yesterday_max = to_n_datetime_max_min_time(days, "max", False)
+    # 直接改这里了 达到line9所说
+    yesterday_max = to_n_datetime_max_min_time(days + 1, "min", False)
     data = [{"orgid": org_id, "minTime": yesterday_min, "maxTime": yesterday_max}]
     fc = db.select_by_where_many_params_dict(sql, data)
     print("总共抄表数据:", len(fc))

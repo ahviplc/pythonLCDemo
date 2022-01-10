@@ -3,8 +3,7 @@
 
 """
 
-python_report_daily_app_king4_with_mid_dh.py 加强版本4 加强描述:在python_report_daily_app_king4.py基础上 在加入库的时候 无数据的 也会插入一条为null日报表数据
-封装了日报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
+python_report_daily_app_king3_with_del_with_mid_dh.py 跑之前先删除所有的相关数据 加强版本2 封装了日报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
 日报表-计算写入数据库oracle的报表脚本
 版本说明:1：跑所有机构的日报表；2:逻辑变更-【周期内工况使用量（本期期末数-上期期末数）】【周期内标况使用量（本期期末数-上期期末数）】 3:整体脚本代码结构变更
         4: 基于中间表【SCADA_FLMETER_DATA_MID_DH】的版本
@@ -12,7 +11,7 @@ python_report_daily_app_king4_with_mid_dh.py 加强版本4 加强描述:在pytho
 Version: 1.0
 Author: LC
 DateTime: 2019年3月7日14:16:04
-UpdateTime: 2022年1月10日09:54:17
+UpdateTime: 2022年1月10日09:58:58
 一加壹博客最Top-一起共创1+1>2的力量！~LC
 LC博客url: http://oneplusone.top/index.html
 LC博客url: http://oneplusone.vip/index.html
@@ -214,25 +213,8 @@ def select_sfd_by_where(org_id, days):
     return fc, data
 
 
-# 从oracle数据库SCADA_FLMETER_DATA读取所有符合条件的数据 select_sfd_by_where_with_mid_dh 使用中间表【SCADA_FLMETER_DATA_MID_DH】
-# 带参数查询
-# @param  org_id 要查询机构号
-# @param  days 0代表今天 +n代表n天后 -n代表n天前
-# @return 处理结果 True成功 False失败
-def select_sfd_by_where_with_mid_dh(org_id, days):
-    sql = "select * from SCADA_FLMETER_DATA_MID_DH where SFD_ORG_ID= :orgid and INSTANT_TIME between :minTime AND :maxTime "
-    yesterday_min = to_n_datetime_max_min_time(days, "min", False)
-    yesterday_max = to_n_datetime_max_min_time(days, "max", False)
-    data = [{"orgid": org_id, "minTime": yesterday_min, "maxTime": yesterday_max}]
-    fc = db.select_by_where_many_params_dict(sql, data)
-    print("总共抄表数据【SCADA_FLMETER_DATA_MID_DH】:", len(fc))
-    # for row in fc:
-    #     print(row)
-    return fc, data
-
-
 # 从oracle数据库SCADA_FLMETER_DATA读取所有符合条件的数据 select_sfd_by_where_with_mid_dh_2 使用中间表【SCADA_FLMETER_DATA_MID_DH】
-# 版本2 现在查询 0089 ['2022-01-09 00:00:00', '2022-01-10 00:00:00'] 抄表数据 来算1月9号的日报表了
+# 现在查询 0089 ['2022-01-09 00:00:00', '2022-01-10 00:00:00'] 抄表数据 来算1月9号的日报表了
 # 带参数查询
 # @param  org_id 要查询机构号
 # @param  days 0代表今天 +n代表n天后 -n代表n天前
@@ -329,20 +311,23 @@ def del_scada_report_daily(srd_org_id, srd_id):
     print('del_by_where ok')
 
 
+# 删除SCADA_REPORT_DAILY 带条件参数 删除数据 删除所有 指定到年月日
+# @param srh_year 年
+# @param srh_month 月
+# @param srh_day 日
+# @return null 删除成功或失败
+def del_all_scada_report_daily_by_year_month_day(srh_year, srh_month, srh_day):
+    sql = "delete from SCADA_REPORT_DAILY where YEAR=:1 and MONTH=:2 and DAY=:3"
+    data = [(srh_year, srh_month, srh_day)]
+    db.dml_by_where(sql, data)
+    print('del_all_scada_report_daily_by_year_month_day ok')
+
+
 # 获取所有需要跑脚本的机构信息
 # 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1生成
 def get_all_org_id_for_run_py_command_script_from_select_db():
     sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE= :org_report_generate order by ORG_ID desc"
     data = [{"org_report_generate": "1"}]
-    fc = db.select_by_where_many_params_dict(sql, data)
-    return fc
-
-
-# 获取某机构号所有的cur信息【流量计编号】 从SCADA_FLMETER_DATA_CUR表拿
-# 字段：orgid 机构号
-def get_all_flmeters_cur_by_orgid_for_run_py_command_script_from_select_db(orgid):
-    sql = "SELECT * FROM SCADA_FLMETER_DATA_CUR where SFD_ORG_ID = :orgid"
-    data = [{"orgid": orgid}]
     fc = db.select_by_where_many_params_dict(sql, data)
     return fc
 
@@ -377,38 +362,12 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
     rm_repeat_sfd_data_list = []  # 用于临时存放已删除重复的字典数据
     last_rm_repeat_sfd_data_list = []  # 用于临时存放已删除重复的字典数据 上一天的 上一次的
 
-    # 通过机构号查出此机构所有的流量计编号 从SCADA_FLMETER_DATA_CUR表拿
-    cur_list = get_all_flmeters_cur_by_orgid_for_run_py_command_script_from_select_db(org_id)
-    # 搞个set用来存储所有的cur表号
-
-    # 要是再想存取rtuNo 流量计通讯编号等字段 可以使用字典 dict 这里不启用 只是提供解决方案
-    # flmeter_no_more_from_cur_dict = {}
-
-    flmeter_no_set_from_cur = set()
-    for cl in cur_list:
-        flmeter_no_set_from_cur.add(cl['FLMETER_NO'])
-
-        # 使用字典 存多个字段 这里不启用 只是提供解决方案
-        # flmeter_no_more_from_cur_dict[cl['FLMETER_NO'] + "#FLMETER_NO"] = cl['FLMETER_NO']
-        # flmeter_no_more_from_cur_dict[cl['FLMETER_NO'] + "#RTU_NO"] = cl['RTU_NO']
-        # flmeter_no_more_from_cur_dict[cl['FLMETER_NO'] + "#CUSTOMER_NO"] = cl['CUSTOMER_NO']
-        # print(flmeter_no_more_from_cur_dict[cl['FLMETER_NO'] + "#FLMETER_NO"])
-    print('flmeter_no_set_from_cur 不同的表计号共有个数:', len(flmeter_no_set_from_cur))
-
-    # 去除flmeter_no_set中有的流量计编号 line 360
-
-    # 剩下的流量计编号根据日期和机构号插入空数据行 行中只要有 机构号 流量计编号 年月日 删除标识符为1即可 line 571
-
     flmeter_no_set = set()  # set是一个无序且不重复的元素集合-注意在创建空集合的时候只能使用s=set()，因为s={}创建的是空字典
     for x in data_for_processing:
         flmeter_no_set.add(x['FLMETER_NO'])
-        # 如果data_for_processing有某个流量计编号的数据 并且流量计编号在flmeter_no_set_from_cur也存在 则剔除这个流量计编号
-        if x['FLMETER_NO'] in flmeter_no_set_from_cur:
-            flmeter_no_set_from_cur.remove(x['FLMETER_NO'])
-    print('有抄表数据的 不同的表计号共有个数:', len(flmeter_no_set))  # 19
-    print('剔除之后的 flmeter_no_set_from_cur 需要做假数据的 不同的表计号共有个数:', len(flmeter_no_set_from_cur))
-    print('----------------------------------------------------------------------------------------')
-    print('根据表计号，进行真数据的再次筛选，处理，写入数据库')
+    print('不同的表计号共有个数:', len(flmeter_no_set))  # 19
+
+    print('根据表计号，进行数据的再次筛选，处理，写入数据库')
     print('----------------------------------------------------------------------------------------')
 
     # 根据表计号，进行数据的再次筛选，处理，写入数据库
@@ -448,7 +407,7 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
         # 机构号
         rdm.srd_org_id = sorted_rm_repeat_sfd_data_list[0]['SFD_ORG_ID']
 
-        # 记录id srd_id 移到line426
+        # 记录id srd_id 移到line385
 
         # RTU编号
         rdm.rtu_no = sorted_rm_repeat_sfd_data_list[0]['RTU_NO']
@@ -520,10 +479,10 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
         if min_work_sum is None:
             min_work_sum = str(0)
         if len(last_rm_repeat_sfd_data_list) > 0:  # （本期期末数-上期期末数）
-            last_work_sum = last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']
-            if last_work_sum is None:
-                last_work_sum = str(0)
-            rdm.use_volume_work = str(round(float(max_work_sum) - float(last_work_sum), 2))
+            last_max_work_sum = last_sorted_rm_repeat_sfd_data_list[len(last_rm_repeat_sfd_data_list) - 1]['WORK_SUM']
+            if last_max_work_sum is None:
+                last_max_work_sum = str(0)
+            rdm.use_volume_work = str(round(float(max_work_sum) - float(last_max_work_sum), 2))
         else:  # （本周期内期末数-本周期内期初数）
             rdm.use_volume_work = str(round(float(max_work_sum) - float(min_work_sum), 2))
         if float(rdm.use_volume_work) < 0:  # 如果use_volume_work计算出来小于0，则直接置为0
@@ -622,182 +581,8 @@ def data_processing(data_for_processing,last_data_for_processing,org_id, **kwarg
         rm_repeat_sfd_data_list.clear()
         last_rm_repeat_sfd_data_list.clear()
     pass
-    # 开始处理假数据入库
-    # 如果 flmeter_no_set_from_cur 长度0 则是代表无需做假数据的表 直接return True 终止程序向下执行
-    if len(flmeter_no_set_from_cur) == 0:
-        return True
-    # 走到这步 代表 有需要 假数据入库的表
-    print('开始处理假数据入库')
-    # 根据flmeter_no_set_from_cur表计号，进行数据的再次筛选，处理，写入数据库
-    flmeter_no_set_from_cur_copy = flmeter_no_set_from_cur.copy()
-    for fno in flmeter_no_set_from_cur:
-        print("☆ data_processing 处理假数据流量计编号 ", fno)
-        # 新建一个日报表类，用于接收收据 作假日报表数据
-        rdm = ReportDailyModel()
-
-        # 机构号
-        rdm.srd_org_id = org_id
-
-        # 记录id srd_id 移到line426
-
-        # RTU编号
-        # rdm.rtu_no = ""
-        # 流量计编号
-        rdm.flmeter_no = fno
-        # 客户编号
-        # rdm.customer_no = ""
-
-        # 得到当前时间datetime
-        now_datetime = datetime.datetime.today()
-        # print(now_datetime.year, now_datetime.month, now_datetime.day, now_datetime.hour, now_datetime.minute,now_datetime.second)  # 2019 3 8 12 52 10
-
-        # 报表时间 年 月 日 时
-        rdm.report_time = now_datetime
-
-        # 将查询时间的年月日 分别赋值到对应字段
-        # 处理年
-        rdm.year = str(kwargs['query_datetime'].year)
-        # 处理月
-        # print(len(str(rdm.month)))
-        # 如果月份小于10 补零 让9变为09月
-        if len(str(kwargs['query_datetime'].month)) < 2:
-            rdm.month = "0" + str(kwargs['query_datetime'].month)
-        else:
-            rdm.month = str(kwargs['query_datetime'].month)
-        # 处理日
-        # print(len(str(rdm.day)))
-        # 如果日小于10 补零 让9变为09日
-        if len(str(kwargs['query_datetime'].day)) < 2:
-            rdm.day = "0" + str(kwargs['query_datetime'].day)
-        else:
-            rdm.day = str(kwargs['query_datetime'].day)
-
-        # 处理小时 不处理了 togo
-        # print(len(str(rdm.hour)))
-        # 如果小时小于10 补零 让9变为09小时
-        # if len(str(now_datetime.hour)) < 2:
-        #     rdm.hour = "0" + str(now_datetime.hour)
-        # else:
-        #     rdm.hour = str(now_datetime.hour)
-
-        # 记录ID-取自动递增流水号
-        ssn_org_id = org_id  # 传入过来的org_id
-        ssn_key_name = "SCADA_REPORT_DAILY"  # 如需修改为其他表的递增流水，请自行修改
-        ok_srd_id = get_sys_serial_no(db, ssn_org_id, ssn_key_name, rdm.year, rdm.month)  # 导入获取流水号方法
-        print(ok_srd_id)
-        rdm.srd_id = ssn_org_id + rdm.year + rdm.month + ok_srd_id
-
-        # 删除标识符 1正常，9不正常已删除 默认置为1
-        rdm.srd_status = "1"
-        # 写入数据库
-        is_success = ok_processing_data_insert_into_oracle(rdm)  # 将完善好数据的日报表对象rdm传入
-        print('----------------------------------------------------------------------------------------')
-        # 处理数据完毕 清除临时使用数据
-        flmeter_no_set_from_cur_copy.remove(fno)
-        pass
-    # 什么都处理完成了
     return True
 
-# 假数据处理-主逻辑处理-主要函数方法
-# @param data_for_processing 要处理的原数据
-# @param last_data_for_processing 要处理的原数据-上一次的
-# @param org_id 机构号
-# @param 字典传参 query_datetime 查询操作的日期
-# @return 处理结果 True成功 False失败
-def fake_data_processing(data_for_processing,last_data_for_processing,org_id, **kwargs):
-
-    # 通过机构号查出此机构所有的流量计编号 从SCADA_FLMETER_DATA_CUR表拿
-    cur_list = get_all_flmeters_cur_by_orgid_for_run_py_command_script_from_select_db(org_id)
-    # 搞个set用来存储所有的cur表号
-    flmeter_no_set_from_cur = set()
-    for cl in cur_list:
-        flmeter_no_set_from_cur.add(cl['FLMETER_NO'])
-    print('flmeter_no_set_from_cur 不同的表计号共有个数:', len(flmeter_no_set_from_cur))
-
-    # 去除flmeter_no_set中有的流量计编号 这里不用去除 都是需要做假数据的表
-
-    # 剩下的流量计编号根据日期和机构号插入空数据行 行中只要有 机构号 流量计编号 年月日 删除标识符为1即可
-
-    print('需要假数据处理的 flmeter_no_set_from_cur 需要做假数据的 不同的表计号共有个数:', len(flmeter_no_set_from_cur))
-    print('----------------------------------------------------------------------------------------')
-    print('根据表计号，进行假数据的再次筛选，处理，写入数据库')
-    print('----------------------------------------------------------------------------------------')
-    # 开始处理假数据入库
-    # 如果 flmeter_no_set_from_cur 长度0 则是代表无需做假数据的表 直接return True 终止程序向下执行
-    if len(flmeter_no_set_from_cur) == 0:
-        print('无需做假数据的表 直接return True 终止程序向下执行')
-        return True
-    # 走到这步 代表 有需要 假数据入库的表
-    print('开始处理假数据入库')
-    # 根据flmeter_no_set_from_cur表计号，进行数据的再次筛选，处理，写入数据库
-    flmeter_no_set_from_cur_copy = flmeter_no_set_from_cur.copy()
-    for fno in flmeter_no_set_from_cur:
-        print("☆ fake_data_processing 处理假数据 流量计编号 ", fno)
-        # 新建一个日报表类，用于接收收据 作假日报表数据
-        rdm = ReportDailyModel()
-
-        # 机构号
-        rdm.srd_org_id = org_id
-
-        # 记录id srd_id 移到line426
-
-        # RTU编号
-        # rdm.rtu_no = ""
-        # 流量计编号
-        rdm.flmeter_no = fno
-        # 客户编号
-        # rdm.customer_no = ""
-
-        # 得到当前时间datetime
-        now_datetime = datetime.datetime.today()
-        # print(now_datetime.year, now_datetime.month, now_datetime.day, now_datetime.hour, now_datetime.minute,now_datetime.second)  # 2019 3 8 12 52 10
-
-        # 报表时间 年 月 日 时
-        rdm.report_time = now_datetime
-
-        # 将查询时间的年月日 分别赋值到对应字段
-        # 处理年
-        rdm.year = str(kwargs['query_datetime'].year)
-        # 处理月
-        # print(len(str(rdm.month)))
-        # 如果月份小于10 补零 让9变为09月
-        if len(str(kwargs['query_datetime'].month)) < 2:
-            rdm.month = "0" + str(kwargs['query_datetime'].month)
-        else:
-            rdm.month = str(kwargs['query_datetime'].month)
-        # 处理日
-        # print(len(str(rdm.day)))
-        # 如果日小于10 补零 让9变为09日
-        if len(str(kwargs['query_datetime'].day)) < 2:
-            rdm.day = "0" + str(kwargs['query_datetime'].day)
-        else:
-            rdm.day = str(kwargs['query_datetime'].day)
-
-        # 处理小时 不处理了 togo
-        # print(len(str(rdm.hour)))
-        # 如果小时小于10 补零 让9变为09小时
-        # if len(str(now_datetime.hour)) < 2:
-        #     rdm.hour = "0" + str(now_datetime.hour)
-        # else:
-        #     rdm.hour = str(now_datetime.hour)
-
-        # 记录ID-取自动递增流水号
-        ssn_org_id = org_id  # 传入过来的org_id
-        ssn_key_name = "SCADA_REPORT_DAILY"  # 如需修改为其他表的递增流水，请自行修改
-        ok_srd_id = get_sys_serial_no(db, ssn_org_id, ssn_key_name, rdm.year, rdm.month)  # 导入获取流水号方法
-        print(ok_srd_id)
-        rdm.srd_id = ssn_org_id + rdm.year + rdm.month + ok_srd_id
-
-        # 删除标识符 1正常，9不正常已删除 默认置为1
-        rdm.srd_status = "1"
-        # 写入数据库
-        is_success = ok_processing_data_insert_into_oracle(rdm)  # 将完善好数据的日报表对象rdm传入
-        print('----------------------------------------------------------------------------------------')
-        # 处理数据完毕 清除临时使用数据
-        flmeter_no_set_from_cur_copy.remove(fno)
-        pass
-    # 什么都处理完成了
-    return True
 
 # 判断"字符串"是否为数字
 # @param s 要检测的字符串
@@ -833,15 +618,13 @@ def main(db, org_id, days):
     # com/lc/demo/pythonReportDemo/reportDailyKingDemo/python_report_daily_app_king2.py:419
 
     # 设置查询的机构,要查询哪一天
-    # return_data, params_data = select_sfd_by_where(org_id, days)  # @param org_id 要查询机构号 @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
-    # select_sfd_by_where_with_mid_dh
+    # select_sfd_by_where
     # select_sfd_by_where_with_mid_dh_2
     return_data, params_data = select_sfd_by_where_with_mid_dh_2(org_id, days)  # @param org_id 要查询机构号 @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
 
     # 查询当天的上一天数据
-    print("下面是查询当天的上一天数据-总共抄表数据【SCADA_FLMETER_DATA_MID_DH】")
-    # last_return_data, last_params_data = select_sfd_by_where(org_id, days-1)
-    # select_sfd_by_where_with_mid_dh
+    print("下面是查询当天的上一天数据-总共抄表数据")
+    # select_sfd_by_where
     # select_sfd_by_where_with_mid_dh_2
     last_return_data, last_params_data = select_sfd_by_where_with_mid_dh_2(org_id, days-1)
 
@@ -851,29 +634,64 @@ def main(db, org_id, days):
     # 接下来开始处理查询出数据
     if len(return_data) > 0:
         print(params_data[0]['orgid'], [params_data[0]['minTime'].strftime('%Y-%m-%d %H:%M:%S'),params_data[0]['maxTime'].strftime('%Y-%m-%d %H:%M:%S')], "开始进行计算日报表数据处理")
-        is_ok = data_processing(return_data, last_return_data, params_data[0]['orgid'], query_datetime=params_data[0]['minTime'])  # 数据处理函数，处理日报表 , 日报表数据计算，写入数据库操作
+        is_ok = data_processing(return_data, last_return_data, params_data[0]['orgid'],query_datetime=params_data[0]['minTime'])  # 数据处理函数，处理日报表 , 日报表数据计算，写入数据库操作
         if is_ok:
             print(params_data[0]['orgid'],"data_processing is ok")
             print('----------------------------------------------------------------------------------------')
         pass
     else:
-        print(params_data[0]['orgid'], [params_data[0]['minTime'].strftime('%Y-%m-%d %H:%M:%S'),params_data[0]['maxTime'].strftime('%Y-%m-%d %H:%M:%S')], "期间无抄表数据，接下来假数据处理 计算日报表")
-        # print('此机构 此天 一条抄表数据都没有...')
-        print(params_data[0]['orgid'], [params_data[0]['minTime'].strftime('%Y-%m-%d %H:%M:%S'),params_data[0]['maxTime'].strftime('%Y-%m-%d %H:%M:%S')], "开始进行计算日报表 假数据处理")
-        # print('此机构 此天 开始创造 日报表假数据')
-        is_ok = fake_data_processing(return_data, last_return_data, params_data[0]['orgid'], query_datetime=params_data[0]['minTime'])  # 数据处理函数，处理日报表 , 日报表数据计算，写入数据库操作
-        if is_ok:
-            print(params_data[0]['orgid'], "fake_data_processing is ok 假数据处理完成")
-            print('----------------------------------------------------------------------------------------')
-        pass
+        print(params_data[0]['orgid'], [params_data[0]['minTime'].strftime('%Y-%m-%d %H:%M:%S'),params_data[0]['maxTime'].strftime('%Y-%m-%d %H:%M:%S')], "期间无抄表数据，请等待重新计算日报表")
         print("----------------------------------------------------------------------------------------")
     pass
 
 
-# main方法
+# del_first_before_main方法
+# @param db 数据库实例
+# @param days 天数
+
+# @return main方法运行之前删除数据处理结果 完成返回True 否则为False
+def del_first_before_main(db, days):
+    yesterday_min_datetime = to_n_datetime_max_min_time(days, "min", False)  # 如果是False 会直接返回datetime
+
+    # yesterday_max = to_n_datetime_max_min_time(days, "max", True)  # 如果是True 会转换成str
+    # yesterday_max_datetime = datetime.datetime.strptime(yesterday_max, '%Y-%m-%d %H:%M:%S')
+
+    this_year = yesterday_min_datetime.year
+    this_month = yesterday_min_datetime.month
+    this_day = yesterday_min_datetime.day
+
+    # 处理月
+    # print(len(str(this_month)))
+    # 如果月份小于10 补零 让9变为09月
+    if len(str(this_month)) < 2:
+        this_month = "0" + str(this_month)
+    else:
+        this_month = str(this_month)
+
+    # 处理日
+    # print(len(this_day))
+    # 如果日小于10 补零 让9变为09日
+    if len(str(this_day)) < 2:
+        this_day = "0" + str(this_day)
+    else:
+        this_day = str(this_day)
+
+    print('为了重新日报表计算数据,接下来要删除SCADA_REPORT_DAILY日报表数据,对应年月日为:', str(this_year), this_month, this_day)
+    print('----------------------------------------------------------------------------------------------------')
+    is_del_flag = input('确定要删除所有机构号' + ' 时间点(年月日)为: ' + str(this_year) + this_month + this_day + ' 的 SCADA_REPORT_DAILY 日报表数据全部数据吗？确定删除输入y,不删除输入n 请输入: ')
+    if is_del_flag.lower() == 'y':
+        del_all_scada_report_daily_by_year_month_day(str(this_year), this_month, this_day)
+        print('开始此次日报表计算操作--------------------------------------------------')
+        return True
+    else:
+        print('你选择了不删除原有数据,取消此次日报表计算操作')
+        return False
+    # print(yesterday_min, yesterday_max)  # 2020-04-16 00:00:00 2020-04-16 23:59:59.999999
+
+
 if __name__ == '__main__':
 
-    # sys.stdout = PrintLogger('python_report_daily_app_king4_with_mid_dh.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    # sys.stdout = PrintLogger('python_report_daily_app_king3_with_del_with_mid_dh.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
 
     print("============================================================================================================================================================分隔符")
 
@@ -893,10 +711,14 @@ if __name__ == '__main__':
     # 查询出所有需要跑脚本的机构id
     org_list = get_all_org_id_for_run_py_command_script_from_select_db()  # 查询出所有需要跑脚本的机构id
 
-    # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
-    for x in org_list:
-        print("此机构:", x['ORG_ID'])
-        main(db, x['ORG_ID'], -1)  # 传入的机构,设置要查询哪一天！运行main方法，将db带过去，机构id， -1跑昨天的数据！用于下面的操作！
+    # which_day代表跑哪一天
+    # del_first_before_main(db, which_org_id, which_day)
+    which_day = -1
+    if del_first_before_main(db, which_day):
+        # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
+        for x in org_list:
+            print("此机构:", x['ORG_ID'])
+            main(db, x['ORG_ID'], which_day)  # 传入的机构,设置要查询哪一天！运行main方法，将db带过去，机构id， -1跑昨天的数据！用于下面的操作！
 
     print("all done-日报表整个处理流程完成")
     print("----------------------------------------------------------------------------------------")
