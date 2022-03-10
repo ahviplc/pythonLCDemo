@@ -3,7 +3,7 @@
 
 """
 
-python_report_daily_app_king4.py 加强版本3 加强描述:在python_report_daily_app_king2.py基础上 在加入库的时候 无数据的 也会插入一条为null日报表数据
+python_report_daily_app_king4_with_day.py 白天跑 加强版本3 加强描述:在python_report_daily_app_king2.py基础上 在加入库的时候 无数据的 也会插入一条为null日报表数据
 封装了日报表对象类以及将取自动递增流水方法提取到工具db_utils文件中,集成监听所有的print到log日志的封装类
 日报表-计算写入数据库oracle的报表脚本
 版本说明:1：跑所有机构的日报表；2:逻辑变更-【周期内工况使用量（本期期末数-上期期末数）】【周期内标况使用量（本期期末数-上期期末数）】 3:整体脚本代码结构变更
@@ -39,7 +39,7 @@ os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 class MyOracle:
     SHOW_SQL = True
 
-    def __init__(self, host='192.168.0.7', port=1521, user='SCOTT', password='Lmt123456',
+    def __init__(self, host='172.19.110.129', port=1521, user='SCOTT', password='Lmt123456',
                  sid='LMTPlat'):  # 注意###里改为自己所需要的ip
         self.host = host
         self.port = port
@@ -295,10 +295,10 @@ def del_scada_report_daily(srd_org_id, srd_id):
 
 
 # 获取所有需要跑脚本的机构信息
-# 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1生成
+# 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1夜间生成，2白天生成
 def get_all_org_id_for_run_py_command_script_from_select_db():
     sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE= :org_report_generate"
-    data = [{"org_report_generate": "1"}]
+    data = [{"org_report_generate": "2"}]
     fc = db.select_by_where_many_params_dict(sql, data)
     return fc
 
@@ -832,7 +832,7 @@ def main(db, org_id, days):
 # main方法
 if __name__ == '__main__':
 
-    # sys.stdout = PrintLogger('python_report_daily_app_king4.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
+    # sys.stdout = PrintLogger('python_report_daily_app_king4_with_day.py.log')  # 监听所有的print到log日志 封装类 如不需要打印所有输出print的log日志，隐掉这段即可
 
     print("============================================================================================================================================================分隔符")
 
@@ -855,7 +855,7 @@ if __name__ == '__main__':
     # 循环 org_list @param db实例  @param org_id 要查询机构号  @param days 0代表今天 +n代表n天后 -n代表n天前 默认为-1 跑昨天的数据
     for x in org_list:
         print("此机构:", x['ORG_ID'])
-        main(db, x['ORG_ID'], 0)  # 传入的机构,设置要查询哪一天！运行main方法，将db带过去，机构id， -1跑昨天的数据！用于下面的操作！
+        main(db, x['ORG_ID'], -1)  # 传入的机构,设置要查询哪一天！运行main方法，将db带过去，机构id， -1跑昨天的数据！用于下面的操作！
 
     print("all done-日报表整个处理流程完成")
     print("----------------------------------------------------------------------------------------")
