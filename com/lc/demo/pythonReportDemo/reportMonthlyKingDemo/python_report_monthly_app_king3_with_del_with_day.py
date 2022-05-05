@@ -961,9 +961,9 @@ def del_first_before_main(db, months):
     else:
         this_month = str(this_month)
 
-    print('为了月报表计算数据,接下来要删除SCADA_REPORT_MONTHLY月报表数据,对应年月为:', str(this_year), this_month)
+    print('为了月报表计算数据,接下来要删除SCADA_REPORT_MONTHLY月报表数据(这里是白天脚本 不删除原来的 直接计算即可),对应年月为:', str(this_year), this_month)
     print('----------------------------------------------------------------------------------------------------')
-    del_all_scada_report_monthly_by_year_month(str(this_year), this_month)
+    # del_all_scada_report_monthly_by_year_month(str(this_year), this_month)
     print('开始此次月报表计算操作--------------------------------------------------')
     return True
     # print(yesterday_min, yesterday_max)  # 2020-04-16 00:00:00 2020-04-16 23:59:59.999999
@@ -991,6 +991,7 @@ if __name__ == '__main__':
 
     # which_month 代表跑哪月
     which_month = 0
+    # 这里是白天生成的脚本 机构数很少 所以就不能删除 已将删除语句隐掉
     if del_first_before_main(db, which_month):
         # 循环 org_list @param db实例  # @param org_id 要查询机构号 @param months 0代表当前月 +n代表n月后 -n代表n月前 默认为-1 跑上个月的数据
         for x in org_list:
