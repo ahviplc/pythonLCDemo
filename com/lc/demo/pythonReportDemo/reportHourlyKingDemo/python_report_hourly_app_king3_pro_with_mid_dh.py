@@ -555,9 +555,10 @@ def del_scada_report_hourly(srh_org_id, srh_id):
 # 获取所有需要跑脚本的机构信息
 # 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1生成
 # 根据 ORG_ID 排序,倒叙
+# org_report_generate 废弃 使用小时专属字段 org_report_generate_hour | 是否计算生成报表：0不生成，1夜间生成，2白天生成
 def get_all_org_id_for_run_py_command_script_from_select_db():
-    sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE= :org_report_generate order by ORG_ID desc"
-    data = [{"org_report_generate": "1"}]
+    sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE_HOUR= :org_report_generate_hour order by ORG_ID desc"
+    data = [{"org_report_generate_hour": "1"}]
     fc = db.select_by_where_many_params_dict(sql, data)
     return fc
 
