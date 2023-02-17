@@ -175,11 +175,21 @@ def get_real_url2(this_cid, this_aid,this_bvid):
     out_name_new = "./public/" + this_bvid + "-new.mp4"
     ffmpy_mp4_add_mp3(mp4_path, mp3_path, out_name_new)
 
-    # todo 删除原音视频文件
-    pass
+    # 删除原音视频文件
+    remove_this(mp4_path, mp3_path, this_bvid)
 
     # 将合并好的音视频文件名称返回
     return this_bvid + '-new.mp4'
+
+
+# 删除原音视频
+def remove_this(mp4_path, mp3_path, this_bvid):
+    try:
+        os.remove(mp4_path)
+        os.remove(mp3_path)
+        print(this_bvid, ' 对应音视频 删除成功')
+    except Exception as ex:
+        print(this_bvid, ' 对应音视频 未删除！异常=> ', ex)
 
 
 # 合并音视频
@@ -194,7 +204,7 @@ def ffmpy_mp4_add_mp3(mp4_path, mp3_path, new_path_name):
         ]}
     )
     # 打印cmd指令的具体执行内容
-    # print(ff.cmd)
+    print('执行的命令 => ', ff.cmd)
     # todo 安装ffmpeg 并配置其环境变量 然后再放开下面的注释
     # ff.run()
 
@@ -216,7 +226,7 @@ if __name__ == '__main__':
     # 最多点击
     # run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=click', 1,'click', 2)
     # 最新发布
-    run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=pubdate', 1, 'pubdate', 1)
+    run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=pubdate', 1, 'pubdate', 5)
     # 最多弹幕
     # run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=dm', 1,'dm', 2)
     # 最多收藏
