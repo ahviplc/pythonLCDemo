@@ -18,7 +18,7 @@
 
 ## 配置好db
 
-`reality-tv-search-py/db/db.py:6`
+`reality-tv-search-py/db/db.py:6 配置好你自己的mysql连接`
 
 ## py脚本运行
 
