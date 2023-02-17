@@ -3,7 +3,7 @@ import datetime
 from pony.orm import *
 
 db_mysql = Database()
-db_mysql.bind(provider='mysql', user='root', password='lc2022888', host='43.142.58.153', port=3306,
+db_mysql.bind(provider='mysql', user='root', password='###', host='43.142.58.153', port=3306,
               database='reality-tv-search')
 
 set_sql_debug(True)
