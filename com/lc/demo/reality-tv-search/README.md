@@ -16,6 +16,18 @@
 
 > pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
+> pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+
+## 配置好db
+
+`reality-tv-search-py/db/db.py:6`
+
+## py脚本运行
+
+> python main.py
+
+## Links
+
 ```markdown
 mysql
 
@@ -68,7 +80,7 @@ GitHub - ahviplc/BotMan at BotMan-MySQL 端口9528
 https://github.com/ahviplc/BotMan/tree/BotMan-MySQL
 ```
 
-### 小技巧
+## 小技巧
 
 https://www.bilibili.com/video/BV16o4y1i71r?from=search
 获取相关哔哩哔哩视频信息接口
@@ -113,7 +125,7 @@ https://www.fodownloader.com/csgeturl?urlInfo=https%3A%2F%2Fwww.bilibili.com%2Fv
 
 > https://upos-sz-mirrorali.bilivideo.com/upgcxcode/52/27/1010482752/1010482752-1-208.mp4?e=ig8euxZM2rNcNbhz7WdVhwdlhzhBhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1676549070&gen=playurlv2&os=alibv&oi=795565499&trid=b627e97d98c14a2591030ba772899afbT&mid=538947867&platform=html5&upsig=8ca6ffa6f317dc6d0a0a115dd14892b0&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&bw=335906&orderid=0,1&logo=80000000
 
-### MySQL数据脚本
+## MySQL数据脚本
 
 数据库设计
 
