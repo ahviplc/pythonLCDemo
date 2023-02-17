@@ -1,3 +1,4 @@
 beautifulsoup4==4.6.0
 pony==0.7.16
 PyMySQL==1.0.2
+ffmpy==0.3.0

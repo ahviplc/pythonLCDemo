@@ -11,6 +11,7 @@
 > pip install beautifulsoup4 -i https://mirrors.aliyun.com/pypi/simple/
 > pip install pony -i https://mirrors.aliyun.com/pypi/simple/
 > pip install PyMySQL -i https://mirrors.aliyun.com/pypi/simple/
+> pip install ffmpy -i https://mirrors.aliyun.com/pypi/simple/
 
 `使用requirements.txt安装类库 进行一次性安装`
 
@@ -76,6 +77,43 @@ https://github.com/niyuancheng/bilibili-service
 
 GitHub - ahviplc/BotMan at BotMan-MySQL 端口9528
 https://github.com/ahviplc/BotMan/tree/BotMan-MySQL
+
+ffmpeg-python: Python bindings for FFmpeg — ffmpeg-python documentation
+https://kkroening.github.io/ffmpeg-python/
+
+GitHub - kkroening/ffmpeg-python: Python bindings for FFmpeg - with complex filtering support
+https://github.com/kkroening/ffmpeg-python
+
+python-ffmpeg
+https://python-ffmpeg.readthedocs.io/en/latest/
+
+GitHub - jonghwanhyeon/python-ffmpeg: A python binding for FFmpeg which provides sync and async APIs
+https://github.com/jonghwanhyeon/python-ffmpeg
+
+GitHub - jiashaokun/ffmpeg: 基于FFmpeg的python视频处理包-因疫情影响，工作比较繁忙，心情也没在视频上面再研究，该项目已经搁置，源码很简单，大家可以自己研究一下自己扩展
+https://github.com/jiashaokun/ffmpeg
+
+python 使用 ffmpeg 合并音频+视频_YUAYU-的博客-CSDN博客
+https://blog.csdn.net/weixin_43835542/article/details/109493050
+# 这是 ffmpeg 合并音频+视频的cmd写法
+【ffmpeg -i {mp4_file} -i {mp3_file} -acodec copy -vcodec copy {outfile_name}】
+
+* 使用的是这个 确定了
+GitHub - Ch00k/ffmpy: Pythonic interface for FFmpeg/FFprobe command line
+https://github.com/Ch00k/ffmpy
+
+ffmpy · PyPI
+https://pypi.org/project/ffmpy/
+
+* 此教程使用【https://github.com/Ch00k/ffmpy】
+使用Python+FFMPEG实现视频分割与合并 - 程序设计实验室 - 博客园
+https://www.cnblogs.com/deali/p/14584495.html
+
+# 这是使用 ffmpy 代码拼接成的合并音频+视频的cmd写法
+【ffmpeg -i ./public/BV1vo4y1e75J.mp4 -i ./public/BV1vo4y1e75J.mp3 -vcodec copy -acodec copy ./public/BV1vo4y1e75J-new.mp4】
+
+【Python】ffmpeg的安装配置和python中使用ffmpy（保姆级图文）_发现你走远了的博客-CSDN博客
+https://blog.csdn.net/u011027547/article/details/122490254
 ```
 
 ## 小技巧

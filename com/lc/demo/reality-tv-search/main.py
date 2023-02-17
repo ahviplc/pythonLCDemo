@@ -5,6 +5,7 @@ import os
 
 import requests
 from bs4 import BeautifulSoup
+import ffmpy
 from db.db import add_tvideo_for_mysql, get_dbs, selectTVideo
 
 # 初始化一下db
@@ -154,19 +155,42 @@ def get_real_url2(this_cid, this_aid,this_bvid):
     audioResponse = requests.get(this_audio_url, headers=headers).content
 
     # 保存到本地
-    if os.path.exists("./public/" + this_bvid + ".mp4"):
-        print('视频文件 已存在 不存入了 跳过 => ', "./public/" + this_bvid + ".mp4")
+    mp4_path = "./public/" + this_bvid + ".mp4"
+    if os.path.exists(mp4_path):
+        print('视频文件 已存在 不存入了 跳过 => ', mp4_path)
     else:
         save_file(video_response, this_bvid + ".mp4")
-        print('视频文件 已存入了 目录为 => ', "./public/" + this_bvid + ".mp4")
+        print('视频文件 已存入了 目录为 => ', mp4_path)
 
-    if os.path.exists("./public/" + this_bvid + ".mp3"):
-        print('音频文件 已存在 不存入了 跳过 => ', "./public/" + this_bvid + ".mp3")
+    mp3_path = "./public/" + this_bvid + ".mp3"
+    if os.path.exists(mp3_path):
+        print('音频文件 已存在 不存入了 跳过 => ', mp3_path)
     else:
         save_file(audioResponse, this_bvid + ".mp3")
-        print('音频文件 已存入了 目录为 => ', "./public/" + this_bvid + ".mp3")
+        print('音频文件 已存入了 目录为 => ', mp3_path)
     pass
-    return this_bvid + '.mp4' + '#' + this_bvid + '.mp3'
+
+    # 合并音频和视频
+    ffmpy_mp4_add_mp3(mp4_path, mp3_path, "./public/" + this_bvid + "-new.mp4")
+
+    return this_bvid + '-new.mp4'
+
+
+# 合并音视频
+# cmd = 【ffmpeg -i ./public/BV1vo4y1e75J.mp4 -i ./public/BV1vo4y1e75J.mp3 -vcodec copy -acodec copy ./public/BV1vo4y1e75J-new.mp4】
+# 此cmd拼接的就是我们想要的
+def ffmpy_mp4_add_mp3(mp4_path, mp3_path, new_path_name):
+    ff = ffmpy.FFmpeg(
+        inputs={mp4_path: None, mp3_path: None},
+        outputs={new_path_name: [
+            '-vcodec', 'copy',
+            '-acodec', 'copy'
+        ]}
+    )
+    # 打印cmd指令的具体执行内容
+    # print(ff.cmd)
+    # todo 安装ffmpeg 并配置其环境变量 然后再放开下面的注释
+    # ff.run()
 
 
 # 保存音视频文件到本地
@@ -186,7 +210,7 @@ if __name__ == '__main__':
     # 最多点击
     # run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=click', 1,'click', 2)
     # 最新发布
-    run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=pubdate', 12, 'pubdate', 1)
+    run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=pubdate', 1, 'pubdate', 1)
     # 最多弹幕
     # run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=dm', 1,'dm', 2)
     # 最多收藏
