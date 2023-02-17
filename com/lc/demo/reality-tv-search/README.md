@@ -16,8 +16,6 @@
 
 > pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
-> pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-
 ## 配置好db
 
 `reality-tv-search-py/db/db.py:6`
