@@ -171,8 +171,14 @@ def get_real_url2(this_cid, this_aid,this_bvid):
     pass
 
     # 合并音频和视频
-    ffmpy_mp4_add_mp3(mp4_path, mp3_path, "./public/" + this_bvid + "-new.mp4")
+    # 合成的新视频文件名称
+    out_name_new = "./public/" + this_bvid + "-new.mp4"
+    ffmpy_mp4_add_mp3(mp4_path, mp3_path, out_name_new)
 
+    # todo 删除原音视频文件
+    pass
+
+    # 将合并好的音视频文件名称返回
     return this_bvid + '-new.mp4'
 
 
