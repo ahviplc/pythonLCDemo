@@ -205,8 +205,14 @@ def ffmpy_mp4_add_mp3(mp4_path, mp3_path, new_path_name):
     )
     # 打印cmd指令的具体执行内容
     print('执行的命令 => ', ff.cmd)
-    # todo 安装ffmpeg 并配置其环境变量 然后再放开下面的注释
-    # ff.run()
+    # 安装ffmpeg 并配置其环境变量
+    # 才可以执行 ffmpeg 指令
+    #【ffmpeg -version】控制台输入此命令 可打印出版本信息即代表安装成功
+    try:
+        ff.run()
+    except Exception as ex:
+        print("请安装FFmpeg【https://ffmpeg.org/】,并将其添加到系统环境变量 Except_Msg=> ",ex)
+
 
 
 # 保存音视频文件到本地
@@ -226,7 +232,7 @@ if __name__ == '__main__':
     # 最多点击
     # run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=click', 1,'click', 2)
     # 最新发布
-    run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=pubdate', 1, 'pubdate', 5)
+    run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=pubdate', 1, 'pubdate', 3)
     # 最多弹幕
     # run('https://search.bilibili.com/video?keyword=%E7%9C%9F%E4%BA%BA%E7%A7%80&order=dm', 1,'dm', 2)
     # 最多收藏

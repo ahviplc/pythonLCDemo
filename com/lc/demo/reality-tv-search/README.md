@@ -114,6 +114,18 @@ https://www.cnblogs.com/deali/p/14584495.html
 
 【Python】ffmpeg的安装配置和python中使用ffmpy（保姆级图文）_发现你走远了的博客-CSDN博客
 https://blog.csdn.net/u011027547/article/details/122490254
+
+FFmpeg
+https://ffmpeg.org/
+
+Builds - CODEX FFMPEG @ gyan.dev
+https://www.gyan.dev/ffmpeg/builds/
+
+Releases · BtbN/FFmpeg-Builds | 下载FFmpeg win | 可用 将此bin目录设置到系统环境变量
+https://github.com/BtbN/FFmpeg-Builds/releases
+
+static FFmpeg binaries for macOS 64-bit | 下载FFmpeg mac
+https://evermeet.cx/ffmpeg/
 ```
 
 ## 小技巧
