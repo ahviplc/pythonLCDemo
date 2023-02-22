@@ -24,7 +24,7 @@ def run(this_url, which_page, tv_category, this_how_many):
     div_people_list_bs = BeautifulSoup(str(div_people_list), "html.parser")
     # print(a.contents[0])
     items = div_people_list_bs.contents[0]
-    print("共爬取到视频数量为 => ", len(items.contents)," 但你只要总条数为 => ", this_how_many, ' 当前类别为 => ', tv_category)
+    print("共爬取到视频数量为 =>", len(items.contents)," 但你只要总条数为 =>", this_how_many, ' 当前类别为 => ', tv_category)
     # 挨个传输到items，然后打印数据
     this_count = 0
     for t in items:
@@ -48,35 +48,35 @@ def run(this_url, which_page, tv_category, this_how_many):
         # print('==================')
         # print(more_info_con_bs.contents[0])
         this_info = more_info_con_bs.contents[0]
-        print("===this_info 视频标题===> ", this_info.text.strip())
+        print("===this_info 视频标题===>", this_info.text.strip())
         this_real_url = 'https:' + this_info.contents[3].get('href')
-        print("===this_info 视频url===> ", this_real_url)
+        print("===this_info 视频url===>", this_real_url)
         this_real_url2 = str(this_real_url)[0:-12]
-        print("===this_info 视频url去除问号===> ", this_real_url2)
+        print("===this_info 视频url去除问号===>", this_real_url2)
         this_real_url3 = this_real_url2.split("/")
-        print("===this_info B站视频AV/BV号===> ", this_real_url3[4])
+        print("===this_info B站视频AV/BV号===>", this_real_url3[4])
         # print('==================')
         # print(more_info_con_bs.contents[1])
         this_info2 = more_info_con_bs.contents[1]
-        print("===this_info2 简介===> ", this_info2.text.strip())
+        print("===this_info2 简介===>", this_info2.text.strip())
         # print(more_info_con_bs.contents[2])
         this_info3 = more_info_con_bs.contents[2]
-        print("===this_info3 视频全信息===> ")
-        print("===this_info3 视频全信息 观看量===> ", this_info3.contents[0].text.strip())
-        print("===this_info3 视频全信息 弹幕数量===> ", this_info3.contents[1].text.strip())
-        print("===this_info3 视频全信息 上传日期===> ", this_info3.contents[2].text.strip())
-        print("===this_info3 视频全信息 上传up主===> ", this_info3.contents[3].text.strip())
+        print("===this_info3 视频全信息===>")
+        print("===this_info3 视频全信息 观看量===>", this_info3.contents[0].text.strip())
+        print("===this_info3 视频全信息 弹幕数量===>", this_info3.contents[1].text.strip())
+        print("===this_info3 视频全信息 上传日期===>", this_info3.contents[2].text.strip())
+        print("===this_info3 视频全信息 上传up主===>", this_info3.contents[3].text.strip())
         # 获取封面和时长
         this_json_data = get_data_by_av_bv(this_real_url3[4])
-        print("===this_info4 视频全信息 视频封面===> ", this_json_data['data']['pic'])
-        print("===this_info4 视频全信息 视频时长===> ", this_json_data['data']['duration'])
-        print("===this_info4 视频全信息 视频时间日期 时间戳形式===> ", this_json_data['data']['pubdate'])
+        print("===this_info4 视频全信息 视频封面===>", this_json_data['data']['pic'])
+        print("===this_info4 视频全信息 视频时长===>", this_json_data['data']['duration'])
+        print("===this_info4 视频全信息 视频时间日期 时间戳形式===>", this_json_data['data']['pubdate'])
         # 获取视频播放真正的url
         # 先隐掉
         # print("===this_info4 视频全信息 真实播放地址===> ", get_real_url(this_real_url2))
         # 使用方法2获取视频地址
         # print("===this_info4 视频全信息 真实播放地址2===> ", get_real_url2(this_json_data['data']['cid'], this_json_data['data']['aid'], this_real_url3[4]))
-        print("===this_info4 视频全信息 真实播放地址2===> ", this_real_url3[4] + '.mp4' + '#' + this_real_url3[4] + '.mp3')
+        print("===this_info4 视频全信息 真实播放地址2===>", this_real_url3[4] + '.mp4' + '#' + this_real_url3[4] + '.mp3')
         # 写入mysql数据库
         count = selectTVideo(this_real_url3[4])
         if count == 0:
@@ -88,7 +88,7 @@ def run(this_url, which_page, tv_category, this_how_many):
                                  this_info3.contents[3].text.strip(), this_json_data['data']['pic'],
                                  get_real_url2(this_json_data['data']['cid'], this_json_data['data']['aid'], this_real_url3[4]), str(this_json_data['data']['duration']), tv_category)
         else:
-            print('此AV/BV已存在 不入库 跳过 => ', this_real_url3[4])
+            print('此AV/BV已存在 不入库 跳过 =>', this_real_url3[4])
         print('==========================================================================================')
 
 
@@ -154,29 +154,35 @@ def get_real_url2(this_cid, this_aid,this_bvid):
     time.sleep(0.3)
     audioResponse = requests.get(this_audio_url, headers=headers).content
 
-    # 保存到本地
-    mp4_path = "./public/" + this_bvid + ".mp4"
-    if os.path.exists(mp4_path):
-        print('视频文件 已存在 不存入了 跳过 => ', mp4_path)
-    else:
-        save_file(video_response, this_bvid + ".mp4")
-        print('视频文件 已存入了 目录为 => ', mp4_path)
-
-    mp3_path = "./public/" + this_bvid + ".mp3"
-    if os.path.exists(mp3_path):
-        print('音频文件 已存在 不存入了 跳过 => ', mp3_path)
-    else:
-        save_file(audioResponse, this_bvid + ".mp3")
-        print('音频文件 已存入了 目录为 => ', mp3_path)
-    pass
-
     # 合并音频和视频
     # 合成的新视频文件名称
+    # 也要先判断存在不存在
     out_name_new = "./public/" + this_bvid + "-new.mp4"
-    ffmpy_mp4_add_mp3(mp4_path, mp3_path, out_name_new)
-
-    # 删除原音视频文件
-    remove_this(mp4_path, mp3_path, this_bvid)
+    if os.path.exists(out_name_new):
+        print('可用音视频文件 已存在 跳过 FFmpeg指令 此文件目录名称为 => ', out_name_new)
+    else:
+        # 不存在 开始进行生成步骤
+        # 视频保存到本地
+        mp4_path = "./public/" + this_bvid + ".mp4"
+        if os.path.exists(mp4_path):
+            print('视频文件 已存在 不存入了 跳过 =>', mp4_path)
+        else:
+            save_file(video_response, this_bvid + ".mp4")
+            print('视频文件 不存在 现已存入了 目录为 =>', mp4_path)
+        # 音频保存到本地
+        mp3_path = "./public/" + this_bvid + ".mp3"
+        if os.path.exists(mp3_path):
+            print('音频文件 已存在 不存入了 跳过 =>', mp3_path)
+        else:
+            save_file(audioResponse, this_bvid + ".mp3")
+            print('音频文件 不存在 现已存入了 目录为 =>', mp3_path)
+        # 开始合成
+        print('可用音视频文件 不存在 现已生成了 FFmpeg指令执行 生成文件目录名称为 => ', out_name_new)
+        # 合并音视频 生成有声音的视频文件
+        ffmpy_mp4_add_mp3(mp4_path, mp3_path, out_name_new)
+        # 删除原音视频文件
+        remove_this(mp4_path, mp3_path, this_bvid)
+    pass
 
     # 将合并好的音视频文件名称返回
     return this_bvid + '-new.mp4'
@@ -187,9 +193,9 @@ def remove_this(mp4_path, mp3_path, this_bvid):
     try:
         os.remove(mp4_path)
         os.remove(mp3_path)
-        print(this_bvid, ' 对应音视频 删除成功')
+        print(this_bvid, '对应音视频 删除成功')
     except Exception as ex:
-        print(this_bvid, ' 对应音视频 未删除！异常=> ', ex)
+        print(this_bvid, '对应音视频 未删除！异常=> ', ex)
 
 
 # 合并音视频
