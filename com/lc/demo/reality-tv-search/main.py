@@ -86,7 +86,8 @@ def run(this_url, which_page, tv_category, this_how_many):
                                  this_info3.contents[0].text.strip(), this_info3.contents[1].text.strip(),
                                  this_json_data['data']['pubdate'],
                                  this_info3.contents[3].text.strip(), this_json_data['data']['pic'],
-                                 get_real_url2(this_json_data['data']['cid'], this_json_data['data']['aid'], this_real_url3[4]), str(this_json_data['data']['duration']), tv_category)
+                                 'http://localhost:9527/' + get_real_url2(this_json_data['data']['cid'], this_json_data['data']['aid'], this_real_url3[4]),
+                                 str(this_json_data['data']['duration']), tv_category)
         else:
             print('此AV/BV已存在 不入库 跳过 =>', this_real_url3[4])
         print('==========================================================================================')
