@@ -36,7 +36,7 @@ class TVideo(db_mysql.Entity):
     abv_id = Required(str, nullable=False)  # 先去掉了 unique=True,
     title = Required(str)
     bili_url = Required(str)
-    desc = Optional(str, max_len=1000, nullable=True, default=None)
+    descs = Optional(str, max_len=1000, nullable=True, default=None)
 
     watch_counts = Optional(str, max_len=50, nullable=True, default=None)
     danmu_counts = Optional(str, max_len=50, nullable=True, default=None)
@@ -50,10 +50,10 @@ class TVideo(db_mysql.Entity):
 
 
 @db_session
-def add_tvideo_for_mysql(id, abv_id, title, bili_url, desc, watch_counts, danmu_counts, up_time, up_name, tv_pic,
+def add_tvideo_for_mysql(id, abv_id, title, bili_url, descs, watch_counts, danmu_counts, up_time, up_name, tv_pic,
                          real_url, tv_duration, tv_category):
     try:
-        new_TVideo = TVideo(id=id, abv_id=abv_id, title=title, bili_url=bili_url, desc=desc,
+        new_TVideo = TVideo(id=id, abv_id=abv_id, title=title, bili_url=bili_url, descs=descs,
                             watch_counts=watch_counts, danmu_counts=danmu_counts, up_time=up_time, up_name=up_name,
                             tv_pic=tv_pic,
                             real_url=real_url, tv_duration=tv_duration, tv_category=tv_category)

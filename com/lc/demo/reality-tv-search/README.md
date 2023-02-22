@@ -25,6 +25,12 @@
 
 > python main.py
 
+## 启动视频服务器
+
+> 进入命令行 进入public目录 执行下面命令
+
+> python -m http.server 9527
+
 ## Links
 
 ```markdown
