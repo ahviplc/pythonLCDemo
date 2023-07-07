@@ -331,8 +331,9 @@ def del_scada_report_daily(srd_org_id, srd_id):
 
 # 获取所有需要跑脚本的机构信息
 # 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1生成
+# 这是夜间跑 日报表  ORG_REPORT_GENERATE_DAY 是否计算日报表：0不生成，1夜间生成，2白天生成
 def get_all_org_id_for_run_py_command_script_from_select_db():
-    sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE= :org_report_generate order by ORG_ID desc"
+    sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE_DAY= :org_report_generate order by ORG_ID desc"
     data = [{"org_report_generate": "1"}]
     fc = db.select_by_where_many_params_dict(sql, data)
     return fc
