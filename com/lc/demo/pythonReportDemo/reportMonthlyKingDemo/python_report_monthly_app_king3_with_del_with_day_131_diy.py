@@ -524,11 +524,11 @@ def del_all_scada_report_monthly_by_year_month(srh_year, srh_month):
 
 
 # 获取所有需要跑脚本的机构信息
-# 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1夜间生成，2白天生成
+# which_one 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1夜间生成，2白天生成
 # 根据 ORG_ID 排序,倒叙
-def get_all_org_id_for_run_py_command_script_from_select_db():
+def get_all_org_id_for_run_py_command_script_from_select_db(which_one):
     sql = "select * from ORGANIZATION where ORG_REPORT_GENERATE= :org_report_generate order by ORG_ID desc"
-    data = [{"org_report_generate": "2"}]
+    data = [{"org_report_generate": which_one}]
     fc = db.select_by_where_many_params_dict(sql, data)
     return fc
 
@@ -985,7 +985,9 @@ if __name__ == '__main__':
     # print("程序运行开始time.clock():", begin_time_clock)
 
     # 查询出所有需要跑脚本的机构id
-    org_list = get_all_org_id_for_run_py_command_script_from_select_db()  # 查询出所有需要跑脚本的机构id
+    # 字段：ORG_REPORT_GENERATE 是否计算生成报表：0不生成，1夜间生成，2白天生成
+    # 这里使用 1 夜间生成
+    org_list = get_all_org_id_for_run_py_command_script_from_select_db("1")  # 查询出所有需要跑脚本的机构id
 
     # which_month 代表跑哪月 0 是当前月 | -1 是上个月
     which_month = 0
